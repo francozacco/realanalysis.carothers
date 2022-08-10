@@ -1,2 +1,4 @@
-# realanalysis.carothers
-Solutions to selected problems on Real Analysis by Carothers.
+# Real Analysis - Carothers
+Solutions to selected problems on Real Analysis.
+
+Author: Franco Zacco

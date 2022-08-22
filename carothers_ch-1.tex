@@ -1,0 +1,248 @@
+\documentclass[11pt]{article}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{adjustbox}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usepackage[mathscr]{euscript}
+
+\title{\textbf{Solved selected problems of Real Analysis - Carothers}}
+\author{Franco Zacco}
+\date{}
+
+\addtolength{\topmargin}{-3cm}
+\addtolength{\textheight}{3cm}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+
+\theoremstyle{definition}
+\newtheorem*{solution*}{Solution}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\section*{Chapter 1 - Calculus Review}
+
+	\begin{proof}{\textbf{1}}
+        Let us take the set $-A = \{-a ~|~ a \in A\}$ since $A$ is bounded below then
+        $-A$ is bounded above and because of the The Least Upper Bound Axiom we know
+        there is $u = \sup(-A)$ such that if $x \in -A$ then $x \leq \sup(-A)$
+        so $-x \geq -\sup(-A)$ and $-x \in A$ then $-\sup(-A)$ is an lower bound of $A$.
+
+        Now let us suppose that $l$ is a Lower Bound of $A$ such that 
+        $-x \geq l > -\sup(-A)$ we want to
+        arrive to a contradiction to show there is no such an $l$. Then
+        $x \leq -l < \sup(-A)$ but $\sup(-A)$ is the Least Upper Bound of $-A$ and this
+        cannot be so we have a contradiction and must be the case that if $l$ is a Lower
+        Bound then $l \leq -\sup(-A)$.
+
+        Therefore $-\sup(-A)$ is the Greatest Lower Bound of $A$.  
+    \end{proof}
+\cleardoublepage
+    \begin{proof}{\textbf{3}} Supremum characterization.\\
+        ($\rightarrow$)
+        \begin{itemize}
+            \item [(i)] If $s = \sup(A)$ then $s$ is the Least Upper Bound
+            for $A$ so by definition $s$ is an upper bound for $A$.
+            \item[(ii)] Let $\epsilon>0$. Since $s$ is the Least Upper Bound
+            of $A$, then $s-\epsilon<s$ and $s - \epsilon$ cannot be an upper bound of
+            $A$ thus there exists $a \in A$ such that $s \geq a > s - \epsilon$.
+        \end{itemize}
+        ($\leftarrow$)
+        Now we want to show by contradiction that $s$ is the Least Upper Bound for $A$. 
+        Suppose $u \neq s$ is the Least Upper Bound for $A$ so $u = \sup(A)$ which means that
+        if $a \in A$ then $a \leq u$ and since $s$ is an upper bound for $A$ then
+        $u<s$. We also have that $a>s-\epsilon$ for every $\epsilon > 0$ so let us take
+        $\epsilon = s - u$ then we have that $a>s - (s-u) = u$ but we said that
+        $a \leq u$ which means that we have a contradiction. Therefore $s$ must be the
+        Least Upper Bound for $A$ i.e. $s = \sup(A)$.
+
+        Infimum characterization. Let $A$ be a nonempty set of $\R$ that is bounded
+        below. We want to prove that $i = \inf(A)$ if and only if (i) $i$ is a lower
+        bound for $A$, and (ii) for every $\epsilon >0$ there is an $a \in A$ such that
+        $a< i + \epsilon$.\\
+        ($\rightarrow$)
+        \begin{itemize}
+            \item [(i)] If $i = \inf(A)$ then $i$ is the Greatest Lower Bound
+            for $A$ so by definition $i$ is a lower bound for $A$.
+            \item[(ii)] Let $\epsilon>0$. Since $i$ is the Greatest Lower Bound
+            for $A$, then $i+\epsilon>i$ and $i + \epsilon$ cannot be a lower bound of
+            $A$ thus there exists $a \in A$ such that $i \leq a < i + \epsilon$.
+        \end{itemize}
+        ($\leftarrow$)
+        Now we want to show by contradiction that $i$ is the Greatest Lower Bound for $A$. 
+        Suppose $l \neq i$ is the Greatest Lower Bound for $A$ so $l = \inf(A)$ which
+        means that if $a \in A$ then $a \geq l$ and since $i$ is an lower bound for $A$
+        then $i<l$. We also have that $a<i+\epsilon$ for every $\epsilon > 0$ so let us
+        take $\epsilon = l-i$ then we have that $a<i + (l-i) = l$ but we said that
+        $a \geq l$ which means that we have a contradiction. Therefore $i$ must be the
+        Least Upper Bound for $A$ i.e. $i = \inf(A)$.
+    \end{proof}
+\cleardoublepage
+    \begin{proof}{\textbf{6}}
+        Let the sequence $(a_n)$ to be  convergent to $a \in \R$, so for every positive
+        $\epsilon >0$, there is $N \in \N$ such that $|a_n - a| < \epsilon$ whenever
+        $n \geq N$. Also let us notice that
+        $$|a_n| = |a_n - a + a| \leq |a_n - a| + |a| < \epsilon + |a|$$
+        so in summary $|a_n| < |a| + \epsilon$. Let us take then
+        $$M = max\{|a_1|, |a_2|, ..., |a_n|, |a| + \epsilon\}$$
+        so we see that $|a_n| < M$ and therefore $(a_n)$ is bounded.
+
+        Given that $(a_n)$ is bounded below and above then because of The Least Upper
+        Bound Axiom and The Greatest Lower Bound Axiom we know that $(a_n)$ has a
+        Supremum and an Infimum.
+
+        Now we want to show by contradiction that $a\leq \sup(a_n)$.
+        Let us suppose that $\sup(a_n) < a$ then if we take $\epsilon = a - \sup(a_n) > 0$
+        we have that there must be some $N \in \N$ such that if $n \geq N$ then 
+        $|a_n - a| < a - \sup(a_n)$ so this means that
+        $-a + \sup(a_n) < a_n - a < a - \sup(a_n)$ then 
+        $\sup(a_n)< a_n < 2a - \sup(a_n)$ but $\sup(a_n)$ is the supremum of $a_n$ so
+        we have a contradiction. Therefore must be the case that $a\leq \sup(a_n)$.
+
+        In the same way we want to show by contradiction that $\inf(a_n) \leq a$.
+        Let us suppose now that $\inf(a_n) > a$ then if we take
+        $\epsilon = \inf(a_n) - a > 0$
+        we have that there must be some $N \in \N$ such that if $n \geq N$ then 
+        $|a_n - a| < \inf(a_n) - a$ so this means that
+        $a-\inf(a_n) < a_n - a < \inf(a_n) - a$ then 
+        $2a - \inf(a_n)< a_n < \inf(a_n)$ but $\inf(a_n)$ is the Infimum of $a_n$ so
+        we have a contradiction. Therefore must be the case that $\inf(a_n) \leq a$.
+    \end{proof}
+    \begin{proof}{\textbf{7}}
+        Since $b-a>0$ we can apply Lemma 1.2 to get a positive integer $q'$ such that
+        $q'(b-a)>1$ we also know that $\sqrt{2}>1$ so $\sqrt{2}q'(b-a)>1$ then we see that
+        $\sqrt{2}q'b$ is bigger than $\sqrt{2}q'a$ by a value bigger than 1 so this means
+        that there is some $p \in \Z$ between them, thus $\sqrt{2}q'b > p > \sqrt{2}q'a$
+        then it follows that $a < \sqrt{2}p/q < b$ where we used that $2q' = q$
+        and that $\sqrt{2}\cdot\sqrt{2} = 2$. Therefore there is some irrational number
+        of the form $\sqrt{2}p/q$ between $a$ and $b$.
+    \end{proof}
+\cleardoublepage
+    \begin{proof}{\textbf{13}}
+
+        ($\rightarrow$) We know that $(s_n)$ converges so let $\epsilon > 0$ it follows
+        then that there is some $s \in \R$ such that when $n\geq N$ then
+        $|s_n - s|< \epsilon$ which means that $|s_n| < |s| + \epsilon$.
+        Let us take then $M = \max\{|s_1|, |s_2|, ..., |s_n|, |s|+\epsilon \}$, so we 
+        see that $|s_n| < M$ and since $a_n \geq 0$ then
+        $s_n = \sum_{i=1}^{n} a_i \geq 0$ which means that $s_n < M$.
+        Therefore $(s_n)$ is bounded.
+        
+        ($\leftarrow$) Since we know now that $(s_n)$ is bounded we want to prove by
+        induction that it's a monotone (increasing) sequence.
+        First we see that $a_1 \geq 0$ and $a_2 \geq 0$ then
+        $s_1 = a_1 \leq a_1 + a_2 = s_2$.\\
+        Now let us suppose that the following expression is true
+        $$s_{n-1} = \sum_{i=1}^{n-1} a_i \leq \sum_{i=1}^{n} a_i = s_n$$
+        then since $a_{n+1} \geq 0$ we have that 
+        $$s_{n} = \sum_{i=1}^{n} a_i \leq \sum_{i=1}^{n} a_i + a_{n+1} = s_{n+1}$$
+        Therefore we showed that $(s_n)$ is bounded and monotone it follows then that
+        it is convergent.
+    \end{proof}
+    \begin{proof}{\textbf{22}}
+        Let us prove first by contradiction that $\inf_n a_n \leq \lim \inf_{n \to \infty} a_n$.
+        Suppose $\inf_n a_n > \lim \inf_{n \to \infty} a_n = \sup t_n$ then
+        $\inf_n a_n > \sup t_n \geq t_n$ but we know that $\inf_n a_n \leq t_n$ so we
+        have a contradiction then it must be the case that
+        $\inf_n a_n \leq \lim \inf_{n \to \infty} a_n$.
+
+        Now let us prove by contradiction that $\lim \sup_{n \to \infty} a_n \leq \sup_n a_n$.
+        Suppose $\inf T_n = \lim \sup_{n \to \infty} > \sup_n a_n$ then
+        $T_n \geq \inf T_n >\sup_n a_n$ but we know that $T_n \leq \sup_n a_n$ so we
+        have a contradiction then it must be the case that
+        $\lim \sup_{n \to \infty} a_n \leq \sup_n a_n$.
+
+        Finally we want to prove that
+        $$\sup t_n =\lim \inf_{n \to \infty} a_n \leq \lim \sup_{n \to \infty} a_n = \inf T_n$$
+        We know that $t_n \leq T_n$ so if we take limits in both sides we have that
+        $\lim_{n \to \infty} t_n \leq \lim_{n \to \infty}T_n$ and since $a_n$ is
+        bounded then we have that
+        $$\lim \inf_{n \to \infty} a_n = \lim_{n \to \infty} t_n \leq 
+        \lim_{n \to \infty}T_n = \lim \sup_{n \to \infty} a_n$$
+        as we wanted.
+
+        Therefore joining the results we have that
+        $$\inf_n a_n \leq \lim \inf_{n \to \infty} a_n \leq \lim \sup_{n \to \infty} a_n \leq \sup_n a_n$$
+    \end{proof}
+    \begin{proof}{\textbf{23}}
+        We know that $(a_n)$ converges to some $a \in \R$ so let $\epsilon >0$ then
+        $|a_n - a |<\epsilon$ when $n \geq N$ then we have that
+        $$a-\epsilon<a_n<a+\epsilon$$
+        but this also means that
+        $$a-\epsilon\leq t_n\leq T_n \leq a+\epsilon$$
+        and therefore their limits should be between that interval too, then
+        $$a-\epsilon \leq \liminf_{n \to \infty} a_n \leq \limsup_{n \to \infty} a_n  \leq a+\epsilon$$
+        Therefore this means that $\lim\inf_{n \to \infty} a_n$ and
+        $\lim\sup_{n \to \infty} a_n$ both converge to $a$ or what it's the same
+        $$\lim\inf_{n \to \infty} a_n = \lim\sup_{n \to \infty} a_n = \lim_{n \to \infty} a_n$$
+    \end{proof}
+    \begin{proof}{\textbf{24}}
+        We know that 
+        $\limsup\limits_{n \to \infty} a_n = \inf\{\sup\{a_n, a_{n+1}, ...\}\}$
+        so this means that 
+        $$\limsup\limits_{n \to \infty} -a_n = \inf\{\sup\{-a_n, -a_{n+1}, ...\}\}$$
+        But since $\sup -A = -\inf A$ we have that
+        $$\limsup\limits_{n \to \infty} -a_n = \inf\{-\inf\{a_n, a_{n+1}, ...\}\}$$
+        We also know that $\inf -A = -\sup A$ therefore
+        $$\limsup\limits_{n \to \infty} -a_n = -\sup\{\inf\{a_n, a_{n+1}, ...\}\}$$
+        It follows then by definition that
+        $$\limsup\limits_{n \to \infty} -a_n = -\liminf\limits_{n \to \infty} a_n$$
+    \end{proof}
+    \begin{proof}{\textbf{25}}
+        TODO
+        
+        We know that
+        $\limsup_{n \to \infty} a_n = \lim_{n \to \infty} \sup_{k \geq n} a_k = -\infty$
+        so this means that if we have an $M < 0$ then we can find an $N \in \N$
+        such that if $k \geq N$ then $\sup_{k \geq N} a_k < M$ and in particular
+        $a_k < M$ for any $k \geq N$. Therefore $\lim_{n \to \infty} a_n = -\infty$.
+
+        Now we have that $\limsup_{n \to \infty} a_n = +\infty$ so this means that if we
+        have an $M>0$ then we can find an $N \in \N$ such that if $k \geq N$ then
+        $\sup_{k\geq N}a_k > M$.
+        Let us now take a subsequence $b_n$ such that $b_k = a_k$ if $a_k > a_{k-1}$ but
+        if $a_k \leq a_{k-1}$ then we take $b_k = a_{k-1}$ then $b_k$
+        is an increasing subsequence which is not bounded, therefore it must diverge to
+        $+\infty$.
+
+        % In the same way we have that  if
+        % $\limsup_{n \to \infty} a_n = +\infty$ then $\lim_{n \to \infty} a_n = +\infty$,
+        % and since $a_n$ is a subsequence of itself then $a_n$ has a subsequence that
+        % diverges to $+\infty$ as we wanted.
+
+        For $\liminf_{n \to \infty} a_n = \pm\infty$ the procedure is analogous.
+    \end{proof}
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

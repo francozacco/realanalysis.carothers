@@ -197,31 +197,279 @@
         It follows then by definition that
         $$\limsup\limits_{n \to \infty} -a_n = -\liminf\limits_{n \to \infty} a_n$$
     \end{proof}
-    \begin{proof}{\textbf{25}}
-        TODO
-        
+\cleardoublepage
+    \begin{proof}{\textbf{25}}        
         We know that
         $\limsup_{n \to \infty} a_n = \lim_{n \to \infty} \sup_{k \geq n} a_k = -\infty$
         so this means that if we have an $M < 0$ then we can find an $N \in \N$
         such that if $k \geq N$ then $\sup_{k \geq N} a_k < M$ and in particular
         $a_k < M$ for any $k \geq N$. Therefore $\lim_{n \to \infty} a_n = -\infty$.
 
-        Now we have that $\limsup_{n \to \infty} a_n = +\infty$ so this means that if we
-        have an $M>0$ then we can find an $N \in \N$ such that if $k \geq N$ then
-        $\sup_{k\geq N}a_k > M$.
-        Let us now take a subsequence $b_n$ such that $b_k = a_k$ if $a_k > a_{k-1}$ but
-        if $a_k \leq a_{k-1}$ then we take $b_k = a_{k-1}$ then $b_k$
-        is an increasing subsequence which is not bounded, therefore it must diverge to
-        $+\infty$.
+        Now we have that $\limsup_{n \to \infty} a_n = +\infty$ which means that \\
+        $\lim_{n \to \infty}\sup_{k\geq n} a_k = +\infty$ so we have that for every $n$
+        that $\sup_{k\geq n} a_k = +\infty$ in particular
+        $$\sup_{k\geq 1} a_k > 1$$
+        This means that exists $k_1 \geq 1$ such that $a_{k_1} > 1$. Now using
+        again this fact we have that
+        $$\sup_{k\geq k_1 + 1} a_k > 2$$ 
+        Then we can find $k_2$ such that $k_2 > k_1$ and $a_{k_2} > 2$. Continuing this
+        procedure we may find a set of increasing indices
+        $$k_1 < k_2 < ... < k_n < k_{n+1} < ...$$
+        such that $a_{k_n} > n$ therefore we have an unbounded increasing subsequence
+        $(a_{k_n})$ that diverge to $+\infty$.
 
-        % In the same way we have that  if
-        % $\limsup_{n \to \infty} a_n = +\infty$ then $\lim_{n \to \infty} a_n = +\infty$,
-        % and since $a_n$ is a subsequence of itself then $a_n$ has a subsequence that
-        % diverges to $+\infty$ as we wanted.
+        Now let's see what happens when
+        $\liminf_{n \to \infty} a_n = \lim_{n \to \infty}\inf_{k\geq N} a_n = +\infty$
+        this means that if we have an $M>0$ then we can find an $N \in \N$ such that
+        if $k\geq N$ then $\inf_{k\geq N} a_n > M$ and in particular $a_k > M$ for any
+        $k \geq N$. Therefore $\lim_{n \to \infty} a_n = +\infty$.
 
-        For $\liminf_{n \to \infty} a_n = \pm\infty$ the procedure is analogous.
+        In the same way as above if $\liminf_{n \to \infty} a_n = -\infty$ this means
+        that $\lim_{n \to \infty}\inf_{k\geq n} a_k = -\infty$ so we have that for every
+        $n$ that $\inf_{k\geq n} a_k = -\infty$ in particular
+        $$\inf_{k\geq 1} a_k < -1$$
+        This means that exists $k_1 \geq 1$ such that $a_{k_1} < -1$. Now using
+        again this fact we have that
+        $$\inf_{k\geq k_1 + 1} a_k < -2$$ 
+        Then we can find $k_2$ such that $k_2 > k_1$ and $a_{k_2} < -2$. Continuing this
+        procedure we may find a set of increasing indices
+        $$k_1 < k_2 < ... < k_n < k_{n+1} < ...$$
+        such that $a_{k_n} < -n$ therefore we have an unbounded decreasing subsequence
+        $(a_{k_n})$ that diverge to $-\infty$.
+
     \end{proof}
+\cleardoublepage
+    \begin{proof}{\textbf{26}}
+        ($\rightarrow$)  We know that $M = \limsup_{n \to \infty} a_n$ which means that
+        for some $\epsilon>0$ we can find $N \in \N$ such that if $n\geq N$ then
+        $$|\sup_{k \geq n}a_k - M|< \epsilon$$
+        or in other words
+        $$M - \epsilon<\sup_{k \geq n}a_k < M+\epsilon$$
+        We also know that $a_n \leq \sup_{k \geq n}a_k < M+\epsilon$ so
+        $a_n < M+\epsilon$ but this only works for $n\geq N$ then this is
+        only valid for all but finitely many $n<N$.
+        
+        Now let us suppose that $M-\epsilon > a_n$  we want to show by contradiction
+        that this cannot be true for all $n \geq N$ then in that case the
+        $\sup_{k \geq n} a_k \leq M -\epsilon$ but we saw by the definition of the
+        $\limsup$ that $\sup_{k \geq n} a_k > M - \epsilon$ so we have a
+        contradiction and if  $M-\epsilon > a_n$ happen then it cannot happen for all
+        $n\geq N$ therefore $M-\epsilon<a_n$ happen for infinitely many $n$.
 
+        ($\leftarrow$) Now we know that $M$ satisfies that for every $\epsilon >0$,
+        we have $a_n < M+\epsilon$  for all but finitely many $n$, and $M-\epsilon<a_n$
+        for infinitely many $n$.
+        Since $(a_n)$ is bounded $M+\epsilon$ is an upper bound for $(a_n)$ and since
+        this is true for all but finitely many $n$, let us take $N \in \N$ such that if
+        $n \geq N$ we have that  $a_n < M + \epsilon$ then given that $(a_n)$ is bounded
+        $(a_n)$ has a supremum and $\sup_{k\geq n} a_k \leq M+\epsilon$.
+
+        Also since $M-\epsilon<a_n$ for infinitely many $n$, then
+        $M - \epsilon < \sup_{k\geq n} a_k$ is true.
+        Therefore $M = \limsup_{n\to \infty} a_n$\\
+        
+        Let us now caracterize $m = \liminf_{n \to \infty} a_n$ as
+        \begin{equation*}
+            \begin{cases}
+                \text{for every $\epsilon>0$ we have $a_n<m+\epsilon$ for infinitely many $n$}\\
+                \text{and $m-\epsilon < a_n$ for all but finitely many $n$}
+            \end{cases}
+        \end{equation*}
+
+        ($\rightarrow$)  We know that $m = \liminf_{n \to \infty} a_n$ which means that
+        for some $\epsilon>0$ we can find $N \in \N$ such that if $n\geq N$ then
+        $$|\inf_{k \geq n}a_k - m|< \epsilon$$
+        or in other words
+        $$m - \epsilon<\inf_{k \geq n}a_k < m+\epsilon$$
+        We also know that $m-\epsilon < \inf_{k \geq n} a_k \leq a_n$ so
+        $m -\epsilon < a_n$ but this only works for $n\geq N$ then this is
+        only valid for all but finitely many $n<N$.
+        
+        Now let us suppose that $a_n > m+\epsilon$  we want to show by contradiction
+        that this cannot be true for all $n \geq N$ then if that were true the
+        $\inf_{k \geq n} a_k \geq m +\epsilon$ but we saw by the definition of the
+        $\liminf$ that $\inf_{k \geq n} a_k < m+ \epsilon$ so we have a
+        contradiction and if  $a_n > m+\epsilon$ happen then it cannot happen for all
+        $n\geq N$ therefore $a_n<m+\epsilon$ happen for infinitely many $n$.
+
+        ($\leftarrow$) Now we know that $m$ satisfies that for every $\epsilon >0$,
+        we have $a_n < m+\epsilon$  for infinitely many $n$, and $m-\epsilon<a_n$
+        for all but finitely many $n$.
+        Since $(a_n)$ is bounded $m-\epsilon$ is a lower bound for $(a_n)$ and since
+        this is true for all but finitely many $n$, let us take $N \in \N$ such that if
+        $n \geq N$ we have that  $m- \epsilon< a_n$ then given that $(a_n)$ is bounded
+        $(a_n)$ has a infimum and $m-\epsilon \leq \inf_{k\geq n} a_k$.
+
+        Also since $a_n<m+\epsilon$ for infinitely many $n$, then 
+        $\inf_{k\geq n} a_k < m - \epsilon$ is true.
+        Therefore $m = \liminf_{n\to \infty} a_n$\\
+    \end{proof}
+    \begin{proof}{\textbf{27}}
+        The case where $M = \limsup_{n \to \infty} a_n = \pm\infty$ was handled in
+        Excercise 25 so we will focus on the case where
+        $M = \limsup_{n \to \infty} a_n \neq \pm\infty$.
+
+        Let $\epsilon = 1$. Since $M = \limsup_{n \to \infty} a_n$ is caracterized by
+        $(*)$ then there is some $N \in \N$ such that if $n \geq N$ then $a_n < M + 1$
+        but we also have that $M - 1 < a_n$ for infinitely many $n$, so we can choose
+        $n_1 \in \N$ such that $n_1 \geq N$ where both inequalities are satisfied.
+
+        Similarly we can choose $n_2 > n_1 \geq N$ such that
+        $a_{n_2} < M + \frac{1}{2}$ and $M + \frac{1}{2}< a_{n_2}$ for inifinitely many
+        $n$. Then following this procedure we can find a subsequence $(a_{n_k})$ such
+        that $|a_{n_k} - M| < \frac{1}{k}$ which implies that $(a_{n_k})$ converge to
+        $M$.
+
+        Let us now show that there is also a subsequence that converge to
+        $\liminf_{n \to \infty} a_n$. We saw that is true in Excercise 25 for the case
+        where  $\liminf_{n \to \infty} a_n = \pm \infty$.
+        
+        In the case that $m = \liminf_{n \to \infty} a_n \neq \pm\infty$ since 
+        $\liminf$ is caracterized by an analogous statement given for $\limsup$ then
+        the proof follows the same structure as above.
+    \end{proof}
+    \begin{proof}{\textbf{30}}
+        If $a_n \leq b_n$ then $\inf a_n \leq \inf b_n$ and so
+        $$\inf_{k \geq n}a_k \leq \inf_{k\geq n} b_k$$
+        by applying the limit then we have that 
+        $$\lim_{n\to\infty}\inf_{k \geq n} a_n \leq \lim_{n\to\infty}\inf_{k\geq n} b_k$$
+        but we know that $(a_n)$ converge then because of Excercise 23 we have that
+        $\lim_{n\to\infty} a_n = \liminf_{n\to\infty} a_n$, therefore
+        $$\lim_{n\to\infty} a_n \leq \lim_{n\to\infty}\inf_{k\geq n} b_k$$
+    \end{proof}
+\cleardoublepage
+    \begin{proof}{\textbf{32}}
+        Let us prove first the case where $\limsup_{n\to\infty} a_n = +\infty$ then
+        because of Exercise 25 we have that $(a_n)$ has a subsequence $(a_{k_n})$
+        that diverge to $+\infty$ then 
+        $$\sup S = \lim_{n\to\infty} a_{k_n} = \limsup_{n\to\infty} a_n = +\infty$$
+        
+        Now in the case where $\limsup_{n\to\infty} a_n = -\infty$
+        because of Exercise 25 we have that $(a_n)$ diverge to $-\infty$ too so 
+        every subsequence must diverge to $-\infty$ then
+        $$\sup S = \limsup_{n\to\infty} a_n = -\infty$$
+        
+        Finally, suppose $\limsup_{n\to\infty} a_n \neq \pm\infty$ if we take any subsequence
+        $(a_{k_n})$ we know that $a_{k_n} \leq \sup a_{k_n} \leq \sup a_n$  and then
+        $$a_{k_n} \leq \sup_{m\geq n} a_m$$
+        so if we apply the limit we have that
+        $$\lim_{n \to \infty} a_{k_n} \leq \lim_{n \to \infty} \sup_{m\geq n} a_n$$
+        Which implies that the limit of any subsequence of $(a_n)$ is less or equal to
+        $\limsup_{n \to \infty} a_n$ therefore $\sup S = \limsup_{n \to \infty} a_n$.
+
+        Let's see what happens with the infimum.
+        Let us prove first the case where $\liminf_{n\to\infty} a_n = -\infty$ then
+        because of Exercise 25 we have that $(a_n)$ has a subsequence $(a_{k_n})$
+        that diverge to $-\infty$ then 
+        $$\inf S = \lim_{n\to\infty} a_{k_n} = \liminf_{n\to\infty} a_n = -\infty$$
+        
+        Now in the case where $\liminf_{n\to\infty} a_n = +\infty$
+        because of Exercise 25 we have that $(a_n)$ diverge to $+\infty$ too so 
+        every subsequence must diverge to $+\infty$ then
+        $$\inf S = \liminf_{n\to\infty} a_n = +\infty$$
+        
+        Finally, suppose $\liminf_{n\to\infty} a_n \neq \pm\infty$ if we take any subsequence
+        $(a_{k_n})$ we know that $\inf a_n \leq \inf a_{k_n} \leq a_{k_n}$  and then
+        $$\inf_{m\geq n} a_m \leq a_{k_n}$$
+        so if we apply the limit we have that
+        $$\lim_{n \to \infty} \inf_{m\geq n} a_m \leq \lim_{n \to \infty} a_{k_n}$$
+        Which implies that the limit of any subsequence of $(a_n)$ is bigger or equal
+        to $\liminf_{n \to \infty} a_n$ therefore $\inf S = \liminf_{n \to \infty} a_n$.
+    \end{proof}
+\cleardoublepage
+    \begin{proof}{\textbf{40}}
+    \begin{itemize}
+        \item [$(i)\rightarrow(ii)$] We know that $\lim_{x \to a}f(x) = L$ so by the
+        $\epsilon-\delta$ definition we have that for every $\epsilon>0$ there is some
+        $\delta >0$ such that $|f(x)- L|<\epsilon$  whenever $x$ satisfies
+        $0<|x-a|<\delta$.
+        
+        But also we know that $\lim_{n \to \infty} x_n = a$ then by the definition of
+        the sequence limits we know that we can find some $N \in \N$ such that if $n\geq N$
+        then $|x_n - a| < \epsilon'$ for any $\epsilon' > 0$ so if we take
+        $\epsilon' = \delta$ then we have that $0<|x_n - a|<\delta$ because we also
+        know that $x_n \neq a$. Therefore it must happen that $|f(x_n)-L|<\epsilon$
+        for every $\epsilon >0$.
+
+        \item [$(ii)\rightarrow(iii)$] 
+        Let $y_n = f(x_n)$. From part $(i)\rightarrow(ii)$ we know we can find
+        $N \in \N$ so if $n \geq N$ then $0<|x_n - a|<\delta$ and because of that 
+        $|y_n - L|<\epsilon$ therefore $y_n$ converges to some limit $L$.
+
+        \item [$(iii)\rightarrow(ii)$] If $(f(x_n))$ converges to something when
+        $x_n\rightarrow a$ then there is some $N\in\N$ and when $n\geq N$ we have that
+        $0<|x_n - a|<\epsilon'$    
+        but this also means that $|f(x_n) - L|<\epsilon$ when
+        $n\geq N$ because $(f(x_n))$ converges to something, but this means that there
+        exists some number $L$ such that $f(x_n)\rightarrow L$ whenever
+        $x_n \rightarrow a$ where $x_n \neq a$.
+        
+        So we know that $f(x_n)\rightarrow L$ when $x_n \rightarrow a$ but we want
+        to check that this is true for any sequence we choose. Suppose we take another
+        sequence $(y_n)$ and then we build $(z_n)$ as $z_n = x_1, y_1, x_2, y_2, ...$.
+        Now let us suppose that $f(z_n) \rightarrow M$ then $f(y_n)$ and $f(x_n)$ are
+        subsequences of $f(z_n)$ but we know that if a sequence converge to some number
+        then all its subsequences must converge to the same number so
+        $f(x_n) \rightarrow M$ and $f(y_n) \rightarrow M$ as we wanted.
+
+        \item [$(ii)\rightarrow(i)$] Let us suppose that $\lim_{x \to a}f(x) \neq L$ we
+        want to arrive to a contradiction. Then for some $\epsilon>0$ there isn't a 
+        $\delta >0$ such that $|f(x)- L|<\epsilon$  whenever $x$ satisfies
+        $0<|x-a|<\delta$.
+
+        But from part $(iii)\rightarrow(ii)$ we know that when $0<|x_n-a|<\epsilon'=\delta$
+        then $f(x_n) \rightarrow L$ so $|f(x_n)-L|<\epsilon$ therefore we found a set 
+        of values of $x$ such that if $0<|x_n-a|<\epsilon'=\delta$
+        then $|f(x_n)-L|<\epsilon$ so we have a contradiction and
+        $\lim_{x \to a}f(x) = L$ must be true.
+    \end{itemize}
+    \end{proof}
+\cleardoublepage
+    \begin{proof}{\textbf{44}}
+        Since $f$ is increasing and bounded then we can construct a sequence $f(n)$
+        where $n \in \N$  such that $(f(n))$ is convergent because it's increasing and
+        bounded. This means that there is $N \in \N$ such that when $n \geq N$ then
+        $|f(n)-L|<\epsilon$ moreover since $(f(n))$ is bounded and increasing we can
+        write that $f(n)\leq L$. Let $x\geq N$ then since $f$ is increasing we can write
+        that $f(n) \leq f(x)$ therefore $|f(x)-L|<\epsilon$ for any $x \geq N$.
+
+        In the case of $lim_{x \to -\infty}f(x)$ we can take a sequence $(f(-n))$ which
+        is going to be a decreasing and bounded sequence and therefore convergent.
+        This means that there is $N \in \N$ such that when $n \geq N$ then
+        $|f(-n)-L'|<\epsilon$ moreover since $(f(-n))$ is bounded and decreasing
+        we can write that $f(-n) \geq L'$. Let $x\leq -N$ since $f$ is increasing we
+        can write that $f(-n) \geq f(x)$ therefore $|f(x)-L|<\epsilon$ for any
+        $x \leq -N$.
+    \end{proof}
+    \begin{proof}{\textbf{45}}
+        Suppose $c \in [a,b]$ and $c \notin \Q$ such that $f(c) \neq 0$. We want to arrive to
+        a contradiction where we show that $f(c)$ must be equal to $0$.
+        Since $f$ is continuous at $c$ let $\epsilon = |f(c)|/2$ then there is some
+        $\delta>0$ such that when  $|x-c|<\delta$ we have that 
+        $|f(x) - f(c)|<\epsilon$ so if $x$ is rational the expression becomes
+        $|-f(c)|<\epsilon$  but we said that $\epsilon = |f(c)|/2$ and
+        $|-f(c)| \nless |f(c)|/2$ therefore we have a contradiction and must be true
+        that $f(c) = 0$.
+    \end{proof}
+    \begin{proof}{\textbf{46}}
+    \begin{itemize}
+        \item [(a)] Since $f(0)>0$ we can find an $\epsilon>0$ such that
+        $f(0)-\epsilon>0$ (for example $\epsilon = \frac{f(0)}{2}$). Now from the
+        definition of continuity let us choose $\epsilon>0$ such that $f(0)-\epsilon>0$
+        then there is some $\delta>0$ such that when $|x-0|< \delta$ we have that
+        $|f(x)-f(0)|<\epsilon$ then $f(0)-\epsilon<f(x)<f(0)+\epsilon$ so
+        $0<f(0)-\epsilon<f(x)$.
+        \item [(b)] Let $a \in \R$ and $a \notin \Q$ and let us suppose that $f(a)<0$
+        we want to arrive at a contradiction where we show this cannot be true.
+        We know from the analogous of part (a) that there is some interval, let's say
+        $(a-\delta,a+\delta)$ where if $x \in (a-\delta,a+\delta)$ then $f(x)<0$ but
+        also in this interval there is some rational $b$ for which $f(b)\geq 0$ then
+        we have a contradiction and therefore must be true that $f(a)\geq 0$.
+        
+        This result doesn't hold if we change from $\geq 0$ to $>0$. Take for example
+        $f(x)=|\pi-x|$ then $f(x)>0$ for all rationals but if $x=\pi$ then $f(\pi) = 0$. 
+    \end{itemize}
+    \end{proof}
 
 \end{document}
 

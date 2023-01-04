@@ -1,0 +1,250 @@
+\documentclass[11pt]{article}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{adjustbox}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usepackage[mathscr]{euscript}
+
+\title{\textbf{Solved selected problems of Real Analysis - Carothers}}
+\author{Franco Zacco}
+\date{}
+
+\addtolength{\topmargin}{-3cm}
+\addtolength{\textheight}{3cm}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+
+\theoremstyle{definition}
+\newtheorem*{solution*}{Solution}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\section*{Chapter 2 - Countable and Uncountable Sets}
+
+	\begin{proof}{\textbf{1}}
+        We want to prove that the relation "is equivalent to" defines an equivalence
+        relation, then we prove the following.
+        \begin{itemize}
+        \item [(i)] First, we want to prove that $A \sim A$. Let $f:A\rightarrow A$ such
+        that $f(x) = x$ then $A \sim A$.
+        \item[(ii)] If $A \sim B$ then there exists some $f:A \rightarrow B$ such that
+        it is an onto and a one-to-one function. This means that it must exist
+        $f^{-1}:B \rightarrow A$ which is also an onto and a one-to-one function.
+        Therefore $B \sim A$.
+        \item[(iii)] Finally, if $A\sim B$ and $B \sim C$ we must have two functions
+        $f:A\rightarrow B$ and $g: B \rightarrow C$ such that both of them are onto and
+        one-to-one. Now, let $h(x) = g(f(x))$ we see that $h:A \rightarrow C$ and since
+        both $f$ and $g$ are onto and one-to-one functions then $h$ is also onto and
+        one-to-one. Therefore $A \sim C$.
+        \end{itemize}
+    \end{proof}
+	\begin{proof}{\textbf{2}}
+        Let us grab one element from $A$ that we know it exists because $A$ it's an
+        infinite set, and let us call this element $a_1$ then we can build a subset
+        of $A$ as $\{a_1\}$ which has one element, then the case of $n=1$ is done.
+        Now let us grab another element from $A$ and let us call it $a_2$ then we can
+        build another subset of $A$ as $\{a_1, a_2\}$ of size $n=2$, if we continue
+        this procedure we can build a subset of $A$ of any size such that $n \geq 1$. 
+    \end{proof}
+\cleardoublepage
+	\begin{proof}{\textbf{3}}
+
+        Let us have two finite countable sets $A_1$ and $A_2$ of sizes $n$ and $m$
+        respectively, then the set $A_1 \cup A_2$ will have $n + m - k$ elements
+        where $k$ is the number of elements that are in both sets, but then the set
+        $A_1 \cup A_2$ is equivalent to a set $\{1,2,3,...,n+m-k\}$ so $A_1 \cup A_2$
+        is also a finite countable set.
+        We can continue this procedure for a set of finite countable sets so 
+        $A_1 \cup A_2 \cup A_3 ... \cup A_n$ is also a finite countable set.\\
+        In the case  where $A_1, A_2, ..., A_n$ are infinite countable sets let us call
+        $a_{ij}$ the element of $A_i$ in the position $j$ then we can map the elements
+        in the following way
+        \begin{align*}
+            1 \rightarrow a_{11} &\quad\quad n+1 \rightarrow a_{12} \quad\quad ...\\
+            2 \rightarrow a_{21} &\quad\quad n+2 \rightarrow a_{22} \quad\quad ...\\
+            3 \rightarrow a_{31} &\quad\quad n+3 \rightarrow a_{32} \quad\quad ...\\
+            ... &\quad\quad ...\\
+            n \rightarrow a_{n1} &\quad\quad n+n \rightarrow a_{n2} \quad\quad ...
+        \end{align*}
+        So we have mapped each element of $\N$ to an element of
+        $A_1 \cup A_2 \cup A_3 ... \cup A_n$ then $A_1 \cup A_2 \cup A_3 ... \cup A_n$
+        is an infinite countable set.\\
+
+        For the set $A_1 \times A_2 \times ... \times A_n$ we can write it as
+        $\{(a_1, a_2, ..., a_n) ~|~
+        a_1 \in A_1\text{ and }a_2 \in A_2\text{ and }... \text{ and }a_n \in A_n\}$ and
+         we see that this operation between the sets gave us a set of size
+        $m_1 \cdot m_2 \cdot ... \cdot m_n$
+        where $m_1$ is the number of elements in $A_1$, $m_2$ is the number of
+        elements in $A_2$ and so on, but then this set is equivalent to
+        the set $\{1,2,3,...,m_1 \cdot m_2 \cdot ... \cdot m_n\}$. Therefore the
+        cartesian product $A_1 \times A_2 \times ... \times A_n$ is also a finite
+        countable set.\\
+        In the case  where $A_1, A_2, ..., A_n$ are infinite countable sets we know all
+        of them are equivalent to $\N$ and we also we know that $\N \times \N$ is
+        equivalent to $\N$ then we can write that
+        $A_1 \times A_2 \times ... \times A_n \sim 
+        \N \times \N \times ... \times \N \sim \N$
+        therefore $A_1 \times A_2 \times ... \times A_n$ is also an infinite countable
+        set. 
+    \end{proof}
+	\begin{proof}{\textbf{4}}
+        Let us suppose we have a set $A$ which is infinite, then we can select a set of
+        elements from $A$ and call it $B$ such that $B = \{a_1, a_2, ..., \}$ where 
+        $a_1$ is one element from $A$, $a_2$ is another element from $A$ and so on.
+        Then $B$ will be equivalent to $\N$ and therefore $B$ is an infinitely countable
+        set.
+    \end{proof}
+	\begin{proof}{\textbf{15}}
+        Given that every nonempty open interval in $\R$ has a rational number inside
+        let us grab one rational $q_1$ from one of the intervals then we grab from
+        another open interval another rational number $q_2$ and so on, then we can
+        generate a set with these numbers as $B = \{q_1, q_2, ...\}$ so $B$ is
+        equivalent to $\N$ and therefore $B$ is countable and the set of pairwise
+        disjoint, nonempty open intervals in $\R$ is too.
+    \end{proof}
+\cleardoublepage
+	\begin{proof}{\textbf{19}}
+        Let $G$ be the set of all functions $g:A \rightarrow \{0,1\}$ and let us define
+        a function $f$ such that $f:P(A) \rightarrow G$ and $f(\alpha) = g_{\alpha}$
+        where $\alpha \in P(A)$ and $g_{\alpha}: A \rightarrow \{0,1\}$ is defined as
+        \begin{equation*}
+            g_\alpha(a) =
+            \begin{cases}
+                1 \text{ if } a \in \alpha\\
+                0 \text{ if } a \notin \alpha
+            \end{cases}             
+        \end{equation*}
+        We want to check that the function $f$ is bijective (i.e. one-to-one and onto).\\
+        Suppose then that $f(\alpha) = f(\beta)$ where $\alpha, \beta \in P(A)$ then
+        $g_{\alpha} = g_{\beta}$ now let us suppose that there is some $a \in A$ such
+        that $g_{\alpha}(a) = 1$ and $g_{\beta}(a) = 0$ we want to arrive to
+        a contradiction this means that $a \in \alpha$ but $a \notin \beta$ i.e
+        $\alpha \neq \beta$ but we said
+        that $g_{\alpha} = g_{\beta}$ then this is a contradiction and either
+        $g_{\beta}(a) = 1$ or $g_{\alpha}(a) = 0$ and therefore $\alpha = \beta$.\\
+        Now let us have a function $g \in G$ such that $g:A \rightarrow \{0,1\}$. Let us
+        also have a set $\alpha = \{a \in A: g(a) = 1\}$ so we can define
+        $g = g_{\alpha}$ and we see that  $\alpha \in P(A)$. Therefore for any $g \in G$
+        we can find an $\alpha \in P(A)$ as we wanted. 
+    \end{proof}
+	\begin{proof}{\textbf{21}}
+        We know that the Cantor set consists of those points in $[0, 1]$ having some
+        base 3 decimal representation that excludes the digit 1. Then a ternary decimal
+        of the form $0.a_1a_2a_3...a_n11$ is not in $\Delta$.
+    \end{proof}
+	\begin{proof}{\textbf{22}}
+        If $x,y \in \Delta$ then $x$ and $y$ can be written as $x=0.x_1x_2x_3...$
+        and $y=0.y_1y_2y_3...$ where each digit is either 0 or 2.\\
+        Since we know that $x<y$ we know there is some $nth$ digit where $x_n=0$ and
+        $y_n=2$, let us select this $nth$ index to be the minimum digit where this
+        happen. Then we can construct a number $z$ such that $z_k=x_k=y_k$ where 
+        $k \in \{0,1,2,...,n-1\}$ and then $z_n = 1$ therefore we have that
+        $z \notin \Delta$ and $x<z<y$.
+    \end{proof}
+	\begin{proof}{\textbf{26}}
+        Let $x,y \in \Delta$ then we can write
+        $x = a_1a_2a_3...$ and $y = b_1b_2b_3...$ where $a_n,b_n \in \{0,2\}$ and
+        $n \in \N$, but since $x<y$ then there must be some digit where $a_k = 0$ and
+        $b_k = 2$ so when we apply the Cantor function we see that $f(a_k) = 0$ and
+        $f(b_k) = 1$ what could happen here is that the binary number formed has two
+        binary representations so if $f(a_m) = 1$ for $m \in \N$ and $m > k$ and $a_m$
+        is not terminating then $f(x) = f(y)$. Therefore we have that $f(x) \leq f(y)$.\\
+        $(\rightarrow)$ If $f(x) = f(y)$ then this means that
+        $f(x) = 0.c_1c_2... c_k0\bar{1}$ and $f(y) = 0.c_1c_2...c_k1$ where
+        $c_n \in \{0,1\}$ and $n = \{1,2,3,...,k\}$ but this means that
+        $x=0.a_1a_2...a_k0\bar{2} = 0.a_1a_2...a_k1$ and $y=0.a_1a_2...a_k2$
+        where $a_n \in \{0,2\}$ and $n = \{1,2,3,...,k\}$.\\
+        $(\leftarrow)$ Now if $x=0.a_1a_2...a_k1$ and $y=0.a_1a_2...a_k2$ we can write
+        $x = 0.a_1a_2...a_k0\bar{2}$ then
+        $f(x) = 0.c_1c_2...c_k0\bar{1} = 0.c_1c_2...c_k1 = f(y)$ 
+    \end{proof}
+\cleardoublepage
+	\begin{proof}{\textbf{29}}
+        Let $f: [0,1] \rightarrow [0,1]$ be the extended Cantor function.\\
+        If $x,y \in \Delta$ and $x < y$ we saw that $f(x)\leq f(y)$ so $f$ is increasing
+        in this case.\\
+        If $x \in \Delta$, $y \in [0,1]\setminus \Delta$ and $x<y$ then given that
+        $f(y)$ is defined as $f(y) = \sup\{f(z): z \in \Delta,~z \leq y\}$ then
+        $f(x) \leq f(y)$ so $f$ is increasing.\\
+        If $x \in [0,1]\setminus \Delta$, $y \in \Delta$ and $x<y$ then given that
+        $f(x)$ is defined as $f(x) = \sup\{f(z): z \in \Delta,~z \leq y\}$ but also
+        $f(z) \leq f(y)$ then $f(x) \leq f(y)$ therefore $f$ is increasing.
+    \end{proof}
+	\begin{proof}{\textbf{30}}
+        At step 1 we discard an interval of length $\alpha / 3$ in the step 2 we discard
+        2 intervals of length $\alpha / 3^{2}$ then the total length discarded in this
+        step is $2\alpha/3^{2}$, we can continue this procedure so in the $nth$ step we 
+        discard $2^{n-1}\alpha / 3^{n}$. Now let us sum all the discarded intervals
+        \begin{align*}
+            \sum_{n=1}^\infty \frac{2^{n-1}\alpha}{3^{n}} &= \frac{\alpha}{3}\sum_{n=1}^\infty \frac{2^{n-1}}{3^{n-1}}\\
+                &= \frac{\alpha}{3}\sum_{n=0}^\infty \left(\frac{2}{3}\right)^n\\
+                &= \frac{\alpha}{3}\frac{1}{1-2/3} = \alpha
+        \end{align*}
+        Therefore the generalized Cantor set has a measure of $1-\alpha$.
+    \end{proof}
+	\begin{proof}{\textbf{32}}
+        Let us suppose that there is one open interval where the monotone function $f$
+        doesn't have continuity points i.e. all points are discontinued (we have
+        uncountable many of them), but we saw in Theorem 2.17 that if $f$ is a monotone
+        function has at most countable many points of discontinuity so we have arrived
+        at a contradiction and therefore $f$ has points of continuity on every open
+        interval.
+    \end{proof}
+\cleardoublepage
+	\begin{proof}{\textbf{33}}
+        Let us suppose that $\sum_{i=1}^n |f(x_i +)- f(x_i-)| > |f(b) - f(a)|$ we want
+        to arrive to a contradiction. Let us suppose $f$ is monotone increasing (the
+        proof should be analogous if $f$ is decreasing) then we can find the biggest
+        $k \in \N$ where we have that  $\sum_{i=1}^k |f(x_i +)- f(x_i-)| < |f(b) - f(a)|$
+        but then it must happen that $f(x_{k+1}+) > f(b)$ so from here on $f$ must be decreasing, which is a
+        contradiction because we said that $f$ is monotone increasing. Therefore it
+        must happen that $\sum_{i=1}^n |f(x_i +)- f(x_i-)| \leq |f(b) - f(a)|$.
+
+        Proving that $f$ has at most countably many jump discontinuities is analogous
+        to prove that $T_n = \{x \in [a,b]:|f(x+)-f(x-)|\geq 1/n\}$ is finite
+        because $T_1 \subset T_2 \subset T_3 \subset...$ and $\cup_{n=1}^\infty T_n$
+        is the set of all discontinuities, then if all $T_n$ are countable then
+        $\cup_{n=1}^\infty T_n$ is countable.
+        Let us suppose $T_n$ is infinite then definitely there is a finite number of
+        points $M = 2n|f(b)-f(a)|$ inside and we know that
+        $$\sum_{i=1}^M \frac{1}{n} \leq \sum_{i=1}^M |f(x_i +)- f(x_i-)| \leq |f(b) - f(a)|$$
+        then
+        $$2|f(b) - f(a)| = \sum_{i=1}^{2n|f(b)-f(a)|} \frac{1}{n} \leq |f(b) - f(a)|$$
+        which is not true therefore $T_n$ must be finite.
+    \end{proof}
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

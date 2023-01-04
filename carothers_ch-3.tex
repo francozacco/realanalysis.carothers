@@ -1,0 +1,858 @@
+\documentclass[11pt]{article}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{adjustbox}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usepackage[mathscr]{euscript}
+
+\title{\textbf{Solved selected problems of Real Analysis - Carothers}}
+\author{Franco Zacco}
+\date{}
+
+\addtolength{\topmargin}{-3cm}
+\addtolength{\textheight}{3cm}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\diam}{\text{diam}}
+
+\theoremstyle{definition}
+\newtheorem*{solution*}{Solution}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\section*{Chapter 3 - Metrics and Norms}
+
+	\begin{proof}{\textbf{2}}
+        We know that
+        \begin{align*}
+            |d(x,z)-d(y,z)| =
+            \begin{cases}
+                d(x,z)-d(y,z) \text{ if } d(x,z) \geq d(y,z)\\ 
+                d(y,z)-d(x,z) \text{ if } d(x,z) < d(y,z) 
+            \end{cases}
+        \end{align*}
+        Also, from the triangle inequality we have that
+        \begin{align*}
+            d(x,z) &\leq d(x,y) + d(y,z)\\
+            d(x,z) - d(y,z) &\leq d(x,y)
+        \end{align*}
+        and that
+        \begin{align*}
+            d(y,z) &\leq d(y,x) + d(x,z)\\
+            d(y,z) - d(x,z) &\leq d(y,x) = d(x,y)
+        \end{align*}
+        Therefore $|d(x,z)-d(y,z)| \leq d(x,y)$
+    \end{proof}
+	\begin{proof}{\textbf{3}}
+        We know that $d(x,y) \leq d(x,z) + d(y,z)$ so let $z = x$ then we have that
+        $$d(x,y) \leq d(x,x) + d(y,x) = d(y,x)$$
+        since $d(x,x) = 0$. But we also know that
+        $d(y,x) \leq d(y,z) + d(x,z)$ and if we let $z=y$ then we have that 
+        $$d(y,x) \leq d(y,y) + d(x,y) = d(x,y)$$
+        Therefore $d(x,y) = d(y,x)$.\\
+        On the other hand, if we grab the triangle inequality
+        $d(x,z) \leq d(x,y) + d(z,y)$ and we let $z=x$ we have that
+        $$0 = d(x,x) \leq d(x,y) + d(x,y) = 2 d(x,y)$$
+        Therefore $d(x,y) \geq 0$.
+    \end{proof}
+\cleardoublepage
+	\begin{proof}{\textbf{6}}
+        If $\rho(x,y) = \sqrt{d(x,y)}$ is a metric then it should follow the (i)-(iv)
+        properties defined.
+        \begin{itemize}
+            \item [(i)] Since $d(x,y)$ is a metric then $0 \leq d(x,y)$ and since 
+            the square root is a function strictly increasing we have that
+            $0 \leq \sqrt{d(x,y)}$.
+            \item [(ii)] If $x=y$ then $\sqrt{d(x,y)} = \sqrt{0} = 0$ since $d(x,y)$ is
+            a metric and $d(x,y) = 0$ if $x=y$.
+            \item [(iii)] Since $d(x,y)$ is a metric and $d(x,y) = d(y,x)$ then
+            $\rho(x,y) = \sqrt{d(x,y)} = \sqrt{d(y,x)} = \rho(y,x)$.
+            \item [(iv)] Since $d(x,y)$ is a metric then $d(x,y) \leq d(x,z) + d(z,y)$
+            and since  the square root is a function strictly increasing we have that
+            \begin{align*}
+                \sqrt{d(x,y)} \leq \sqrt{d(x,z) + d(z,y)}
+            \end{align*}
+            But also we know that $\sqrt{d(x,z) + d(z,y)} \leq \sqrt{d(x,z)} + \sqrt{d(z,y)}$
+            therefore $$\sqrt{d(x,y)} \leq \sqrt{d(x,z)} + \sqrt{d(z,y)}$$
+        \end{itemize}
+        If $\sigma(x,y) = d(x,y)/(1 + d(x,y))$ is a metric then it should follow the
+        (i)-(iv) properties defined. But first we need to prove that the function
+        $F(t) = t /(1+t)$ is increasing for any $t \geq 0$ since $d(x,y) \geq 0$
+        and that $F(s+t) \leq F(s) + F(t)$ which is going to clear our way to prove
+        that $\sigma$ follow the properties defined.\\
+        If $0 \leq s \leq t$ then $1+s \leq 1+t$ so we have that 
+        \begin{align*}
+            \frac{1}{1+t} \leq \frac{1}{1+s}
+        \end{align*}
+        But then
+        \begin{align*}
+            \frac{s}{1+s} = 1-\frac{1}{1+s} \leq 1-\frac{1}{1+t} = \frac{t}{1+t}
+        \end{align*}
+        Therefore $\sigma$ is an increasing function.\\
+        Let us prove now that $F(s+t) \leq F(s) + F(t)$, we have that
+        $$F(s+t) = \frac{s+t}{1+s+t} = \frac{s}{1+s+t} + \frac{t}{1+s+t}$$
+        and since $s,t \geq 0$ then we have that
+        \begin{align*}
+            \frac{s}{1+s+t} + \frac{t}{1+s+t} \leq \frac{s}{1+s} + \frac{t}{1+t}
+        \end{align*}
+        So finally we are ready to prove the properties for $\sigma$ as follows.
+        \begin{itemize}
+            \item [(i)] Since $d(x,y)$ is a metric then $0 \leq d(x,y)$ and $F$ is an
+            increasing function we have that
+            $0 = F(0) \leq F(d(x,y)) = d(x,y)/(1+d(x,y)) = \sigma(x,y)$.
+            \item [(ii)] If $x=y$ then $F(d(x,y)) = d(x,y)/(1+d(x,y)) = 0/(1+0) = 0$
+            since $d(x,y)$ is a metric and $d(x,y) = 0$ if $x=y$.
+            \item [(iii)] Since $d(x,y)$ is a metric and $d(x,y) = d(y,x)$ then
+            $$\sigma(x,y) = \frac{d(x,y)}{1 + d(x,y)} = \frac{d(y,x)}{1 + d(y,x)} = \sigma(y,x)$$.
+            \item [(iv)] Since $d(x,y)$ is a metric then $d(x,y) \leq d(x,z) + d(z,y)$
+            and since the function $F$ is a increasing function we have that
+            \begin{align*}
+                F(d(x,y)) \leq F(d(x,z) + d(z,y))
+            \end{align*}
+            But also we know that $F(d(x,z) + d(z,y)) \leq F(d(x,z)) + F(d(z,y))$
+            because of what we proved before.
+            Therefore
+            $$\sigma(x,y) = \frac{d(x,y)}{1+d(x,y)} \leq
+            \frac{d(x,z)}{1+d(x,z)} + \frac{d(z,y)}{1+d(z,y)} =
+            \sigma(x,z) + \sigma(z,y)$$
+        \end{itemize}
+        Finally if $\tau(x,y) = \min\{d(x,y), 1\}$ is a metric then it should follow the
+        (i)-(iv) properties defined.
+        \begin{itemize}
+            \item [(i)] Since $d(x,y)$ is a metric then $d(x,y) \geq 0$ but also $1 > 0$
+            therefore $\tau(x,y) \geq 0$.
+            \item [(ii)] If $x=y$ then $\tau(x,y) = \min\{d(x,y), 1\} = \min\{0, 1\} = 0$
+            since $d(x,y)$ is a metric and $d(x,y) = 0$ if $x=y$.
+            \item [(iii)] Since $d(x,y)$ is a metric and $d(x,y) = d(y,x)$ then
+            $$\tau(x,y) = \min\{d(x,y), 1\} = \min\{d(y,x), 1\} = \tau(y,x)$$
+            \item [(iv)] Since $d(x,y)$ is a metric then $d(x,y) \leq d(x,z) + d(z,y)$
+            and applying the minimum function this inequality is conserved, i.e.
+            $$\min\{d(x,y), 1\} \leq \min\{d(x,z) + d(z,y), 1\}$$
+            Let us now check that
+            $\min\{d(x,z) + d(z,y), 1\} \leq \min\{d(x,z), 1\} + \min\{d(z,y), 1\}$ by
+            cases
+            \begin{itemize}
+                \item If $d(x,z) > 1$ and $d(z,y) > 1$ then 
+                $\min\{d(x,z) + d(z,y), 1\} = 1$ and $\min\{d(x,z), 1\} + \min\{d(z,y), 1\} = 2$
+                therefore
+                $$\min\{d(x,z) + d(z,y), 1\} < \min\{d(x,z), 1\} + \min\{d(z,y), 1\}$$
+                \item If $d(x,z) < 1$ and $d(z,y) > 1$ then
+                $\min\{d(x,z) + d(z,y), 1\} = 1$ and
+                $\min\{d(x,z), 1\} + \min\{d(z,y), 1\} = d(x,z) + 1$ therefore
+                $$\min\{d(x,z) + d(z,y), 1\} < \min\{d(x,z), 1\} + \min\{d(z,y), 1\}$$
+                \item If $d(x,z) > 1$ and $d(z,y) < 1$ then
+                $\min\{d(x,z) + d(z,y), 1\} = 1$ and
+                $\min\{d(x,z), 1\} + \min\{d(z,y), 1\} = 1 + d(z,y)$ therefore
+                $$\min\{d(x,z) + d(z,y), 1\} < \min\{d(x,z), 1\} + \min\{d(z,y), 1\}$$
+                \item If $d(x,z) < 1$ and $d(z,y) < 1$ then
+                $\min\{d(x,z) + d(z,y), 1\} = d(x,z) + d(z,y)$ and
+                $\min\{d(x,z), 1\} + \min\{d(z,y), 1\} = d(x,z) + d(z,y)$ therefore
+                $$\min\{d(x,z) + d(z,y), 1\} = \min\{d(x,z), 1\} + \min\{d(z,y), 1\}$$                
+            \end{itemize}
+            Finally we see that
+            $$\min\{d(x,y), 1\} \leq \min\{d(x,z), 1\} + \min\{d(z,y), 1\}$$
+        \end{itemize}
+    \end{proof}
+	\begin{proof}{\textbf{10}}
+        \begin{itemize}
+        \item [\bf{(i)}]
+        If $d(x,y) = \sum_{n=1}^\infty 2^{-n}|x_n - y_n|$ defines a metric in $H^{\infty}$
+        then it should follow the (i)-(iv) properties defined for metrics.
+        \begin{itemize}
+            \item [(i)] Since $2^n \geq 0$ and $|x_n - y_n| \geq 0$ then
+            $\sum_{n=1}^\infty 2^{-n}|x_n - y_n| \geq 0$.
+            \item [(ii)] If $x_n = y_n$ then
+            $$\sum_{n=1}^\infty 2^{-n}|x_n - x_n| = \sum_{n=1}^\infty 2^{-n} \cdot 0 = 0$$
+            \item [(iii)] Since $|x_n - y_n| = |y_n - x_n|$ then we have that 
+            $$d(x,y) = \sum_{n=1}^\infty 2^{-n}|x_n - y_n| =
+            \sum_{n=1}^\infty 2^{-n}|y_n - x_n| = d(y,x)$$
+            \item [(iv)] From the triangle inequality we have that
+            $$|x_n - y_n| = |(x_n - z_n) + (z_n - y_n)| \leq |x_n - z_n| + |z_n + y_n|$$
+            Therefore
+            $$\sum_{n=1}^\infty 2^{-n}|x_n - y_n| \leq
+            \sum_{n=1}^\infty 2^{-n}(|x_n - z_n| + |z_n - y_n|)$$
+        \end{itemize}
+\cleardoublepage
+        \item [\bf{(ii)}]
+        We know that 
+        \begin{align*}
+            d(x,y) = \sum_{n=1}^k 2^{-n}|x_n - y_n| + \sum_{n=k+1}^\infty 2^{-n}|x_n - y_n|
+        \end{align*}
+        Then since $M_k = \max\{|x_1 - y_1|, ..., |x_k - y_k|\}$
+        we have that
+        \begin{align*}
+            \sum_{n=1}^k 2^{-n}|x_n - y_n| \leq \sum_{n=1}^k 2^{-n}M_k
+        \end{align*}
+        And since $|x_n - y_n| \leq 2$ 
+        \begin{align*}
+            \sum_{n=k+1}^\infty 2^{-n}|x_n - y_n| \leq \sum_{n=k+1}^\infty 2^{-n+1} = 2^{1-k}
+        \end{align*}
+        Then
+        \begin{align*}
+            \sum_{n=1}^k 2^{-n}|x_n - y_n| + \sum_{n=k+1}^\infty 2^{-n}|x_n - y_n|
+            &\leq M_k\sum_{n=1}^k 2^{-n} + 2^{1-k}
+        \end{align*}
+        But in addition we see that
+        \begin{align*}
+            M_k\sum_{n=1}^k 2^{-n} + 2^{1-k} = M_k(1 - 2^{-k})+ 2^{1-k} \leq M_k + 2^{1-k}
+        \end{align*}
+        Therefore
+        $$\sum_{n=1}^\infty 2^{-n}|x_n - y_n| \leq M_k + 2^{1-k}$$
+        On the other hand, we know that $M_k = |x_m - y_m|$ where $m \in \{1,2,...,k\}$
+        so $m \leq k$ then $2^{-k} \leq 2^{-m}$ so $2^{-k}M_k \leq 2^{-m}|x_m - y_m|$
+        Therefore
+        \begin{align*}
+            2^{-k}M_k \leq \sum_{n=1}^\infty 2^{-n}|x_n - y_n| \leq M_k + 2^{1-k}
+        \end{align*}
+        
+        \end{itemize}
+    \end{proof}
+\cleardoublepage
+	\begin{proof}{\textbf{12}}
+        We want to check that $d(f,g) = \max_{a\leq t\leq b} |f(t) - g(t)|$ is a metric
+        on $C[a,b]$ then we need to prove it follows the (i)-(iv) properties defined
+        \begin{itemize}
+            \item [(i)] Since $|f(t) - g(t)| \geq 0$ then
+            $d(f,g) = \max_{a\leq t\leq b} |f(t) - g(t)| \geq 0$
+            \item [(ii)] If $f = g$ then 
+            $$d(f,f) = \max_{a\leq t\leq b} |f(t) - f(t)| = 0$$
+            \item [(iii)] Since $|f(t) - g(t)| = |g(t)-f(t)|$ we have that
+            $$d(f,g) = \max_{a\leq t\leq b} |f(t) - g(t)| =
+            \max_{a\leq t\leq b} |g(t) - f(t)| = d(g,f)$$
+            \item [(iv)] We know that $|f(t) - h(t)| \leq \max_{a\leq t\leq b} |f(t) - h(t)| = d(f,h)$
+            and that $|h(t) - g(t)| \leq \max_{a\leq t\leq b} |h(t) - g(t)| = d(h,g)$
+            and also because of the triangle inequality we have that for any $t$ 
+            $$|f(t)-g(t)| = |(f(t) - h(t)) + (h(t) - g(t))| \leq |f(t) - h(t)| + |h(t) - g(t)|$$
+            Therefore
+            $$|f(t)-g(t)| \leq |f(t) - h(t)| + |h(t) - g(t)| \leq d(f,h) + d(h,g)$$
+            The left-hand side of the inequality depends on $t$ but the right-hand side
+            does not, then maximum of the right-hand side is less that the left-hand side.
+            $$d(f,g) \leq d(f,h) + d(h,g)$$
+        \end{itemize}
+    \end{proof}
+	\begin{proof}{\textbf{14}}
+        Let $S = \cup_{i=1}^n S_i$ be the finite union of sets of $M$ where all of them are
+        bounded then there is a set of constants $\{C_1 ,C_2, ..., C_n\}$ such that
+        for the ith element we have that $d(s_i, x_0) \leq C_i$ for all $s_i \in S_i$.
+        Therefore if we take $ C = \max \{C_1, C_2, ..., C_n\}$ we see that
+        $d(s, x_0) \leq C$ where $s \in S$.  
+    \end{proof}
+	\begin{proof}{\textbf{15}}
+
+        ($\rightarrow$) If $A$ is bounded then there is some constant $C$ and it exist 
+        $x_0 \in M$ such that $d(a,x_0) \leq C$ for all $a \in A$. Let us take
+        $a,b \in A$ then $d(a,b) \leq d(a,x_0) + d(b,x_0) \leq 2C$ therefore
+        $\sup\{d(a,b): a,b \in A\} \leq 2C$.
+        
+        ($\leftarrow$) If the diameter of $A$ is finite then $\sup\{d(a,b): a,b \in A\}$
+        exist and because of the definition of supremum we have that
+        $d(a,b) \leq \sup\{d(a,b): a,b \in A\}$. Let us now take $x_0 \in A$ since
+        $A \subseteq M$ we have that $x_0 \in M$ so if we take
+        $C = \sup\{d(a,b): a,b \in A\}$ we see that $d(a, x_0) \leq C$.
+    \end{proof}
+\cleardoublepage
+	\begin{proof}{\textbf{16}}
+        We want to show that $\|x\| = d(x,0)$ is a norm on $V$ so we need to show that
+        it satisfies the properties of a norm
+        \begin{itemize}
+            \item [(i)] Since $d(x,y)$ is a metric we know that
+            $0 \leq \|x\| = d(x,0) < \infty$.
+            \item [(ii)] ($\rightarrow$) If $\|x\| = 0 = d(x,0)$ then $x = 0$ because
+            $d(x,y)$ is a metric.
+            
+            ($\leftarrow$) If $x=0$ then $\|x\| = \|0\| = d(0, 0) = 0$ because
+            $d(x,y)$ is a metric and $d(x,y) = 0$ iff $x=y$.
+            \item [(iii)] $\|\alpha x\| = d(\alpha x, 0) = |\alpha|d(x,0) = |\alpha|\|x\|$
+            because we know that $d(\alpha x, \alpha y) = |\alpha| d(x,y)$
+            \item [(iv)] Because of the triangle inequality defined for metrics we have
+            that 
+            $$\|x+y\| = d(x+y,0) \leq d(x+y,y) + d(y,0)$$
+            But also we know that $d(x,y) = d(x-y,0)$ then $d(x+y,y) = d(x,0)$ therefore
+            $$\|x+y\| = d(x+y,0) \leq d(x,0) + d(y,0) = \|x\| + \|y\|$$
+        \end{itemize}
+        Finally an example of a metric on $\R$ that fails to be associated with a norm
+        this way is $\rho(x,y) = \sqrt{|x-y|}$ since $\rho(x,y) = \rho(x-y,0)$ is true
+        but $\rho(\alpha x,\alpha y) \neq |\alpha|\rho(x,y)$.
+    \end{proof} 
+	\begin{proof}{\textbf{17}}
+        First, we want to show that $\|x\|_1 = \sum_{i=1}^n |x_i|$ is a norm so we
+        need to show that it satisfies the properties of a norm
+        \begin{itemize}
+            \item [(i)] Since every element $0 \leq |x_i| < \infty$ then
+            $0 \leq \|x\|_1 = \sum_{i=1}^n |x_i| < \infty$.
+            \item [(ii)] ($\rightarrow$) If $\|x\|_1 = 0$ and since $|x_i| \geq 0$
+            it must happen that every element $|x_i| = 0$ therefore $x = 0$.
+            
+            ($\leftarrow$) If $x = 0$ this means that every element $|x_i| = 0$ and
+            therefore $\|x\|_1 = \sum_{i=1}^n |x_i| = 0$.
+            \item [(iii)] Let $\alpha$ be a scalar then
+            $$\|\alpha x\|_1 = \sum_{i=1}^n |\alpha x_i| = \sum_{i=1}^n |\alpha||x_i|
+            = |\alpha|\sum_{i=1}^n|x_i| = |\alpha|\|x\|_1$$
+            \item [(iv)] We have that $\|x+y\|_1 = \sum_{i=1}^n|x_i + y_i|$ and
+            because of the triangle inequality for real numbers we know
+            that $|x_i + y_i| \leq |x_i| + |y_i|$ then
+            $$\sum_{i=1}^n|x_i + y_i| \leq \sum_{i=1}^n|x_i| + |y_i| = \sum_{i=1}^n|x_i| + \sum_{i=1}^n|y_i|$$
+            And therefore
+            $$\|x+y\|_1 \leq \|x\|_1 + \|y\|_1$$
+        \end{itemize}
+        Now we want to show that $\|x\|_\infty = \max_{1\leq i\leq n} |x_i|$ is a norm
+        then
+        \begin{itemize}
+            \item [(i)] Since every element $0 \leq |x_i| < \infty$ then
+            $0 \leq \max_{1\leq i\leq n} |x_i| < \infty$.
+            \item [(ii)] ($\rightarrow$) If $\|x\|_\infty = 0 = \max_{1\leq i\leq n} |x_i|$
+            then $|x_i| = 0$ for any $i$, therefore $x = 0$.
+
+            ($\leftarrow$) If $x = 0$ this means that for any $i$ we have that
+            $|x_i| = 0$ and therefore $\|x\| _\infty = \max_{1\leq i\leq n} |x_i| =
+            \max_{1\leq i\leq n} |0| = 0$.
+            \item [(iii)] Let $\alpha$ be a scalar then
+            $$\|\alpha x\|_\infty = \max_{1\leq i\leq n} |\alpha x_i| =
+            |\alpha| \max_{1\leq i\leq n} |x_i| = |\alpha| \|x\|_\infty$$
+            because we are multiplying every element to the same scalar $\alpha$ the maximum
+            function can be applied to the elements of $x$ only.
+            \item [(iv)] We know that $|x_i| \leq \max_{1\leq i\leq n} |x_i|$ and that
+            $|y_i| \leq \max_{1\leq i\leq n} |y_i|$ then because of the triangle
+            inequality we have that
+            $$ |x_i + y_i| \leq |x_i| + |y_i|\leq \max_{1\leq i\leq n} |x_i|
+            + \max_{1\leq i\leq n} |y_i|$$
+            And since the right-hand side of the equation does not depend on $i$ we can
+            apply the maximum to the left-hand side of the equation as
+            $$\max_{1\leq i\leq n} |x_i + y_i| \leq \max_{1\leq i\leq n} |x_i|
+            +\max_{1\leq i\leq n} |y_i|$$
+            Therefore
+            $$\|x + y\|_\infty \leq \|x\|_\infty + \|y\|_\infty$$
+        \end{itemize}
+    \end{proof} 
+\cleardoublepage
+	\begin{proof}{\textbf{18}}
+        First, let us note that
+        $$(\sum_{i=1}^n |x_i|)\cdot(\sum_{i=1}^n |x_i|) =
+        \sum_{i=1}^n |x_i|^2 + 2 \sum_{i<j} |x_i||x_j|$$
+        Also, we know that $\|x\|_2 = \sqrt{\sum_{i=1}^n x_i^2}$ and that
+        $\|x\|_1 = \sum_{i=1}^n |x_i|$
+        Then we see that
+        \begin{align*}
+            \|x\|_2^2 = \sum_{i=1}^n |x_i|^2 \leq
+            \sum_{i=1}^n |x_i|^2 + 2\sum_{i<j} |x_i||x_j| = \|x\|_1^2
+        \end{align*}
+        Which implies that $\|x\|_2 \leq \|x\|_1$.
+        
+        On the other hand, we see that
+        $$\|x\|_\infty^2 = (\max_{1\leq i \leq n} |x_i|)^2 \leq
+        \sum_{i=1}^n |x_i|^2 = \|x\|_2^2$$
+        Therefore $\|x\|_\infty \leq \|x\|_2 \leq \|x\|_1$ as we wanted.
+
+        Finally, we have that
+        $$\|x\|_1 = \sum_{i=1}^n |x_i| \leq
+        n\cdot(\max_{1\leq i \leq n} |x_i|) = n\|x\|_\infty$$
+        And using Cauchy-Schwartz inequality we have that
+        $$\|x\|_1 = \sum_{i=1}^n |x_i \cdot 1| \leq
+        \sqrt{\sum_{i=1}^n 1} \sqrt{\sum_{i=1}^n |x_i|^2} = \sqrt{n}\|x\|_2$$
+    \end{proof} 
+\cleardoublepage
+	\begin{proof}{\textbf{19}}
+        
+        ($\rightarrow$) From the Cauchy-Schwarz inequality proof we see that if
+        \begin{align}
+            \sum_{i=1}^n |x_i y_i| = \|x\|_2 \|y\|_2
+        \end{align}
+        then the discriminant of the quadratic equation
+        $\|x\|_2 + 2t\langle x,y \rangle + t^2 \|y\|_2$ is 0 where
+        $\langle x,y \rangle = \sum_{i=1}^n x_iy_i$ therefore we have only one
+        solution for $t$ i.e 
+        \begin{align*}
+            t &= \frac{-2\langle x,y \rangle}{2\|y\|_2^2}\\
+            |\langle x,y \rangle| &= |t|\|y\|_2^2
+        \end{align*}
+        But since the inequality we took should work also for the vectors $(|x_i|)$
+        and $(|y_i|)$ then we can do the replacement in equation (1) as follows
+        \begin{align*}
+            \|x\|_2\|y\|_2 &= |t|\|y\|_2^2\\
+            \|x\|_2 &= |t|\|y\|_2 = \|ty\|_2
+        \end{align*}
+        Therefore this means that $x$ and $y$ are proportional on some value
+        $|t| \geq 0$.
+
+        ($\leftarrow$) If $y = \alpha x$ for some scalar $\alpha \geq 0$ then
+        \begin{align*}
+            &\|x\|_2\|y\|_2 = \|x\|_2\|\alpha x\|_2 = |\alpha|\|x\|_2^2 =\\
+            & =|\alpha|\sum_{i=1}^n |x_i|^2 = \sum_{i=1}^n |\alpha x_i|^2 =
+            \sum_{i=1}^n |x_i y_i|
+        \end{align*}
+        Where we used that if $y = \alpha x$ then for every $i$ we have that
+        $y_i = \alpha x_i$.\\
+        Therefore $\|x\|_2\|y\|_2 = \sum_{i=1}^n |x_i y_i|$
+    \end{proof}
+\cleardoublepage
+	\begin{proof}{\textbf{21}}
+        To show that $l_1$ is a normed vector space we need to show that
+        $\|x\|_1 = \sum_{i=1}^n |x_i|$ is a norm on $l_1$ therefore we need to show
+        that it satisfies the properties of a norm
+        \begin{itemize}
+            \item [(i)] Since for any $i$ we have that $0 \leq |x_i| < \infty$ then
+            $0 \leq \|x\|_1 < \infty$.
+            \item [(ii)]
+            ($\rightarrow$) If $\|x\|_1=0$ then it must be the case that for any $i$ we
+            have $|x_i| = 0$ therefore $x=0$.
+            
+            ($\leftarrow$) If $x = 0$ then this means that any $i$ we have that
+            $|x_i| = 0$ therefore $\|x\|_1=0$.
+            \item [(iii)] In this case we have that
+            $$\|\alpha x\|_1 = \sum_{i=1}^n |\alpha x_i| = |\alpha| \sum_{i=1}^n |x_i|
+            = |\alpha| \|x\|_1$$
+            \item [(iv)] For the triangle inequality in this case we have that
+            \begin{align*}
+                \sum_{i=1}^n |x_i + y_i| &\leq \sum_{i=1}^n |x_i| + |y_i|
+                = \sum_{i=1}^n |x_i| + \sum_{i=1}^n |y_i|\\
+            \end{align*}
+            Therefore
+            $$\|x+y\|_1 \leq \|x\|_1 + \|y\|_1$$
+        \end{itemize}
+        Let us now do the same for $l_\infty$ with the norm
+        $\|x\|_\infty = \sup_{n\geq 1} |x_n|$ then
+        \begin{itemize}
+            \item [(i)] For any $n$ we have that $0 \leq |x_n| < \infty$ because
+            $l_\infty$ is the set of all bounded sequences, therefore
+            $0 \leq \|x\|_\infty < \infty$.
+            \item [(ii)]
+            ($\rightarrow$) If $\|x\|_\infty = \sup_{n\geq 1} |x_n| = 0$ then by the
+            definition of the supremum we have that $|x_n| \leq 0$ which means that
+            $x = 0$.
+
+            ($\leftarrow$) If $x=0$ then this means that for any $n$ we have that
+            $|x_n| = 0$ therefore $\|x\|_\infty = \sup_{n\geq 1} |x_n| = 0$.
+            \item [(iii)] Since $\alpha$ is a scalar and $l_\infty$ is the set of all
+            bounded sequences we have that
+            $$\sup_{n \geq 1} |\alpha x_n| = |\alpha| \sup_{n \geq 1} |x_n|$$
+            Therefore $\|\alpha x\|_\infty = |\alpha|\|x\|_\infty$.
+            \item [(iv)] From the triangle inequality property we have that for any $n$
+            $$|x_n + y_n| \leq |x_n| + |y_n|$$
+            Then applying the supremum to both sides of the equation we have that
+            $$\sup_{n\geq 1}|x_n + y_n| \leq \sup_{n\geq 1} |x_n| + |y_n|
+            \leq \sup_{n\geq 1} |x_n| + \sup_{n\geq 1} |y_n|$$
+            Therefore
+            $$\|x + y\|_\infty \leq \|x\|_\infty + \|y\|_\infty$$
+        \end{itemize}
+    \end{proof}
+	\begin{proof}{\textbf{22}}
+       Since $x \in l_2$ then we can compute $\|x\|_2^2 = \sum_{n=1}^\infty |x_n|^2$ by
+       definition of the norm $\|x\|_2$ also we can grab the supremum of the absolute
+       values of the sequence because we know that $\sum_{n=1}^\infty |x_n|^2 < \infty$
+       therefore
+       $$\|x\|_\infty^2 = (\sup_{n} |x_n|)^2 \leq
+        \sum_{n=1}^\infty |x_n|^2 = \|x\|_2^2$$
+        Now given $x \in l_1$ we can compute
+        $$\|x\|_1^2 = (\sum_{n=1}^\infty |x_n|)\cdot (\sum_{n=1}^\infty |x_n|) =
+        \sum_{n=1}^\infty |x_n|^2 + 2 \sum_{\substack{n=1\\m=2\\n<m}}^{\infty} |x_n||x_m|$$
+        Therefore
+        $$\|x\|_2^2 = \sum_{n=1}^\infty |x_n|^2 \leq
+        \sum_{n=1}^\infty |x_n|^2 + 2\sum_{\substack{n=1\\m=2\\n<m}}^{\infty} |x_n||x_m|
+        = \|x\|_1^2$$
+        Which implies that $\|x\|_2 \leq \|x\|_1$
+    \end{proof}
+	\begin{proof}{\textbf{23}}
+        Let $x$ be a sequence from $l_1$ where
+        $$\sum_{n=1}^\infty |x_n| < \infty$$
+        Since we know that
+        $$\sum_{n=1}^\infty |x_n|^2 \leq
+        \sum_{n=1}^\infty |x_n|^2 + 2\sum_{\substack{n=1\\m=2\\n<m}}^{\infty} |x_n||x_m|$$
+        Therefore
+        $$\|x\|_2^2 \leq \|x\|_1^2 < \infty$$
+        i.e. $\|x\|_2$ also converges. So we have that $l_1 \subset l_2$.
+        Also, we know that if a series converge then the sequence of it's elements
+        converge to 0 so
+        $$l_1 \subset l_2 \subset c_0$$
+        And finally becuase of how we defined $c_0$ we have that
+        $$l_1 \subset l_2 \subset c_0 \subset l_\infty$$
+    \end{proof}
+\cleardoublepage
+	\begin{proof}{\textbf{24}}
+        We want to show that the conclusion of Lemma 3.7 also holds for $p = 1$ and
+        $q = \infty$ which means that we want to prove that
+        $$\sum_{i=1}^{n} |x_iy_i| \leq \|x\|_{1}\|y\|_{\infty}$$
+        holds. We know that
+        $$|x_i y_i| = |x_i| \cdot |y_i| \leq |x_i| \cdot \sup_i |y_i| =
+        |x_i|\cdot \|y\|_\infty$$
+        Then adding the inequalities for every $i$ we have that
+        $$\sum_{i=1}^{n} |x_i y_i| \leq \sum_{i=1}^{n} |x_i|\cdot \|y\|_\infty =
+        \|y\|_\infty \sum_{i=1}^{n} |x_i| = \|x\|_1 \|y\|_\infty$$
+    \end{proof}
+    \begin{proof}{\textbf{25}}
+        We want to prove the analogous to Holder's Inequality so let
+        $1<p<\infty$ and let $q$ be defined by $1/p + 1/q = 1$ given
+        $f,g \in C[0,1]$ we want to prove that
+        $$\int_0^1 |f(t)g(t)| dt \leq (\int_0^1 |f(t)|^p dt)^{1/p}
+        \cdot(\int_0^1 |g(t)|^q dt)^{1/q} = \|f\|_p \|g\|_q$$
+        Let us suppose $\|f\|_p > 0$ and $\|g\|_q > 0$ then from Young's Inequality we
+        have that
+        $$\left|\frac{f(t)g(t)}{\|f\|_p\|g\|_q}\right| \leq
+        \frac{1}{p}\left|\frac{f(t)}{\|f\|_p}\right|^p +
+        \frac{1}{q}\left|\frac{g(t)}{\|g\|_q}\right|^q \leq
+        \frac{1}{p} + \frac{1}{q} = 1$$
+        Then since this should work  for any $t$ we can integrate the expression
+        $$\int_0^1 \left|\frac{f(t)g(t)}{\|f\|_p\|g\|_q}\right|dt \leq
+        \frac{1}{p} \int_0^1\left|\frac{f(t)}{\|f\|_p}\right|^pdt +
+        \frac{1}{q} \int_0^1\left|\frac{g(t)}{\|g\|_q}\right|^qdt \leq 1$$
+        Therefore
+        $$\int_0^1 |f(t)g(t)|dt \leq \|f\|_p\|g\|_q$$
+        
+        Now we want to prove the analogous to Minkowski's Inequality i.e the triangle
+        inequality, in the same way let $1 <p<\infty$ if $f,g \in C[0,1]$ we want to
+        prove that $\|f +g\|_p \leq \|f\|_p + \|g\|_p$.\\
+        Before we continue with the proof we show the following equality.
+        Since $(p-1)q = p$ we have that
+        \begin{align*}
+            \||f|^{p-1}\|_q &= \left(\int_0^1 ||f(t)|^{p-1}|^q dt\right)^{1/q}\\
+                &= \left(\int_0^1 |f(t)|^p dt\right)^{1/q} = \|f\|_p^{p/q} = \|f\|_p^{p-1}
+        \end{align*}
+        On the other hand we use Holder's Inequality as follows
+        \begin{align*}
+            \int_0^1 |f(t) + g(t)|^pdt &= \int_0^1 |f(t) + g(t)|\cdot|f(t) + g(t)|^{p-1}dt\\
+                &\leq \int_0^1 |f(t)|\cdot|f(t) + g(t)|^{p-1} dt +
+                \int_0^1 |g(t)|\cdot|f(t) + g(t)|^{p-1}dt\\
+                &\leq \|f\|_p \cdot \||f+g|^{p-1}\|_q + \|g\|_p \cdot \||f+g|^{p-1}\|_q =\\
+                &= \|f\|_p \|f + g\|_p^{p-1} + \|g\|_p \|f + g\|_p^{p-1} =\\
+                &= \|f + g\|_p^{p-1} (\|g\|_p + \|f\|_p)
+        \end{align*}
+        Therefore
+        \begin{align*}
+            \|f +g\|_p &\leq \|g\|_p + \|f\|_p
+        \end{align*}
+    \end{proof}
+    \begin{proof}{\textbf{26}}
+        Let $a<b$ and let us define $r = a/b$ then
+        \begin{align*}
+            (a^p + b^p)^{1/p} &= \left(b^{p}(1 + \frac{a^p}{b^p})\right)^{1/p}\\
+                &= b(1 + r^p)^{1/p}            
+        \end{align*}
+        Then applying logarithm to both sides of the equation we have that
+        \begin{align*}
+            \log(a^p + b^p)^{1/p} &= \log b(1 + r^p)^{1/p}\\
+            \frac{1}{p}\log(a^p + b^p) &= \log b + \frac{1}{p}\log(1 + r^p)
+        \end{align*}
+        Now let us apply the limit to infinity to the right-side of the equation, then
+        \begin{align*}
+            \lim_{p \to \infty} \log b + \frac{\log(1 + r^p)}{p}
+            &= \log b +  \lim_{p \to \infty} \frac{\log(1 + r^p)}{p}\\
+            &= \log b + 0 = \log b
+        \end{align*}
+        Then we see that
+        \begin{align*}
+            \lim_{p \to \infty} (a^p + b^p)^{1/p} &= 
+            \lim_{p \to \infty} e^{\log b + \frac{1}{p}\log(1 + r^p)} = b
+        \end{align*}
+        The same procedure is valid for when $b<a$ defining $r = b/a$ and we get that
+        $$\lim_{p \to \infty} (a^p + b^p)^{1/p} = a$$
+        So we have the last case to prove which happens when $b=a$ then we have that
+        $$\lim_{p \to \infty} (a^p + b^p)^{1/p} = \lim_{p \to \infty} (2b^p)^{1/p}
+        = \lim_{p \to \infty}2^{1/p}b = b$$
+        Therefore we see that
+        $$\lim_{p \to \infty} (a^p + b^p)^{1/p} = \max\{a,b\}$$ 
+    \end{proof}
+    \begin{proof}{\textbf{29}}
+
+        ($\rightarrow$) If $A$ is bounded we saw that for any $x \in M$ we have that\\
+        $\sup_{a \in A} d(x,a) < \infty$ but since $A \subset M$ then we can take
+        $b \in A$ so\\ $\sup_{a \in A} d(b,a) < \infty$ therefore
+        $$diam(A) = \sup\{d(a,b): a,b \in A\} < \infty$$
+
+        ($\leftarrow$) If $diam(A) < \infty$ let $a,b \in A$ this means that
+        $\sup\{d(a,b): a,b \in A\} < \infty$ but then we have that $d(a,b) < r$ for
+        some $r$ and since $A \subset M$ we see that
+        $$A \subset \{x,y \in M: d(x,y)<r\} = B_r(x)$$
+    \end{proof}
+    \begin{proof}{\textbf{30}}
+        Let $a_1, a_2 \in A$ since $A \subset B$ then it must be true that\\
+        $d(a_1, a_2) \leq \text{diam}(B)$ then since the Supremum is the least upper bound
+        we see that $\text{diam}(A) \leq \text{diam}(B)$.
+    \end{proof}
+    \begin{proof}{\textbf{32}}
+        We know that the usual metric on $V$ is $d(x,y) = \|x -y\|$ then 
+        $B_r(x) = \{z \in V: \|x-z\| < r\}$ and since $V$ is a normed vector space we 
+        can write $z$ as $z = x + y$ where $x,y \in V$ therefore
+        \begin{align*}
+            B_r(x) &= \{x + y \in V: \|x- x + y\| < r\}\\
+                &= \{x+y \in V: \|y\| < r\}\\
+                &= x + \{y \in V: \|y\| < r\} = x + B_r(0)
+        \end{align*}
+        On the other hand we know that $B_r(0) = \{y \in V: \|y\| < r\}$ and we can
+        write that $y = rx$ where $x \in V$ then we have that
+        \begin{align*}
+            B_r(0) &= \{rx\in V: \|rx\| < r\}\\
+                &= \{rx\in V: |r|\|x\| < r\}\\
+                &= \{rx\in V: \|x\| < 1\} = rB_1(0)
+        \end{align*}
+    \end{proof} 
+    \begin{proof}{\textbf{33}}
+        Let us suppose that $(x_n)$ converges both to $x$ and $y$ then this means that
+        there is $N \geq 1$ and $N' \geq 1$ for which $d(x_n,x)< \epsilon$ when
+        $n \geq N$ and $d(x_n,y)< \epsilon$ when $n \geq N'$ we want to arrive
+        to a contradiction. This should be valid for any $\epsilon > 0$, so let us grab
+        $$\epsilon = \frac{d(x,y)}{2}$$
+        Then we have that
+        \begin{align*}
+            d(x_n,x) + d(x_n, y) < 2\epsilon
+        \end{align*}
+        But because of the triagle inequality we have that
+        $$d(x,y) \leq d(x_n, x) + d(x_n, y)$$
+        Therefore
+        $$d(x,y) < 2\epsilon = d(x,y)$$
+        which is a contradiction, and must be the case that $x = y$.
+    \end{proof}
+    \begin{proof}{\textbf{34}}
+        Given that $(x_n)$ converges to $x$ we know that given some $\epsilon > 0$ there
+        is an integer $N \geq 1$ such that $d(x_n,x) < \epsilon$ whenever $n \geq N$.
+        Then from the result we got from problem $2$ we know that
+        $$|d(x_n,y) - d(x,y)| \leq d(x_n,x)$$
+        So
+        $$|d(x_n,y) - d(x,y)| < \epsilon$$
+        Which implies that the difference $|d(x_n,y) - d(x,y)| \rightarrow 0$.\\
+        Therefore $d(x_n,y) \rightarrow d(x,y)$
+
+        On the other hand, let us see the following inequality
+        $$d(x,y) \leq d(x,x_n) + d(y,y_n) \leq d(x,x_n) + d(x_n, y_n) + d(y,y_n)$$
+        Then
+        \begin{align*}
+            |d(x_n,y_n) - d(x,y)| &\leq d(x_n,x) + d(y_n,y)
+        \end{align*}
+        Now we know that $y_n \rightarrow y$ so let us take $\epsilon/2 > 0$ so we have
+        that there is $N \geq 1$ such that
+        $d(x_n,x) < \epsilon /2$ whenever $n \geq N$ and that there is $N' \geq 1$ such
+        that $d(y_n,y) < \epsilon /2$ whenever $n \geq N'$ therefore
+        $$|d(x_n,y_n) - d(x,y)| \leq d(x_n,x) + d(y_n,y) < \epsilon$$
+        Which implies that the difference $|d(x_n,y_n) - d(x,y)| \rightarrow 0$.\\
+        Therefore $d(x_n,y_n) \rightarrow d(x,y)$
+    \end{proof}
+    \begin{proof}{\textbf{35}}
+        If $x_n \rightarrow x$ then given $\epsilon > 0$ there is an integer $N \geq 1$
+        such that $d(x_n,x) < \epsilon$ whenever $n \geq N$. Then we can grab
+        $K \geq 1$ such that $n_K \geq n \geq N$ and since $n_1 < n_2 < ...$ if we take
+        $k \geq K$ we have that $d(x_{n_k},x) < \epsilon$. Therefore
+        $x_{n_k} \rightarrow x$.
+    \end{proof}
+\cleardoublepage
+    \begin{proof}{\textbf{36}}
+        Since $(x_n)$ is bounded we know that given $\epsilon > 0$ there is an integer
+        $N \geq 1$ such that $\{x_n: n \geq N\} \subset B_{\epsilon}(x)$ also we have
+        that
+        \begin{align*}
+            \diam(\{x_n: n\geq N\}) = \sup\{d(x_n,x_m): n,m \geq N\} 
+        \end{align*}
+        But since $\{x_n: n \geq N\} \subset B_{\epsilon}(x)$ then it must happen that
+        $$\diam(\{x_n: n\geq N\}) = \sup\{d(x_n,x_m): n,m \geq N\} \leq \epsilon$$
+        Therefore $(x_n)$ is Cauchy.\\
+
+        On the other hand, if $(x_n)$ is Cauchy we know that given $\epsilon > 0$ there
+        is an integer $N \geq 1$ such that $\sup\{d(x_n,x_m): n,m \geq N\} \leq \epsilon$
+        then this means that 
+        $$d(x_n,x_m) \leq \epsilon$$
+        for any $n,m \geq N$ so $\{x_n: n\geq N\} \subset B_{\epsilon}(x)$ where
+        $B_{\epsilon}(x)$ is a closed ball.\\
+        Now we have to prove that the elements of the sequence 
+        $\{x_1, x_2, ..., x_{n-1}\}$ are also bounded so let us call $M$ the maximum of
+        the distances between them 
+        $$M = \max\{d(x_n, x_m) : n,m \in \{1,2,...,n-1\}\}$$
+        then we have that
+        $$\{x_1, x_2, ..., x_{n-1}\} \subset B_M(x)$$
+        Where $B_M(x)$ is a closed ball, which means that this sequence is also bounded.
+        Therefore $(x_n)$ is bounded.
+    \end{proof}
+\cleardoublepage
+    \begin{proof}{\textbf{40}}
+        We want to prove that $x^{(k)} \rightarrow x$ where $x \in l_1$ and
+        $x^{(k)} \in l_1$ then this means to prove that given an $\epsilon >0$ there is
+        an integer $K \geq 1$ such that $d(x^{(k)}, x) < \epsilon$ whenever $k \geq K$.
+        We have then that
+        $$d(x^{(k)}, x) = \|x^{(k)} - x\|_1 = \sum_{n=1}^\infty |x_n^{(k)} - x_n|
+        = \sum_{n=k}^\infty |x_n|$$
+        And when $k \rightarrow \infty$ since $x$ is a convergent series we have that
+        $$\lim_{k \to \infty}\sum_{n=k}^\infty |x_n| = 0 < \epsilon$$
+        Therefore $x^{(k)} \to x$.
+
+        In the case of $x^{(k)}, x \in l_2$ we have that
+        $$d(x^{(k)}, x) = \|x^{(k)} - x\|_2 = \sqrt{\sum_{n=1}^\infty |x_n^{(k)} - x_n|^2}
+        = \sqrt{\sum_{n=k}^\infty |x_n|^2}$$
+        And when $k \rightarrow \infty$ since $x$ is a convergent series we have that
+        $$\lim_{k \to \infty}\sqrt{\sum_{n=k}^\infty |x_n|^2} = 0 < \epsilon$$
+        Therefore $x^{(k)} \to x$.
+
+        Lastly, let $\epsilon = x_1 = \inf_{n \geq 2} x_n$ we have that
+        $$d(x^{(k)}, x) = \|x_n^{k} - x_n\|_\infty = \sup_{n\geq 1} |x_n^{k} - x_n| \not< x_1$$
+        i.e. there is no $K \geq 1$ such that when $k \geq K$ we get that
+        $d(x^{(k)}, x) < \epsilon$.
+        Therefore $x^{(k)} \not \to x$ .        
+    \end{proof}
+\cleardoublepage
+    \begin{proof}{\textbf{41}}
+        We want to prove that $\langle x^{(k)}, y^{(k)}\rangle \to \langle x,y\rangle$
+        where $x,y \in l_2$ and $x^{(k)}, y^{(k)} \in l_2$ then this means to prove that
+        given an $\epsilon >0$ there is an integer $K \geq 1$ such that
+        $d(\langle x^{(k)}, y^{(k)}\rangle, \langle x,y\rangle) < \epsilon$
+        whenever $k \geq K$. We have then
+        \begin{align*}
+            d(\langle x^{(k)}, y^{(k)}\rangle, \langle x, y\rangle) &=
+            |\langle x^{(k)}, y^{(k)}\rangle - \langle x, y\rangle|\\
+            &= |\sum_{i=1}^\infty x_i^{(k)}y_i^{(k)} - \sum_{i=1}^\infty x_iy_i|\\
+            &= |\sum_{i=k+1}^\infty x_iy_i|
+        \end{align*}
+        Now we have to check that when $k \to \infty$ the expression
+        $|\sum_{i=k+1}^\infty x_iy_i|$ converges to 0. From Holder's inequality and
+        since we know that $x^{(k)} \to x$ and $y^{(k)} \to y$ we have that
+        \begin{align*}
+            \sum_{i=1}^{\infty} |(x_i^{(k)} - x_i)(y_i^{(k)} - y_i)| \leq
+            \|x^{(k)} - x\|_2\|y^{(k)} - y\|_2 < 2\epsilon
+        \end{align*}
+        Then
+        \begin{align*}
+            \sum_{i=1}^{\infty} |(x_i^{(k)} - x_i)(y_i^{(k)} - y_i)| &=
+            \sum_{i=1}^{\infty} |x_i^{(k)}y_i^{(k)} - x_i^{(k)}y_i - x_iy_i^{(k)} + y_ix_i|\\
+            &= \sum_{i=1}^{\infty} |x_iy_i - x_iy_i^{(k)}| < 2\epsilon
+        \end{align*}
+        Where we used that the terms $x_i^{(k)}y_i^{(k)} - x_i^{(k)}y_i$ cancel each
+        other. So when $k \to \infty$ since $x$ and $y$ are convergent sequence we
+        have that
+        $$\lim_{k \to \infty}|\sum_{i=k+1}^\infty x_iy_i| = 0 < \epsilon$$
+        Therefore $\langle x^{(k)}, y^{(k)}\rangle \to \langle x,y\rangle$.
+    \end{proof}
+\cleardoublepage
+    \begin{proof}{\textbf{42}}
+        
+        ($\rightarrow$) Given that $d(x_n, x) \to 0$
+        \begin{itemize}
+            \item [(i)] Then $\rho(x_n, x) = \sqrt{d(x_n, x)} \to 0$.
+            \item [(ii)] Since
+            $$\sigma(x_n, x) = \frac{d(x_n, x)}{1 + d(x_n, x)} =
+            \frac{1}{1/d(x_n, x) + 1}$$
+            Therefore when $\sigma(x_n, x) \to 0$
+            \item [(iii)] Lastly, we see that $\tau(x_n, x) = \min\{d(x_n, x), 1\} \to 0$
+            whenever\\ $d(x_n, x) \to 0$.
+        \end{itemize}
+        
+        ($\leftarrow$) 
+        \begin{itemize}
+            \item [(i)] Given that $\rho(x_n, x) \to 0$ then we know that $x_n \to x$ so 
+            given $\sqrt{\epsilon} > 0$ there is $N \geq 1$ such that
+            $\rho(x_n, x) = \sqrt{d(x_n, x)} < \sqrt{\epsilon}$ whenever $n \geq N$
+            therefore $d(x_n, x) < \epsilon$ and $d(x_n,x) \to 0$.
+            \item [(ii)] Given that $\sigma(x_n, x) \to 0$ then we know that $x_n \to x$
+            so given\\ $\epsilon' = 1/(1/\epsilon + 1) > 0$ there is $N \geq 1$ such that
+            $$\sigma(x_n, x) = \frac{d(x_n, x)}{1 + d(x_n, x)} =
+            \frac{1}{1/d(x_n, x) + 1} < \epsilon' = \frac{1}{1/\epsilon + 1}$$
+            whenever $n \geq N$.
+            Therefore
+            \begin{align*}
+                \frac{1}{1/d(x_n, x) + 1} &< \frac{1}{1/\epsilon + 1}\\
+                1/d(x_n, x) + 1 &> 1/\epsilon + 1\\
+                1/d(x_n, x) &> 1/\epsilon\\
+                d(x_n, x) &< \epsilon
+            \end{align*}
+            and $d(x_n,x) \to 0$.
+            \item [(iii)] Finally, given that $\tau(x_n, x) = \min\{d(x_n,x), 1\} \to 0$
+            then this must means that $d(x_n,x) \to 0$.
+        \end{itemize}
+    \end{proof}
+\cleardoublepage
+    \begin{proof}{\textbf{43}}
+        We define $d'(x_n, x)$ as the discrete metric.
+        \begin{itemize}
+            \item [(i)]
+        ($\rightarrow$)
+        Let us suppose that the usual metric on $\N$ i.e.\\
+        $d(x_n,x) = |x_n-x| \to 0$ where $x_n$ is a sequence in $\N$. Then by definition
+        given some $\epsilon > 0$ there is $N\in \N$ such that $d(x_n, x) < \epsilon$
+        whenever $n \geq N$. Let us take $\epsilon = 1$ and let us have $N'$ that satisfy
+        the definition so $|x_n-x| < 1$ whenever $n \geq N'$ but this must mean that
+        $x_n = x$ because $x_n$ is a sequence on $\N$ then $x_n$ is eventually constant
+        so the discrete metric $d'(x_n, x) = 0$. Therefore given some $\epsilon > 0$
+        we can use the $N'$ we selected before such that $d'(x_n,x)< \epsilon$ whenever
+        $n \geq N'$ no matter which $\epsilon$ we are given and because of that
+        $d'(x_n,x) \to 0$.
+
+        ($\leftarrow$) Now let us suppose that $d'(x_n,x) \to 0$ then this means that
+        eventualy $x_n = x$ for $n \geq N$ then $d(x_n,x) = |x_n - x| = 0$ when
+        $n \geq N$. Therefore also $d(x_n,x) \rightarrow 0$.
+        
+        \item [(ii)]
+        ($\rightarrow$) Let $A=\{a_1,a_2, ..., a_n\}$ be a finite set and let the
+        metric of this set be $d_A(a_n,a) \to 0$ then this mean that for some $N \in \N$
+        we have that $d_A(a_n,a) = 0$ when $n \geq N$ but as before this means that
+        $A$ eventually becomes constant and $a_n = a$ therefore $d'(a_n,a) \to 0$.
+
+        ($\leftarrow$) Let now $d'(a_n,a) \to 0$ then this means that for some $N \in \N$
+        we have that $a_n = a$ for any $n \geq N$. But then if we take this $N$ we see
+        that $d_A(a_n,a) \to 0$ when $n \geq N$.
+        \end{itemize}
+    \end{proof}
+    \begin{proof}{\textbf{44}}
+
+        If $\|x_m - x\|_1 \to 0$ then this means that
+        given $\epsilon >0$ we have some $M \geq 1$ such that
+        $\|x_m - x\|_1 < \epsilon$ whenever $m \geq M$ and since we know that
+        $\|x\|_\infty \leq \|x\|_2 \leq \|x\|_1$ then
+        $$\|x_m - x\|_\infty \leq \|x_m - x\|_2 \leq \|x_m - x\|_1 < \epsilon$$
+        Therefore $\|x_m - x\|_2 \to 0$ and $\|x_m - x\|_\infty \to 0$.
+        
+        If $\|x_m - x\|_2 \to 0$ then in the same way we see that
+        $$\|x_m - x\|_\infty \leq \|x_m - x\|_1 \leq \sqrt{n}\|x_m - x\|_2 <
+        \sqrt{n}\epsilon \leq \epsilon$$
+        Therefore $\|x_m - x\|_1 \to 0$ and $\|x_m - x\|_\infty \to 0$.
+
+        If $\|x_m - x\|_\infty \to 0$ then in the same way we see that
+        $$\|x_m - x\|_2 \leq \|x_m - x\|_1 \leq n\|x_m - x\|_\infty <
+        n\epsilon \leq \epsilon$$
+        Therefore $\|x_m - x\|_1 \to 0$ and $\|x_m - x\|_2 \to 0$.
+    \end{proof}
+\cleardoublepage
+    \begin{proof}{\textbf{45}}
+        If the two induced metrics are equivalent then $\|x_n - x\| \to 0$ if and only
+        if $|\|x_n - x\|| \to 0$ and if both sequences tend to 0 then we have that
+        $\|x_n\| \to 0$ if and only if $|\|x_n\|| \to 0$
+    \end{proof}
+    \begin{proof}{\textbf{46}}
+        If the sequence $(x_n)$ converge then $\rho(x_n,x) \to 0$ and 
+        if the sequence $(a_n)$ converge then $d(a_n,a) \to 0$. Then
+        $$d_1((a_n,x_n), (a,x)) = d(a_n,a) + \rho(x_n,x) \to 0$$
+        $$d_2((a_n,x_n), (a,x)) = (d(a_n,a)^2 + \rho(x_n,x)^2)^{1/2} \to 0$$
+        And also
+        $$d_\infty((a_n,x_n), (a,x)) = \max\{d(a_n,a), \rho(x_n,x)\} \to 0$$
+        Lastly, since for this metrics to tend to 0 we need that $d(a_n,a) \to 0$
+        and that $\rho(x_n,x) \to 0$ then if $d_1((a_n,x_n), (a,x)) \to 0$
+        this is posible because $d(a_n,a) \to 0$ and $\rho(x_n,x) \to 0$ as we said. 
+        Therefore $d_2((a_n,x_n), (a,x)) \to 0$ and $d_\infty((a_n,x_n), (a,x)) \to 0$
+        and the same can be proved the other way around.
+    \end{proof}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

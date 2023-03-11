@@ -38,6 +38,7 @@
 *.synctex(busy)
 *.synctex.gz
 *.synctex.gz(busy)
+*.gz
 *.pdfsync
 
 ## Build tool directories for auxiliary files

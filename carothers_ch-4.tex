@@ -1,0 +1,398 @@
+\documentclass[11pt]{article}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{adjustbox}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usepackage[mathscr]{euscript}
+
+\title{\textbf{Solved selected problems of Real Analysis - Carothers}}
+\author{Franco Zacco}
+\date{}
+
+\addtolength{\topmargin}{-3cm}
+\addtolength{\textheight}{3cm}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\diam}{\text{diam}}
+\newcommand{\cl}{\text{cl}}
+
+\theoremstyle{definition}
+\newtheorem*{solution*}{Solution}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\section*{Chapter 4 - Open Sets and Closed Sets}
+
+	\begin{proof}{\textbf{1}}
+        Let $U = (a,b)\times (c,d)$ and let $(x,y) \in U$ we want to check that
+        if $(x',y') \in B_{\epsilon}((x,y))$ then $(x', y') \in U$. Since
+        $(x',y') \in B_{\epsilon}((x,y))$ we have that  
+        \begin{align*}
+            d_\infty((x,y),(x',y')) = \max\{d(x,x'), d(y,y')\} &< \epsilon
+        \end{align*}
+        Then if $\max\{d(x,x'), d(y,y')\} = d(x,x')$ this means that\\
+        $d(y,y') \leq d(x,x') < \epsilon$. Then $x' \in B_{\epsilon}(x)$ and since
+        $(a,b)$ is an open set in $\R$ this means that $x' \in (a,b)$, the same can be
+        shown for $y'$ such that $y' \in (c,d)$. Therefore $(x', y') \in U$. 
+
+        Generalizing, let $U = A \times B$ and let $(a,b) \in U$ we want to check that
+        if $(a',b') \in B_{\epsilon}((a,b))$ then $(a', b') \in U$. So in the same way
+        since $(a',b') \in B_{\epsilon}((a,b))$ we have that  
+        \begin{align*}
+            d_\infty((a,b),(a',b')) = \max\{d(a,a'), d(b,b')\} &< \epsilon
+        \end{align*}
+        Then if $\max\{d(a,a'), d(b,b')\} = d(a,a')$ this means that\\
+        $d(b,b') \leq d(a,a') < \epsilon$. Then $a' \in B_{\epsilon}(a)$ and since
+        $A$ is an open set in $\R$ this means that $a' \in A$, the same can be
+        shown for $b'$ such that $b' \in B$. Therefore $(a', b') \in U$.
+
+        Let now $U = A \times B$ where $A$ and $B$ are closed sets in $\R$, we want to
+        prove that $U$ is also closed in $\R^2$. We see that
+        $(\R \setminus A) \times \R$ and $\R \times (\R \setminus B)$ are open sets because
+        $\R \setminus A$, $\R \setminus B$ and $\R$ are open sets. Also, we know that
+        the union of open sets is also an open set so
+        $\R \times \R \setminus A \times B$ is also an open set which means that
+        $A \times B$ must be a closed set.
+    \end{proof}
+\cleardoublepage
+	\begin{proof}{\textbf{3}}
+        \begin{itemize}
+        \item [($\rightarrow$)] Let $x \in U$ where $U$ is an open set of $(M, d)$
+        and let $(x_n)$ be a sequence that converges to $x$ since it is an open set we
+        know that $x_n \in U$ for all but finitely many $n$, i.e. there is $N \in \N$
+        such that for all $n \geq N$ we have that $d(x_n, x) < \epsilon$ for some
+        $\epsilon > 0$ which means that $d(x_n, x) \to 0$ but since the metric $d$ and
+        $\rho$ are equivalent then if $d(x_n, x) \to 0$ we have that $\rho(x_n, x) \to 0$.
+        Therefore either $\rho$ or $d$ generate the same set $U$.
+        \item [($\leftarrow$)] Let $U$ be an open set that is generated either by $d$ and by
+        $\rho$ then if $x \in U$ and we have a sequence $(x_n)$ that converge to $x$ we
+        know that $x_n \in U$ for all but finitely many $n$ i.e. there is $N \in \N$
+        such that for all $n \geq N$ we have that $d(x_n, x) < \epsilon$ and
+        $\rho(x_n, x) < \epsilon$ because they both generate $U$ this means that
+        $d(x_n, x) \to 0$ and that $\rho(x_n, x) \to 0$ which implies that they are
+        equivalent.
+    \end{itemize}
+    \end{proof}
+	\begin{proof}{\textbf{6}}
+        An example of an infinite closed set in $\R$ containing only irrationals is
+        the set of all the square roots of the prime numbers, i.e.
+        $$ F= \{\sqrt{2}, \sqrt{3}, \sqrt{5}, ... \sqrt{p_n},\sqrt{p_{n+1}}, ...\}$$
+        So the complement of this set is the set
+        $$F^c = (-\infty, \sqrt{2})~\cup~(\sqrt{2}, \sqrt{3})~\cup~...~\cup~
+        (\sqrt{p_n},\sqrt{p_{n+1}})~\cup~...$$
+        Where the intervals are open intervals of $\R$ and they are open sets
+        plus the union of open sets is open, therefore $F^c$ is open and $F$ by
+        definition is closed.
+
+        Let us suppose that we have a set $F \subset \R$ that is an open set consisting
+        entirely of irrationals we want to arrive at a contradiction. Let us grab an
+        element $x \in F$ where by definition is irrational, then the ball around
+        $x$ is defined as  $B_\epsilon(x) = (x-\epsilon, x+\epsilon)$, but we know that
+        $\Q$ is a dense set in $\R$ so there is an element $q \in \Q$ such that
+        $q \in (x-\epsilon, x+\epsilon)$ so we have a contradiction and
+        $B_\epsilon(x) \not\subset F$. Therefore there is no open set consisting
+        entirely of irrationals.
+    \end{proof}
+\cleardoublepage
+	\begin{proof}{\textbf{7}}
+        Let $F$ be an open set in $\R$ then for each $x \in F$ we have that there is
+        $B_\epsilon(x) = (x-\epsilon, x+\epsilon)$ where $B_\epsilon(x) \subset F$. Also,
+        we know that $\Q$ is dense in $\R$ so there is $a_x,b_x \in \Q$
+        such that $a_x \in (x-\epsilon, x)$ and $b_x \in (x, x + \epsilon)$ so we have
+        that $x \in (a_x, b_x)$ then we can write that
+        $$F = \bigcup_{x \in F} (a_x,b_x)$$
+        Finally, we see that each interval is in $\Q \times \Q$ and we know that
+        $\Q \times \Q$ is equivalent to $\N$, therefore since the intervals involved are
+        a subset of $\Q \times \Q$ they are countable.
+        
+        From what we proved we see that each open set $F$ is a countable union of
+        intervals with rational endpoints, this suggests an injective function that
+        sends an open set $F$ to  $F\cap\Q$ where $F \cap \Q \in \mathcal{P}(\Q)$
+        so we can construct an injective map
+        $$f: \mathcal{U} \to \mathcal{P}(\Q)$$
+        Also notice that $\mathcal{P}(\Q)$ is equivalent to $\R$, so we can construct an
+        injective map that sends $x \in \R$ to $(-\infty, x) \in\mathcal{U}$ i.e.
+        we have a map $g: \mathcal{P}(\Q) \to \mathcal{U}$,
+        therefore using the Bernstein's Theorem we get that there is a bijective map
+        $h:\mathcal{U} \to \mathcal{P}(\Q)$ implying that
+        $$\text{card}(\mathcal{U}) = \text{card}(\R)$$
+    \end{proof}
+	\begin{proof}{\textbf{11}}
+        Let $(x_n)$ be a sequence of sequences from $E = \{e^{(k)}: k\geq 1\}$ then
+        $d(x_n, x_m) = 2$ if $x_n \neq x_m$ and $d(x_n, x_m) = 0 $ if $x_n = x_m$. This
+        means that $(x_n)$ converges to some $x \in l_1$ if eventually $x = x_n$ but
+        then $x \in E$. Therefore this implies that $E$ is a closed set of $l_1$ 
+    \end{proof}
+	\begin{proof}{\textbf{13}}
+        Let $(x^{(n)})$ be a sequence of sequences from $c_0$ that converge to
+        $x \in l_\infty$ we want to prove that also $x \in c_0$.
+        Since $(x^{(n)})$ converges to $x \in l_\infty$ then for all $\epsilon > 0$ 
+        there is $N \in \N$ such that when $n \geq N$ we have that
+        $\|x^{(n)} - x\|_\infty < \epsilon$.
+        Then we have that
+        $$\|x^{(n)} - x\|_\infty = \sup_{k \in \N}|x^{(n)}_k - x_k|< \epsilon$$
+        So we get that
+        \begin{align*}
+            |x_k| &= |x_k - x_k^{(n)} + x_k^{(n)}|\\
+            &\leq |x_k - x_k^{(n)}| + |x_k^{(n)}|\\
+            &\leq \sup_{k \in \N}|x^{(n)}_k - x_k| + |x^{(n)}_k|\\
+            &< \epsilon + |x^{(n)}_k|
+        \end{align*}
+        And since $x^{(n)} \in c_0$ then $|x^{(n)}_k| \to 0$ when $k \to \infty$.
+        Therefore $|x_k| < \epsilon$ implying that $|x_k| \to 0$ and that $x \in c_0$. 
+    \end{proof}
+	\begin{proof}{\textbf{15}}
+        Let $A = \{y \in M: d(x,y) \leq r\}$ be the closed ball around $x$, we want
+        to show that $M \setminus A$ is an open set which implies that $A$ is
+        a closed set.
+        If $M \setminus A$ is an open set then for every $z \in M \setminus A$
+        there is an open ball $B_t(z)$ such that $B_t(z) \subset M \setminus A$.
+        
+        We have that $d(z,x) > r$ which implies that $d(z,x) - r > 0$ so let us
+        define $t = d(z,x) - r$ then we have found $t > 0$ such that
+        $B_t(z) \subset M \setminus A$ as we wanted.
+        Therefore $B_t(z)$ is an open ball and $M \setminus A$ is
+        an open set, which implies that $A$ is a closed set.
+
+        Now let's see that $A$ is not necessarily equal to the closure of the open ball
+        $B_r(x)$. Let's define a metric
+        $$d(x,y) = \begin{cases}
+            \text{$0 \quad$ if $x = y$}\\
+            \text{$1 \quad$ otherwise}
+        \end{cases}$$
+        Then the open ball $B_{1}(x)$ with this metric is given by
+        $$B_1(x) = \{y \in M: d(x,y) < 1\} = \{x\}$$
+        So now we claim that $\cl(B_1(x)) = \{x\}$ we see this is true because let
+        $y\in M$ such that $y \neq x$ so with this metric $d(x,y) = 1$ then there is an
+        open ball $B_{1/2}(y) \subset M \setminus B_1(x)$ implying that $M \setminus B_1(x)$
+        is open and $\{x\}$ is closed. Which is different from the closed ball
+        $$A = \{y \in M: d(x,y) \leq 1\} = M$$
+    \end{proof}
+	\begin{proof}{\textbf{16}}
+        Let $A = \{x \in V: \|x\| < 1\}$ and $B = \{x \in V: \|x\| \leq 1\}$. We
+        know $x \in \bar{A}$ if there is a sequence $(x_n) \subset A$ such that
+        $x_n \to x$. Then suppose $x \in V$ such that $\|x\| = 1$ and let us define a
+        sequence $(x_n)$ that converge to $x$ as
+        $$x_n = \frac{n-1}{n}x$$
+        We see that $\|\frac{n-1}{n}x\| = |\frac{n-1}{n}|\|x\| = |\frac{n-1}{n}|\cdot 1 < 1$
+        then $(x_n) \subset A$ and this implies that $x \in \bar{A}$. Therefore
+        $B$ is always the closure of $A$.
+    \end{proof}
+	\begin{proof}{\textbf{17}}
+        \begin{itemize}
+        \item [($\rightarrow$)] If $A$ is an open set, since $\mathring{A}$ is the
+        largest open set contained in $A$ then $\mathring{A} = A$.
+        \item [($\leftarrow$)] If $\mathring{A} = A$ since $\mathring{A}$ is an open set
+        then $A$ is open.
+        \end{itemize}
+        \begin{itemize}
+        \item [($\rightarrow$)] If $A$ is closed, since $\bar{A}$ is the smallest closed
+        set that contains $A$ then $\bar{A} = A$.
+        \item [($\leftarrow$)] If $\bar{A} = A$ since $\bar{A}$ is a closed set
+        then $A$ is closed.
+        \end{itemize}
+    \end{proof}
+	\begin{proof}{\textbf{18}}
+        Since $E$ is a nonempty bounded subset of $\R$ then there is a non-decreasing
+        sequence $(x_n) \subset E$ where $\lim_{n \to \infty} x_n = \sup{E}$ therefore
+        $\sup{E} \in \bar{E}$. In the same way, we know there is a non-increasing
+        sequence $(x_n) \subset E$ where $\lim_{n \to \infty} x_n = \inf{E}$ therefore
+        $\inf{E} \in \bar{E}$.
+    \end{proof}
+	\begin{proof}{\textbf{20}}
+        Since $A \subset B$ and $B \subset \bar{B}$ then $A \subset \bar{B}$.
+        Now let
+        $$C = \{F: F\text{ is closed set and }A \subset F\}$$
+        We know that
+        $$\bar{A} = \bigcap\{F: F\text{ is closed set and }A \subset F\} = \bigcap C$$
+        Then this means that $\bar{B} \in C$.
+        Therefore since $\bar{A}$ is the intersection of $C$ we see that
+        $\bar{A} \subset \bar{B}$.
+
+        Let us now see why $\bar{A} \subset \bar{B}$ does not imply that
+        $A \subset B$ by checking the following example. Let us
+        define $A = (0, 1]$ and $B = \Q$ then $\bar{A} = [0, 1]$ and
+        $\bar{B} = \R$ so we see that $\bar{A} \subset \bar{B}$ but
+        $A \not\subset B$.
+    \end{proof}
+	\begin{proof}{\textbf{24}}
+        Let $A \subset M$ so $A^c = M \setminus A$. Let us also define
+        $$U = \bigcup\{F: F \text{ is open and } F\subset M\setminus A\} = \text{int}(A^c)$$
+        So by definition, $U$ is an open set then $U^c = M \setminus U$ is
+        closed and $A \subset U^c$ because of the definition of $U$
+        also we see that $U^c$ must be the smallest closed set containing $A$
+        again because of how we defined $U$. Therefore
+        $$\text{cl}(A) = (\text{int}(A^c))^c$$
+
+        Let us now define
+        $$I = \bigcap\{F: F \text{ is closed and } M\setminus A \subset F\} = \text{cl}(A^c)$$
+        So we see that $I$ is a closed set then $I^c = M \setminus I$ is
+        open and $I^c \subseteq A$ because of the definition of $I$.
+        Also, we see that $I^c$ must be the largest open set contained in $A$
+        because of how we defined $I$. Therefore
+        $$\text{int}(A) = (\text{cl}(A^c))^c$$
+    \end{proof}
+\cleardoublepage
+    \begin{proof}{\textbf{26}}
+        \begin{itemize}
+            \item [($\rightarrow$)] Let $d(x, A) = 0$ then this means that
+            $\inf\{d(x,a): a \in A\} = 0$ for which we have two cases. If $x \in A$
+            then we have that 
+            $$\min\{d(x,a): a \in A\} = \inf\{d(x,a): a \in A\} = d(x,x) = 0$$
+            and we have that $x \in \bar{A}$ since $A \subset \bar{A}$.
+            
+            If $x \not\in A$ and we know that $\inf\{d(x,a): a \in A\} = 0$
+            then it is possible to form a sequence $(x_n) \subset A$ such that
+            $x_n \to x$ i.e. $d(x_n, x) \to 0$ which implie that
+            $x \in \bar{A}$.
+            
+            \item [($\leftarrow$)] If $x \in \bar{A}$ then there is a sequence
+            $(x_n) \subset A$ such that $x_n \to x$ which implies that
+            $d(x, x_n) \to 0$ and since by definition of the metrics
+            $d(x,a) \geq 0$ for any
+            $a \in A$ then $\inf\{d(x,a): a \in A\} = 0$. Therefore
+            $d(x, A) = 0$.
+        \end{itemize}
+    \end{proof}
+    \begin{proof}{\textbf{28}}
+        Let $D = \{x \in M: d(x,A) < \epsilon\}$ and let us define
+        $\epsilon' = \epsilon - d(x,A)$ where we see that $\epsilon' > 0$.
+        We want to prove that $B_{\epsilon'}(x) \subset D$ where we know that
+        $B_{\epsilon'}(x) = \{y \in M:d(y,x) < \epsilon'\}$ then we have that
+        \begin{align*}
+            d(y,x) &< \epsilon - d(x,A)\\
+            d(y,A) &\leq d(y,x) + d(x,A) < \epsilon
+        \end{align*}
+        Then this implies that $B_{\epsilon'}(x) \subset D$ and therefore $D$ is
+        an open set.
+
+        Let now $F = \{x \in M: d(x,A) \leq \epsilon\}$ and let us suppose that
+        there is a sequence $(x_n) \subset F$ such that $x_n \to x$ where
+        $x \in M$ then this implies that there is
+        $N\in \N$ such that when $n \geq N$ we have that
+        $d(x_n, x) < \epsilon'$ for some $\epsilon' > 0$. Also from problem 27
+        we have that
+        \begin{align*}
+            |d(x, A) - d(x_n, A)| \leq d(x_n, x) < \epsilon'
+        \end{align*}
+        And from the triangle inequality, we see that
+        \begin{align*}
+            d(x, A) &= |d(x, A) - d(x_n, A) + d(x_n, A)| \leq\\
+                &\leq|d(x, A) - d(x_n, A)| + |d(x_n, A)|
+        \end{align*}
+        Then
+        \begin{align*}
+            d(x,A) \leq \epsilon' + \epsilon
+        \end{align*}
+        In particular, let us take $\epsilon' = (d(x,A) - \epsilon)/2$ then
+        we have that
+        \begin{align*}
+            d(x,A) &\leq \frac{d(x,A)}{2} + \frac{\epsilon}{2}\\
+            d(x,A) &\leq \epsilon
+        \end{align*}
+        Therefore $x \in F$ which implies that $F$ is a closed set.
+
+        Finally, if $x \in A$ we have that $d(x,A) = d(x,x) = 0 < \epsilon$
+        which implies that $A \subset D$ and $A \subset F$.
+    \end{proof}
+\cleardoublepage
+    \begin{proof}{\textbf{29}}
+        \item[(i)]
+        From the hint we have, we see that each set\\
+        $\{x \in M : d(x,A) < 1/n\}$ is an open set. Let's see that
+        $$\bigcap_{n=1}^{\infty}\{x \in M : d(x,A) < 1/n\} = \{x \in M : d(x,A) = 0\}$$
+        So, we need to prove that $d(x,A) = 0$ if
+        and only if for all $n$ it holds that $d(x,A) < 1/n$.
+        \begin{itemize}
+        \item [($\rightarrow$)] If $d(x,A) = 0$ then $d(x, A) = 0 < 1/n$ for all
+        $n \in \N$.
+        \item [($\leftarrow$)] On the other hand, if $d(x,A) < 1/n$ for all $n$
+        then let us suppose $d(x,A) > 0$ we want to arrive to a contradiction.
+        We know that there is $n \in \N$ such that $n > 1/d(x,A)$ then
+        $d(x,A) > 1/n$ which is a contradiction. Therefore it must be that
+        $d(x,A) = 0$.
+        \end{itemize}
+        Also we know that $d(x,A) = 0$ if and only if $x \in \bar{A}$ so we have
+        that
+        $$\{x \in M : d(x,A) = 0\} = \bar{A}$$
+        Where we know that $\bar{A}$ is closed.
+        Therefore every closed set in $M$ is the intersection of countably many
+        open sets.
+
+        \item[(ii)] Now let's see that $\{x \in M : d(x,A) \geq 1/n\}$ is the
+        complement of the set $\{x \in M : d(x,A) < 1/n\}$ which implies that
+        $\{x \in M : d(x,A) \geq 1/n\}$ is a closed set. Then because of 
+        what we saw in part (i) we have that
+        $$\bigcup_{n=1}^{\infty}\{x \in M : d(x,A) \geq 1/n\} = \bar{A}^c$$
+        And we know that $\bar{A}^c$ is open, therefore every open set in $M$ is
+        the intersection of countably many closed sets.
+    \end{proof}
+    \begin{proof}{\textbf{33}}
+        Let $(B_\epsilon(x) \setminus \{x\}) \cap A = \{x_1, x_2, ..., x_n\}$
+        i.e. $B_\epsilon(x) \setminus \{x\}$ has finitely many points of $A$
+        for all $\epsilon > 0$ we want to arrive to a contradiction.
+        
+        Let us take $x_m \in \{x_1, x_2, ..., x_n\}$ such that
+        $$d(x_m, x) = \min\{d(x_1, x), d(x_2, x), ..., d(x_n, x)\}$$
+
+        Since $(B_\epsilon(x) \setminus \{x\}) \cap A \neq \emptyset$ 
+        for all $\epsilon > 0$ in particular let us take $\epsilon' = d(x,x_m)$
+        then we see that $(B_{\epsilon'}(x) \setminus \{x\}) \cap A = \emptyset$
+        which is a contradiction and therefore
+        $(B_\epsilon(x) \setminus \{x\}) \cap A$ hast infinitely many points.
+    \end{proof}
+\cleardoublepage
+    \begin{proof}{\textbf{34}}
+        \begin{itemize}
+        \item [($\rightarrow$)] Let $x$ be a limit point of $A$ then let us
+        take a sequence $(x_n) \subset ((B_\epsilon(x) \setminus \{x\}) \cap A)$
+        which we know it exists because 
+        $(B_\epsilon(x) \setminus \{x\}) \cap A \neq \emptyset$ then
+        we see that for each $x_n \in (x_n)$ we have that $d(x_n, x) < \epsilon$
+        because of the definition of open ball. Therefore $x_n \to x$ and by
+        definition of $(x_n)$ we know that $(x_n) \subset A$ and $x_n \neq x$
+        for all $n$.
+        \item [($\leftarrow$)] Let $(x_n) \subset A$ such that $x_n \to x$ and
+        $x_n \neq x$ for all $n$. Then this implies that given some $\epsilon > 0$
+        for $n \geq N$ we have that $d(x_n,x) < \epsilon$ where $N \in \N$.
+        So we have that $x_n \in ((B_\epsilon(x) \setminus \{x\}) \cap A)$
+        for all $n \geq N$ by the definition of an open ball. Therefore since
+        $\epsilon$ is arbitrary we have that
+        $B_\epsilon(x) \setminus \{x\}) \cap A \neq \emptyset$ i.e. $x$ is a
+        limit point of $A$.
+        \end{itemize}
+    \end{proof}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

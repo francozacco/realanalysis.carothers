@@ -23,6 +23,8 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\diam}{\text{diam}}
 \newcommand{\cl}{\text{cl}}
+\newcommand{\bdry}{\text{bdry}}
+\newcommand{\inter}{\text{int}}
 
 \theoremstyle{definition}
 \newtheorem*{solution*}{Solution}
@@ -123,7 +125,7 @@
         Also notice that $\mathcal{P}(\Q)$ is equivalent to $\R$, so we can construct an
         injective map that sends $x \in \R$ to $(-\infty, x) \in\mathcal{U}$ i.e.
         we have a map $g: \mathcal{P}(\Q) \to \mathcal{U}$,
-        therefore using the Bernstein's Theorem we get that there is a bijective map
+        therefore using Bernstein's Theorem we get that there is a bijective map
         $h:\mathcal{U} \to \mathcal{P}(\Q)$ implying that
         $$\text{card}(\mathcal{U}) = \text{card}(\R)$$
     \end{proof}
@@ -355,13 +357,14 @@
     \begin{proof}{\textbf{34}}
         \begin{itemize}
         \item [($\rightarrow$)] Let $x$ be a limit point of $A$ then let us
-        take a sequence $(x_n) \subset ((B_\epsilon(x) \setminus \{x\}) \cap A)$
+        construct a sequence $(x_n) \subset ((B_\epsilon(x) \setminus \{x\}) \cap A)$
         which we know it exists because 
-        $(B_\epsilon(x) \setminus \{x\}) \cap A \neq \emptyset$ then
-        we see that for each $x_n \in (x_n)$ we have that $d(x_n, x) < \epsilon$
-        because of the definition of open ball. Therefore $x_n \to x$ and by
-        definition of $(x_n)$ we know that $(x_n) \subset A$ and $x_n \neq x$
-        for all $n$.
+        $(B_\epsilon(x) \setminus \{x\}) \cap A \neq \emptyset$. We can
+        construct the sequence by taking
+        $x_n \in (B_{1/n}(x) \setminus \{x\}) \cap A)$.
+        We see that for each $x_n$ we have that $0 < d(x_n, x) < 1/n$.
+        Therefore $x_n \to x$ and by definition of $(x_n)$ we know that
+        $(x_n) \subset A$ and $x_n \neq x$ for all $n$.
         \item [($\leftarrow$)] Let $(x_n) \subset A$ such that $x_n \to x$ and
         $x_n \neq x$ for all $n$. Then this implies that given some $\epsilon > 0$
         for $n \geq N$ we have that $d(x_n,x) < \epsilon$ where $N \in \N$.
@@ -371,6 +374,341 @@
         $B_\epsilon(x) \setminus \{x\}) \cap A \neq \emptyset$ i.e. $x$ is a
         limit point of $A$.
         \end{itemize}
+    \end{proof}
+    \begin{proof}{\textbf{41}}
+        \begin{itemize}
+        \item [(a)] Let $x \in \bdry(A)$ then we know that
+        $$B_{\epsilon}(x) \cap A \neq \emptyset \quad\text{and}\quad
+        B_{\epsilon}(x) \cap A^c \neq \emptyset$$ 
+        for every $\epsilon > 0$. And since $(A^c)^c = A$ we also have that
+        $$B_{\epsilon}(x) \cap (A^c)^c \neq \emptyset$$
+        This also implies that $x \in \bdry(A^c)$. In the same way, we can show
+        that if $x \in \bdry(A^c)$ then also $x \in \bdry(A)$. And since $x$ is
+        arbitrary we get that $\bdry(A) = \bdry(A^c)$.
+        
+        \item [(b)] Let $x \in \bdry(A)$ so we know that
+        $B_{\epsilon}(x) \cap A \neq \emptyset$ and that
+        $B_{\epsilon}(x) \cap A^c \neq \emptyset$
+        for every $\epsilon > 0$. This implies that $x \in \cl(A)$ too then
+        we have that
+        $$\bdry(A) \subset \cl(A)$$
+        We also have that $\inter(A) \subseteq A \subset \cl(A)$ therefore
+        we have that
+        $$(\bdry(A) \cup \inter(A)) \subset \cl(A)$$
+
+        Now, let $x \in \cl(A)$ and also it could happen that
+        $x \in \inter(A)$ or $x \not\in \inter(A)$.
+        We are interested in the case where $x \not\in \inter(A)$. Suppose
+        $x \not\in \bdry(A)$ we want to arrive to a contradiction then
+        $B_{\epsilon}(x) \cap A = \emptyset$ or
+        $B_{\epsilon}(x) \cap A^c = \emptyset$. If
+        $B_{\epsilon}(x) \cap A = \emptyset$ then this implies that
+        $x \not\in \cl(A)$ because of Proposition 4.10 which is a contradiction.
+        So it must be that $B_{\epsilon}(x) \cap A^c = \emptyset$ then
+        $B_{\epsilon}(x) \subset A$ but since $B_{\epsilon}(x)$ is an open set
+        this implies that $B_{\epsilon}(x) \subset \inter(A)$ which is another
+        contradiction to the fact that $x \not\in \inter(A)$. Then
+        it must be that $x \in \bdry(A)$ and
+        $$\cl(A) \subset (\bdry(A) \cup \inter(A))$$
+        Therefore
+        $$\cl(A) = (\bdry(A) \cup \inter(A))$$
+        \item [(c)] Let $x \in M$ we want to prove that then
+        $x \in \inter(A) \cup \bdry(A) \cup \inter(A^c)$. Suppose that
+        $x \in \bdry(A)$ then by definition $x \in M$ so let us suppose that
+        $x \not\in \bdry(A)$ then $B_{\epsilon}(x) \cap A = \emptyset$ or
+        $B_{\epsilon}(x) \cap A^c = \emptyset$.
+        
+        If $B_{\epsilon}(x) \cap A = \emptyset$ then $B_{\epsilon}(x) \subset A^c$
+        and since $B_{\epsilon}(x)$ is an open set this implies that
+        $B_{\epsilon}(x) \subset \inter(A^c)$.
+        
+        And if $B_{\epsilon}(x) \cap A^c = \emptyset$ then
+        $B_{\epsilon}(x) \subset A$ and since $B_{\epsilon}(x)$ is an open set
+        this implies that $B_{\epsilon}(x) \subset \inter(A^c)$.
+        
+        Then in the first case $x \in \inter(A^c)$ and in the second case
+        $x \in \inter(A)$ therefore
+        $$M = \inter(A) \cup \bdry(A) \cup \inter(A^c)$$
+    \end{itemize}
+    \end{proof}
+    \begin{proof}{\textbf{42}}
+        Let $E$ be a nonempty bounded subset of $\R$ and let $M = \sup E$ then
+        we see that $B_{\epsilon}(M) = (M - \epsilon, M + \epsilon)$ and
+        by definition we know that $x \leq \sup E$ for all $x \in E$ then
+        there is $y \in E$ such that $M - \epsilon < y \leq M$
+        so it must happen that $B_{\epsilon}(M) \cap E \neq \emptyset$. Also, we
+        see that $M < M+\epsilon$ so $M+\epsilon \not\in E$ then it must happen that
+        $M+\epsilon \in E^c$ then $B_{\epsilon}(M) \cap E^c \neq \emptyset$.
+        Therefore since $\epsilon$ was arbitrary we have that
+        $\sup E \in \bdry(E)$ as we wanted.
+
+        In the same way let $m = \inf E$
+        we see that $B_{\epsilon}(m) = (m - \epsilon, m + \epsilon)$ and
+        by definition we know that $\inf E \leq x$ for all $x \in E$ then
+        there is $y \in E$ such that $m \leq y < m + \epsilon$ so it must happen
+        that $B_{\epsilon}(m) \cap E \neq \emptyset$. Also, we see that
+        $m - \epsilon < m$ so $m - \epsilon \not\in E$ then it must happen that
+        $m - \epsilon \in E^c$ then $B_{\epsilon}(m) \cap E^c \neq \emptyset$.
+        Therefore since this is valid for all $\epsilon > 0$ we have that
+        $\inf E \in \bdry(E)$ as we wanted.
+    \end{proof}
+\cleardoublepage
+    \begin{proof}{\textbf{43}}
+        We want to prove that $\bdry(A)$ is a closed set.
+        But first, we will
+        check that $\inter(A)$, $\inter(A^c)$ and $\bdry(A)$ are mutually
+        disjoint.
+
+        Since $\inter(A) \subseteq A$ and $\inter(A^c) \subseteq A^c$ and also
+        $A$ is disjoint from $A^c$ we have that $\inter(A)$ is disjoint from
+        $\inter(A^c)$.
+
+        Let $x \in \inter(A)$ then there is a ball
+        $B_{\epsilon}(x) \subset \inter(A)$ for some $\epsilon > 0$. Let us also
+        suppose that $x \in \bdry(A)$ we want to arrive to a contradiction then
+        by definition we know that  $B_{\epsilon'}(x) \cap A \neq \emptyset$ and
+        $B_{\epsilon'}(x) \cap A^c \neq \emptyset$ for every $\epsilon' > 0$ but
+        we showed that there is some $\epsilon > 0$ such that
+        $B_{\epsilon}(x) \subset \inter(A)$
+        then $B_{\epsilon}(x) \cap A^c = \emptyset$ which is a contradiction.
+        Therefore $\inter(A)$ is disjoint from $\bdry(A)$.
+        
+        Finally, let $x \in \inter(A^c)$ then there is
+        a ball $B_{\epsilon}(x) \subset \inter(A^c)$ for some $\epsilon > 0$.
+        Let us also suppose that $x \in \bdry(A)$ we want to arrive to a
+        contradiction then by definition we know that
+        $B_{\epsilon'}(x) \cap A \neq \emptyset$ and
+        $B_{\epsilon'}(x) \cap A^c \neq \emptyset$ for every $\epsilon' > 0$ but
+        we showed that there is some $\epsilon > 0$ such that
+        $B_{\epsilon}(x) \subset \inter(A^c)$
+        then $B_{\epsilon}(x) \cap A = \emptyset$ which is a contradiction.
+        Therefore $\inter(A^c)$ is disjoint from $\bdry(A)$.
+
+        Now let's prove that $\bdry(A)$ is a closed set. From the problem 41(c)
+        we have that $M = \inter(A) \cup \bdry(A) \cup \inter(A^c)$ and since we
+        proved that $\inter(A)$, $\inter(A^c)$ and $\bdry(A)$ are mutually
+        disjoint we have that $M \setminus \bdry(A) = \inter(A) \cup \inter(A^c)$
+        and since $\inter(A)$, $\inter(A^c)$ and the union of open sets is open
+        then $M \setminus \bdry(A)$ is an open set. Therefore $\bdry(A)$ is
+        a closed set.
+
+        Finally, we want to prove that $\bdry(A) = \cl(A) \setminus \inter(A)$
+        then from the problem 41(b) we have that
+        $\cl(A) = \inter(A) \cup \bdry(A)$ also since $\inter(A)$ and $\bdry(A)$
+        are mutually disjoint  we have that
+        $\cl(A) \setminus \inter(A) = \bdry(A)$
+    \end{proof}
+\cleardoublepage
+    \begin{proof}{\textbf{46}}
+    \begin{itemize}
+    \item [(a)] ($\rightarrow$)
+    If $A$ is dense in $M$ then $\bar{A} = M$ also we know that if $x \in \bar{A}$
+    i.e. $x \in M$ then there is a sequence $(x_n) \subset A$ such that
+    $x_n \to x$. So every point in $M$ is the limit of a sequence from $A$.
+    
+    ($\leftarrow$) If every point in $M$ is the limit of a sequence from $A$
+    then there is a sequence $(x_n) \subset A$ such that $x_n \to x$ also, we
+    know that this implies $x \in \bar{A}$. Therefore $\bar{A} = M$ and $A$ is
+    dense in $M$.
+
+    \item [(b)] ($\rightarrow$) If $A$ is dense in $M$ then $\bar{A} = M$ so
+    if $x \in \bar{A}$ i.e. $x \in M$ we know from Proposition 4.10 that
+    $B_{\epsilon}(x) \cap A \neq \emptyset$ for every $\epsilon > 0$ as we
+    wanted.
+
+    ($\leftarrow$) If $B_{\epsilon}(x) \cap A \neq \emptyset$ for every $x \in M$
+    and every $\epsilon > 0$ again from Proposition 4.10 we have that $x$ must
+    be in $\bar{A}$. Therefore $\bar{A} = M$ and $A$ is dense in $M$.
+
+    \item [(c)] ($\rightarrow$) If $A$ is dense in $M$ then $\bar{A} = M$. Let
+    $x \in U$ also we have that  $x \in \bar{A}$ then $x \in \inter(A)$ or
+    $x \in \bdry(A)$ since they are disjoint. If $x \in \inter(A)$ then $x \in A$
+    and $U \cap A \neq \emptyset$.
+    If $x \in \bdry(A)$ since $U$ is an open neighborhood of $x$ there is some
+    $\epsilon > 0$ for which $B_{\epsilon}(x) \subseteq U$ and by definition
+    of boundary $B_{\epsilon}(x) \cap A \neq \emptyset$. Therefore
+    $U \cap A \neq \emptyset$ for every nonempty open set $U$.
+
+    ($\leftarrow$) Let us suppose $\bar{A} \neq M$ and let $x \not\in \bar{A}$
+    (so $x \in \bar{A}^c \neq \emptyset$)
+    then there is an $\epsilon >0$ for which an open ball 
+    $B_{\epsilon}(x) \cap  A = \emptyset$ but
+    we know that $U \cap A \neq \emptyset$ for every nonempty open set $U$
+    so this cannot happen since
+    $B_{\epsilon}(x)$ is a nonempty open set. Therefore it must happen that
+    $\bar{A} = M$.
+
+    \item [(d)] ($\rightarrow$) Suppose $x \in \inter(A^c)$ i.e.
+    $\inter(A^c) \neq \emptyset$ we want to arrive to a contradiction. We
+    know by part (c) that $U \cap A \neq \emptyset$ for every nonempty open set
+    $U$, but $\inter(A^c)$ is open by definition of interior so
+    $\inter(A^c) \cap A \neq \emptyset$ which is a contradiction. Therefore it
+    must happen that $\inter(A^c) = \emptyset$.
+
+    ($\leftarrow$) Let $\inter(A^c) = \emptyset$ we want to show that
+    $\bar{A} = M$. We know that $\bar{A} = (\inter(A^c))^c$ therefore we have
+    that $\bar{A} = \emptyset^c = M$. 
+    \end{itemize}        
+    \end{proof}
+    \begin{proof}{\textbf{48}}
+        An example of countable dense set in $\R$ is $\Q$, in the same way
+        for $\R^2$ we can take $\Q \times \Q$ since a cartesian product of
+        countable sets is also countable and for $\R^n$ we take $\Q^n$.
+    \end{proof}
+\cleardoublepage
+    \begin{proof}{\textbf{51}}
+        Let $M$ be a separable metric space and let $C$ be the set that contains
+        all the isolated points of $M$. Let $x \in C$ i.e. $x$ is an isolated
+        point of $M$ then we have that $B_{\epsilon}(x) \cap M = \{x\}$
+        for some $\epsilon > 0$. Since $M$ is a separable metric space
+        then there is a countable dense subset $A$ such that $M = \bar{A}$.
+        So also, $x \in \bar{A}$ which means that either $x \in \inter(A)$ or
+        $x \in \bdry(A)$. If $x \in \bdry(A)$ then it must happen that
+        $B_{\epsilon'}(x) \cap A \neq \emptyset$ for every $\epsilon' > 0$ but we
+        showed that $B_{\epsilon}(x) \cap M = \{x\}$ for some $\epsilon>0$ 
+        so it must happen that $x \in A$. And if $x \in \inter(A)$ then
+        $x \in A$. Then in any case we have that $x \in A$ which means that
+        $C \subseteq A$ but $A$ is a countable set, therefore $C$ must be
+        countable too.
+    \end{proof}
+    \begin{proof}{\textbf{52}}
+        Let $M$ be a separable metric space and let $W$ be a collection of
+        disjoint open sets in $M$. Let $U \in W$ where $U$ is an open set.
+        Since $M$ is a separable metric space then there is a countable dense
+        subset $A$ such that $M = \bar{A}$ and we showed that for any nonempty
+        open set $U$ it must happen that $U \cap A \neq \emptyset$ then we can
+        build a map $f:W \to A$ such that for any $U \in W$ we assign a value
+        $x \in (U \cap A)$. Finally, we need to check that this mapping
+        is one to one, suppose there is $U, V \in W$ such that $f(U) = f(V)$
+        then $x \in U \cap A$ and $x \in V \cap A$ but
+        we know that $U$ and $V$ are disjoint sets then it must happen that
+        $U = V$.
+        Therefore since $A$ is countable and we have a map between every element
+        in $W$ to a value $x \in A$ then $W$ should be at most countable. 
+    \end{proof}
+\cleardoublepage
+    \begin{proof}{\textbf{61}}
+        We are asked to prove (ii) and (iii) from Proposition 4.13.
+        \begin{itemize}
+        \item [(ii)] We want to prove that a set $F \subset A$ is closed in
+        $(A,d)$ if and only if $F = A \cap C$ where $C$ is closed in $(M,d)$.
+
+        ($\rightarrow$) Suppose $F$ is closed in $(A,d)$ and let us suppose that
+        $C = \cl_{M}(F)$ then we see that $F \subseteq A \cap C$. Now let
+        $x \in A \cap C$ then $x \in A$ and $x \in \cl_{M}(F)$ so there is a
+        sequence $(x_n) \subset F$ such that $x_n \to x$ where $x \in (M,d)$ but
+        also since $F$ is a closed set it must happen that $x\in F$ i.e.
+        $A \cap C \subseteq F$.
+        Therefore joining both inclusions we have that $F = A \cap C$.
+        
+        ($\leftarrow$) Suppose $F = A \cap C$ where $C$ is closed in $(M,d)$.
+        Let $(x_n) \subset F$ such that $x_n \to x$ and $x \in A$ we want to prove
+        that $x \in F$. Since $(x_n) \subset F$ then $(x_n) \subset C$ and since
+        $C$ is a closed set then it must happen that $x \in C$ then
+        $x \in F$. Therefore $F$ is closed in $(A,d)$.
+        
+        \item [(iii)] We want to prove that $\cl_A(E) = A \cap \cl_M(E)$ for any
+        subset $E$ of $A$.
+
+        Let $x \in \cl_A(E)$ then $B_{\epsilon}^A(x) \cap E \neq \emptyset$ for
+        every $\epsilon > 0$. But we also know that
+        $B_{\epsilon}^A(x) = A \cap B_{\epsilon}^M(x)$ then we have that
+        $A \cap B_{\epsilon}^M(x) \cap E \neq \emptyset$
+        but since $E \subset A$ then $A \cap E = E$ so we have that
+        $B_{\epsilon}^M(x) \cap E \neq \emptyset$ for every $\epsilon > 0$
+        which implies that $x \in \cl_M(E)$ then
+        $\cl_A(E) \subseteq A \cap \cl_M(E)$.
+
+        Let $x \in A \cap \cl_M(E)$ then since $x \in \cl_M(E)$ we have that
+        $B_\epsilon^M(x) \cap E \neq \emptyset$ for every $\epsilon > 0$.
+        Since also $x \in A$ and $E \subset A$ then
+        $B_\epsilon^M(x) \cap A \cap E \neq \emptyset$ hence
+        $B_\epsilon^A(x) \cap E \neq \emptyset$ for every $\epsilon > 0$.
+        Therefore $x \in \cl_A(E)$ i.e. $A \cap \cl_M(E) \subseteq \cl_A(E)$.
+        
+        Finally, by joining both inclusions we have that
+        $\cl_A(E) = A \cap \cl_M(E)$.
+        \end{itemize}
+    \end{proof}
+
+\cleardoublepage
+    \begin{proof}{\textbf{62}}
+
+        ($\rightarrow$) Let $G$ be open in $A$ then by Proposition 4.13 (i) we
+        know that there
+        is an open set $U$ in $M$ such that $G = A \cap U$. So let $x \in G$,
+        then $x \in A$ and $A$ is open in $M$ so there is $\epsilon_A > 0$
+        such that $B_{\epsilon_A}^M(x) \subset A$. Also, $x \in U$ and $U$
+        is open in $M$ so there is $\epsilon_U > 0$ such that
+        $B_{\epsilon_U}^M(x) \subset U$. Let us take
+        $\epsilon = \min(\epsilon_A, \epsilon_U)$ so we have a ball
+        $B_\epsilon^M(x) \subset A$ and $B_\epsilon^M(x) \subset U$ but also
+        since $A \subset M$ and $U \subset M$ it happens that
+        $B_\epsilon^M(x) \subset M$. Therefore $G$ is open in $M$.
+
+        ($\leftarrow$) Let $G$ be open in $M$ and let $x \in G$ then there is a
+        ball $B_{\epsilon}^M(x) \subset M$ for some $\epsilon > 0$. Also, we
+        know that $B_{\epsilon}^A(x) = A \cap B_{\epsilon}^M(x)$ which is
+        nonempty since $G \subset A$. Therefore we have a ball
+        $B_{\epsilon}^A(x) \subset A$ for $\epsilon > 0$ i.e. $G$ is open in
+        $A$.
+
+        Now let us prove that if $A$ is closed in $(M,d)$ and $G \subset A$
+        then $G$ is closed in $A$ if and only if $G$ is closed in $M$.
+
+        ($\rightarrow$) Let $G$ be closed in $A$ and let $x \in M$
+        such that for any $\epsilon > 0$ we have that
+        $B_{\epsilon}^M(x) \cap G \neq \emptyset$, we want to prove that
+        $x \in G$. Since $G \subset A$ then $G \cap A = G$ so we can write that
+        $B_{\epsilon}^M(x) \cap A \cap G \neq \emptyset$. Also, let us suppose
+        that $x \not\in A$, we want to arrive to a contradiction then $x \in A^c$
+        which is an open set because $A$ is a closed set then there is a ball
+        $B_{\epsilon'}^M(x) \subset A^c$ for some $\epsilon' > 0$, but we said
+        that $B_{\epsilon}^M(x) \cap A \cap G \neq \emptyset$ for any $\epsilon > 0$
+        then we have a contradiction and $x \in A$. So since $x$ in $A$ we have
+        that $B_{\epsilon}^A(x) = A \cap B_\epsilon^M(x)$ then we get that
+        $B_{\epsilon}^A(x) \cap G \neq \emptyset$ for all $\epsilon > 0$
+        therefore $x \in G$ because $G$ is closed in $A$ which implies that $G$
+        is closed in $M$.
+        
+        ($\leftarrow$) Let $G$ be closed in $M$ and let $x \in A$
+        such that for any $\epsilon > 0$ we have that
+        $B_{\epsilon}^A(x) \cap G \neq \emptyset$, we want to prove that
+        $x \in G$. Since $x$ in $A$ then we know that
+        $B_{\epsilon}^A(x) = A \cap B_\epsilon^M(x)$ so we get that
+        $A \cap B_{\epsilon}^M(x) \cap G \neq \emptyset$ also, since
+        $G \subset A$ then $G \cap A = G$ then we have that
+        $B_{\epsilon}^M(x) \cap G \neq \emptyset$ for any $\epsilon > 0$
+        therefore $x \in G$ because $G$ is closed in $M$. Hence $G$ is closed 
+        in $A$. 
+
+    \end{proof}
+    \begin{proof}{\textbf{64}}
+        Let $E = A = \Q$ then we see that $\inter_A(E) = \inter_\Q(\Q) = \Q$ but
+        $\inter_\R(E) = \inter_\R(\Q) = \emptyset$.
+    \end{proof}
+\cleardoublepage
+    \begin{proof}{\textbf{69}}
+
+        ($\rightarrow$) Let $(U_n)$ be a countable open base for $M$ and let us
+        take an element from each $U_n$ such that for each $n \in \N$ we have
+        $x_n \in U_n$, then we can construct a set $D = \{x_n : n \in \N\}$
+        which is countable. Also, let $U$ be a nonempty open set of $M$ then
+        it can be written as a union of $U_n$ which implies that
+        $U \cap D \neq \emptyset$. Therefore $D$ is a countable dense set of $M$
+        i.e. $M$ is separable.
+
+        ($\leftarrow$) Let $M$ be a separable metric space, let $F$ be an
+        open set in $M$ and let $\{x_n\}$ be a countable dense set of $M$.
+        Let us take $x \in F$ then we have a ball
+        $B_\epsilon(x) \subset F$ for some $\epsilon > 0$.
+        Also, we can have $B_q(x) \subset B_\epsilon(x) \subset F$ such that
+        $q \in \Q$ and $0 < q < \epsilon$ because $\Q$ is dense.
+        Since $\{x_n\}$ is dense then there is some $x_n \in B_q(x)$
+        and which implies that $x \in B_q(x_n)$ so we can write that
+        $$F = \bigcup_n B_q(x_n)$$
+        Therefore $F$ can be written as a union of countable open sets i.e. $M$
+        has a countable open base. 
     \end{proof}
 
 \end{document}

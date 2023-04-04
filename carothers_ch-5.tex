@@ -1,0 +1,116 @@
+\documentclass[11pt]{article}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{adjustbox}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usepackage[mathscr]{euscript}
+
+\title{\textbf{Solved selected problems of Real Analysis - Carothers}}
+\author{Franco Zacco}
+\date{}
+
+\addtolength{\topmargin}{-3cm}
+\addtolength{\textheight}{3cm}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\diam}{\text{diam}}
+\newcommand{\cl}{\text{cl}}
+\newcommand{\bdry}{\text{bdry}}
+\newcommand{\inter}{\text{int}}
+
+\theoremstyle{definition}
+\newtheorem*{solution*}{Solution}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\section*{Chapter 4 - Continuous Functions}
+
+	\begin{proof}{\textbf{7}}
+    \begin{itemize}
+        \item [(a)] Let $(a, \infty) \subset \R$ which is an open set, then
+        we see that
+        $$f^{-1}[(a,\infty)] = \{x: x \in M \text{ and } f(x) > a\}$$
+        is also an open set because $f$ is continuous and Theorem 5.1
+        part (iv).
+
+        In the same way, let $(-\infty, a) \subset \R$ which is an open set,
+        then we see that
+        $$f^{-1}[(-\infty,a)] = \{x: x \in M \text{ and } f(x) < a\}$$
+        is also an open set because $f$ is continuous and Theorem 5.1
+        part (iv).
+
+        \item [(b)] We proved the more general result in part (c) which also
+        applies in this case.
+
+        \item [(c)] Let $V$ be an open set of $\R$ then since the collection of
+        open intervals with rational endpoints is a base for $\R$ we can write
+        $V$ as
+        $$V = \bigcup_\alpha (p_\alpha, q_\alpha)$$
+        where $p_\alpha, q_\alpha \in \Q$ so we have that
+        $$f^{-1}[V] = \bigcup_\alpha f^{-1}[(p_\alpha, q_\alpha)]$$
+        then we can write that
+        $$f^{-1}[(p_\alpha, q_\alpha)] =
+        f^{-1}[(p_\alpha, \infty)] \cap f^{-1}[(-\infty, q_\alpha)]$$
+        Also, we know that
+        $$f^{-1}[(p_\alpha, \infty)] = \{x: f(x) > p_\alpha\}
+        \text{ and } f^{-1}[(-\infty, q_\alpha)] = \{x: f(x) < q_\alpha\}$$
+         and we know
+        both of them are open sets so $f^{-1}[(p_\alpha,q_\alpha)]$ is
+        the intersection of a finite number of open sets then it is also an open
+        set. Finally, since $f^{-1}[V]$ is the union of open sets it's also
+        an open set. Therefore $f$ is continuous. 
+    \end{itemize}
+    \end{proof}
+    \begin{proof}{\textbf{10}}
+        Let $\epsilon > 0$ and let us take $\delta = 1$ no matter the value of
+        $\epsilon$ then
+        $$B_\delta(2) = \{x \in A: d(2,x) < 1\} = \{2\}$$
+        So we have that $f(B_\delta(2)) = \{f(2)\}$ and certainly it must happen
+        that $\{f(2)\} \subset B_\epsilon(f(2))$ because
+        $f(2) \in B_\epsilon(f(2))$. Therefore $f$ is continuous at 2.
+    \end{proof}
+    \begin{proof}{\textbf{11}}
+        \begin{itemize}
+            \item [(a)] Let $x \in A \cup B$, then $x \in A$, $x \in B$ or both
+            of them, also let $\epsilon > 0$ then we know there exists
+            $\delta > 0$ such that $f(B_\delta(x)) \subset B_\epsilon(f(x))$
+            because $f$ is continuous at $x$ by the definition.
+            \item [(b)] Let $A = (0,1)$ and $B = [1,2)$ also let $f:A \to \R$ be
+            defined as $f(x) = x$ and $f: B\to\R$ as $f(x) = x + 1$ then we
+            see that $f:A \cup B \to \R$ is not continuous at $x=1$. Therefore
+            the statement is false.            
+        \end{itemize}
+    \end{proof}
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

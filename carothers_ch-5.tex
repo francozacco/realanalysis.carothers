@@ -91,6 +91,71 @@
             the statement is false.            
         \end{itemize}
     \end{proof}
+    \begin{proof}{\textbf{14}}
+        Given that a continuous function on $\R$ is completely determined by its
+        values on $\Q$. For each $q \in \Q$ we have that $f(q)$ has a
+        cardinality of $\mathfrak{c}$ since for each real number $x \in \R$ we
+        can find an $f$ such that $x = f(q)$. So the set of continuous functions
+        $f: \R \to \R$ has a cardinality of $\mathfrak{c}^{|\Q|}$ and doing some
+        cardinality algebra we get that
+        $$\mathfrak{c}^{|\Q|} = {(2^{\aleph_0})}^{\aleph_0} = 2^{\aleph_0} = \mathfrak{c}$$
+        Therefore there are $\mathfrak{c}$ continuous function $f: \R \to \R$. 
+    \end{proof}
+    \begin{proof}{\textbf{17}}
+        Let $x \in M$, and let us also define $(x_n) \subset D$ such that
+        $x_n \to x$ which we know it exists because $D$ is dense. Then
+        $f(x_n) \to f(x)$ and $g(x_n) \to g(x)$ also we know that
+        $f(x_n) = g(x_n)$ for every $x_n \in (x_n)$. Finally, since sequences
+        have unique limits it must happen that $f(x) = g(x)$ as we wanted to
+        show.
+
+        In the same way, suppose we define $(x_n) \subset D$ such that
+        $x_n \to x$ where $x \in M$. Then $f(x_n) \to f(x)$ also
+        $(f(x_n)) \subset f(D)$. So we have a sequence $(f(x_n))$ for any
+        $f(x)$ and we know that every $y \in N$ has the form $y = f(x)$
+        because $f$ is onto. Therefore $f(D)$ is dense in $N$.
+    \end{proof}
+\cleardoublepage
+    \begin{proof}{\textbf{22}}
+        Let $n,m \in \N$ we want to show that $d(E(n), E(m)) = d(n,m)$ this
+        means that $\|E(n) - E(m)\|_1 = |n-m|$. Let us suppose that $n > m$
+        then $n = m + b$ where $b \in \N$ and so $|n - m| = b$.
+        Then we have that
+        \begin{align*}
+            \|E(n) - E(m)\|_1 &= \sum_{i=1}^{\infty} |E_i(n) - E_i(m)|
+        \end{align*}
+        where $E_i(n)$ is the value of the $ith$ element in the sequence, the
+        same for $E_i(m)$. If $i \in \{1, 2, ..., m \}$ we have that
+        $|E_i(n) - E_i(m)| =  |1 - 1| = 0$ and for $i \in \{n +1, n+2, ...\}$
+        we have that $|E_i(n) - E_i(m)| =  |0 - 0| = 0$ so we can write the
+        following
+        \begin{align*}
+            \|E(n) - E(m)\|_1 &= \sum_{i=m}^{n} |E_i(n) - 0|
+                = \sum_{i=m}^{n} 1 = n - m = b
+        \end{align*}
+        Therefore $\|E(n) - E(m)\|_1 = |n-m|$ as we wanted, in the case of
+        $m \geq n$ the proof is analogous because we are taking the absolute
+        value inside the sum.
+    \end{proof}
+    \begin{proof}{\textbf{23}}
+        Let $S:c_0 \to c_0$ be defined as $S(x_0, x_1, ...) = (0, x_0, x_1, ...)$
+        such that $S$ shifts the entries forward and puts $0$ in the empty slot.
+        We want to prove that $d(S(x), S(y)) = d(x,y)$ where $x = (x_0, x_1, ...)$
+        and $y = (y_0, y_1, ...)$ then
+        $$\|x - y\|_\infty = \sup \{|x_0 - y_0|, |x_1 - y_1|, ...\}$$
+        And $\sup \{|x_0 - y_0|, |x_1 - y_1|, ...\} \geq 0$ because both $x$
+        and $y$ are sequences that tend to $0$. Let us suppose that
+        $\sup_n |x_n - y_n| = 0$ then we see that
+        $$\|S(x) - S(y)\|_\infty = \sup \{|0 - 0|, |x_0 - y_0|, |x_1 - y_1|, ...\}
+        = 0$$
+        Now let us suppose that $\|x - y\|_\infty > 0$ then we have that
+        $$\sup \{|x_0 - y_0|, |x_1 - y_1|, ...\} = \sup \{|0-0|, |x_0 - y_0|, |x_1 - y_1|, ...\}$$
+        because $\|S(x) - S(y)\|_\infty$ cannot be $0$. Therefore we have that
+        $$\|S(x)-S(y)\|_\infty = \|x -y\|_\infty$$
+        as we wanted.
+
+    \end{proof}
+
 \end{document}
 
 

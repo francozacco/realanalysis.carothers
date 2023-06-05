@@ -155,14 +155,670 @@
         as we wanted.
 
     \end{proof}
+\cleardoublepage
+    \begin{proof}{\textbf{24}}
+        Let $f:\R \to V$ such that for each $\alpha \in \R$ we map it to
+        $\alpha y \in V$ where $y \in V$. Let $\alpha, \beta \in \R$ we want to
+        show that for every $\epsilon > 0$ there is a $\delta > 0$ such that 
+        $\|f(\alpha) - f(\beta)\| < \epsilon$ whenever
+        $|\alpha - \beta| < \delta$. So let us define $\delta = \epsilon/\|y\|$
+        if $\|y\| \neq 0$ then we have that when $|\alpha - \beta| < \delta$ we
+        get that
+        \begin{align*}
+            |\alpha - \beta| &< \frac{\epsilon}{\|y\|}\\
+            |\alpha - \beta|\|y\| &< \epsilon\\
+            \|\alpha y - \beta y\| &< \epsilon\\
+            \|f(\alpha) - f(\beta)\| &< \epsilon
+        \end{align*}
+        Therefore $f$ is continuous.
+
+        Let now $f:V \to V$ such that for each $x \in V$ we map it to
+        $x + y \in V$ where $y \in V$. Let $x, x' \in V$ we want to show that
+        for every $\epsilon > 0$ there is a $\delta > 0$ such that
+        $\|f(x)-f(x')\|< \epsilon$ whenever $\|x - x'\|<\delta$. So let us
+        define $\delta = \epsilon$ then we have that when $\|x - x'\|<\delta$
+        we get that
+        \begin{align*}
+            \|x - x'\| = \|(x+y) - (x'+y)\| =\|f(x) - f(x')\| &< \epsilon
+        \end{align*}
+        Therefore $f$ is continuous.
+    \end{proof}
+    \begin{proof}{\textbf{25}}
+        Let $f:(M,d) \to (N,\rho)$ be a Lipschitz mapping so there is
+        $K < \infty$ such that $\rho(f(x), f(y)) \leq Kd(x,y)$ for all
+        $x,y \in M$ also let's observe that $K \geq 0$ since both
+        $\rho(f(x), f(y)) \geq 0$ and $d(x,y) \geq 0$
+        
+        Let now $\epsilon > 0$ and $\delta > 0$, we want to prove that if
+        $d(x,y) < \delta$ then $\rho(f(x),f(y)) < \epsilon$ i.e. $f$ is
+        continuous. So let $\delta = \epsilon / K$ with $K > 0$ then we have
+        that if $d(x,y) < \epsilon/K$ then $K d(x,y) < \epsilon$ and since 
+        $\rho(f(x),f(y)) \leq K d(x,y)$ we get that
+        $\rho(f(x), f(y)) < \epsilon$ as we wanted.
+        If $K = 0$ then it must happen that $\rho(f(x), f(y)) = 0$ and
+        then $\rho(f(x), f(y)) = 0 < \epsilon$ which by definition is true.
+        Therefore $f$ is continuous.
+    \end{proof}
+    \begin{proof}{\textbf{27}}
+        Let $k \geq 1$ and $f:l_\infty \to \R$ defined as $f(x) = x_k$ we want
+        to prove that $f$ is continuous but we will prove that $f$ is Lipschitz
+        which implies that $f$ is continuous.
+
+        Let $x,y \in l_\infty$ then we have that for some fixed $k \geq 1$ the
+        following is always true because of the definition of supremum
+        \begin{align*}
+            |f(x) - f(y)| = |x_k - y_k| \leq \sup_n |x_n - y_n| = \|x -y\|_\infty
+        \end{align*}
+        then for $K = 1$ we see that 
+        \begin{align*}
+            |f(x) - f(y)|  \leq K \|x -y\|_\infty
+        \end{align*}
+        Therefore $f$ is Lipschitz and hence continuous.
+    \end{proof}
+\cleardoublepage
+    \begin{proof}{\textbf{31}}
+    \begin{itemize}
+    \item [(a)] Let $x \in M$ since $M = \cup_{n=1}^\infty U_n$ then $x$ is in
+    some $U_n$ we want to show that for every sequence $(x_n) \subset M$ such
+    that $x_n \to x$ we have that $f(x_n) \to f(x)$. For every
+    $(x_n) \subset U_n$ such that $x_n \to x$ since $f$ is continuous in $U_n$
+    then we have that $f(x_n) \to f(x)$. But if $(x_n)$ is not completely in
+    $U_n$ then since $U_n$ is an open set it must happen that eventually
+    for some $n$ onwards $x_n \in U_n$ and since 
+    $f$ is continuous in $U_n$ we have that $f(x_n) \to f(x)$. Therefore
+    $f$ is also continuous in $M$.
+
+    \item [(b)] Let $F \in N$ be a closed set then we have that
+    \begin{align*}
+        f^{-1}(F) \cap M = f^{-1}(F) \cap \bigcup_{n=1}^N E_n = \bigcup_{n=1}^N f^{-1}(F) \cap E_n 
+    \end{align*}
+    We know that each $f^{-1}(F) \cap E_n$ is closed in $E_n$ because $f$ is
+    continuous in $E_n$ and we know that the finite union of closed sets is
+    closed then $f^{-1}(F) \cap M$ is closed and therefore $M$ is continuous. 
+
+    \item [(c)] Let $E_n = [\frac{1}{n}, 1]$ we see that
+    $\cup_{n=1}^\infty E_n = (0,1]$ which is not a closed set. Therefore even
+    though $f$ is continuous in every $E_n$ we based part of our proof
+    on the fact that the finite union of closed sets is closed which is not
+    the case here.
+    \end{itemize}
+    \end{proof}
+    \begin{proof}{\textbf{34}}
+        Let $(M\times M, \rho)$ be a metric space where $\rho$ is defined as
+        $$\rho((a,b),(c,d)) = d(a,c) + d(b,d)$$
+        and $d$ is a metric on $M$. We want to prove that if
+        $(x_n, y_n) \to (x, y)$ then $d(x_n, y_n) \to d(x,y)$ i.e. that 
+        $d$ is continuous.
+
+        If $(x_n, y_n) \to (x, y)$ then this means
+        that $x_n \to x$ and $y_n \to y$ then $d(x_n,x) \to 0$ and
+        $d(y_n, y) \to 0$ which implies that
+        \begin{align*}
+            \rho((x_n,y_n),(x,y)) = d(x_n,x) + d(y_n,y) &< \epsilon
+        \end{align*}
+        for some $\epsilon > 0$. Also, we have that
+        \begin{align*}
+            d(x_n,y_n) \leq d(x_n,x) + d(x,y_n) \quad\text{and}\quad
+            d(x,y_n) \leq d(x,y) + d(y,y_n) 
+        \end{align*}
+        so joining these inequalities we get that
+        \begin{align*}
+            d(x_n,y_n) - d(x,y) \leq d(x_n,x) + d(y_n,y) < \epsilon
+        \end{align*}
+        On the other hand, we also have that
+        \begin{align*}
+            d(x,y) \leq d(x,x_n) + d(x_n,y) \quad\text{and}\quad
+            d(x_n,y) \leq d(x_n,y_n) + d(y_n,y) 
+        \end{align*}
+        then
+        \begin{align*}
+            d(x,y) - d(x_n,y_n) \leq d(x_n,x) + d(y_n,y) < \epsilon
+        \end{align*}
+        hence $|d(x,y) - d(x_n,y_n)| < \epsilon$.
+        Therefore $d(x_n,y_n) \to d(x,y)$ as we wanted.
+    \end{proof}
+\cleardoublepage
+    \begin{proof}{\textbf{43}}
+
+        ($\rightarrow$) We want to prove that $i:(M,d) \to (M,\rho)$ (the
+        identity map) is a homeomorphism from $(M,d)$ to $(M, \rho)$.
+
+        Let us check first that $i$ is a one-to-one map. Let
+        $i(a),i(b) \in (M,\rho)$ such that $i(a) = i(b)$ then by definition
+        $a = i(a) = i(b) = b$. Then $i$ is a one-to-one map.
+
+        Let us also check that $i$ is an onto map too. Let us take
+        $a \in (M, \rho)$ then by definition we have $a \in (M,d)$ such that
+        $i(a) = a \in (M, \rho)$. Then $i$ is an onto map.
+
+        Also, we want to prove that $i$ is continuous. Let $x \in (M,d)$ then
+        if $d(x_n, x) \to 0$ (i.e. $x_n \to x$) for any $(x_n) \subset M$ we
+        have that $\rho(x_n, x) \to 0$ because $d$ and $\rho$ are equivalent
+        metrics. Therefore since $i$ maps both $x_n$ and $x$ to themselves this
+        implies that $i(x_n) \to i(x)$ where $i(x_n), i(x) \in (M, \rho)$.
+        
+        Finally, we want to prove that also $i^{-1}$ is continuous. In the same
+        way let $x \in (M,\rho)$ if $\rho(x_n, x) \to 0$ (i.e. $x_n \to x$)
+        for any $(x_n) \subset (M, \rho)$ we have that $d(x_n, x) \to 0$
+        because $d$ and $\rho$ are equivalent metrics. Therefore since $i^{-1}$
+        maps both $x_n$ and $x$ to themselves this implies that
+        $i^{-1}(x_n) \to i^{-1}(x)$ where $i^{-1}(x_n), i^{-1}(x) \in (M, d)$.
+
+        Therefore $i$ is an homeomorphism from $(M,d)$ to $(M, \rho)$.
+
+        ($\leftarrow$) We want to prove that $d$ and $\rho$ are equivalent
+        metrics on $M$ knowing that $i$ (the identity map) is a homeomorphism
+        from $(M,d)$ to $(M,\rho)$.
+
+        Let $x \in (M,d)$ and $(x_n) \subset (M,d)$ then if $d(x_n,x) \to 0$ we
+        have that $\rho(i(x_n), i(x)) \to 0$ because $i$ is continuous, but by
+        definition, this also implies that $\rho(x_n, x) \to 0$.
+
+        In the same way, let $x \in (M,\rho)$ and $(x_n) \subset (M,\rho)$ then
+        if $\rho(x_n,x) \to 0$ we have that $d(i^{-1}(x_n), i^{-1}(x)) \to 0$
+        because $i^{-1}$ is continuous, but by definition, this also implies
+        that $d(x_n, x) \to 0$.
+
+        Therefore $d$ and $\rho$ are equivalent metrics.
+    \end{proof}
+\cleardoublepage
+    \begin{proof}{\textbf{44}}
+        We want to prove that "is homeomorphic to" is an equivalence relation,
+        so we will prove it is a reflexive, symmetric and transitive relation.
+        
+        Reflexivity: Let $(M,d)$ be a metric space, we want to prove that
+        $(M,d)$ is homeomorphic to itself. Let $i$ be the identity map, we saw
+        in problem $43$ that $i$ is a homeomorphism from $(M,d)$ to $(M,d)$,
+        then $(M,d)$ is homeomorphic to itself.
+
+        Symmetry: Let $(M,d)$ be homeomorphic to $(N,\rho)$ then there is a
+        relation $f:M\to N$ which is one-to-one and onto such that 
+        $f$ and $f^{-1}$ are continuous. Then we can define $g: N \to M$
+        such that $g=f^{-1}$ which is one-to-one and onto because $f$ is
+        bijective. Also, $g$ is continuous because $f^{-1}$ is continuous and
+        $g^{-1} = (f^{-1})^{-1} = f$ is continuous because $f$ is continuous.
+        Therefore $(N, \rho)$ is homeomorphic to $(M,d)$.
+        
+        Transitivity: Let $(M,d)$ be homeomorphic to $(N,\rho)$ and let
+        $(N,\rho)$ be homeomorphic to $(L,\tau)$. We can define
+        $h: M \to L$ as $h = g \circ f$ where $f:M \to N$ and $g:N\to L$
+        and they are the respective homeomorphisms. Since $f$ and $g$ are
+        one-to-one and onto then $h$ is also one-to-one and onto. Also, we see
+        that $h^{-1} = (g \circ f)^{-1} = g^{-1} \circ f^{-1}$ and by the
+        properties of the composition of functions we see that if $f$,
+        $f^{-1}$, $g$ and $g^{-1}$ are continuous then both $h = g\circ f$ and
+        $h^{-1} = g^{-1} \circ f^{-1}$ are also continuous. Therefore $(M,d)$
+        is homeomorphic to $(L,\tau)$.
+
+        Finally, since the relation "is homeomorphic to" is reflective,
+        symmetric and transitive then it is an equivalence relation between
+        metric spaces. 
+    \end{proof}
+    \begin{proof}{\textbf{45}}
+        Let $M = \{1/n : n\ge 1\}$ and $f:\N \to M$ such that $f(n) = 1/n$.
+
+        Let us prove first that $f$ is one-to-one then let $n,m \in \N$ such
+        that $f(n)=f(m)$ then $1/n = 1/m$ i.e. $n = m$ so $f$ is one-to-one.
+
+        Let us prove now that $f$ is an onto map. Let us take $a \in M$ then
+        $a$ has the form of $a = 1/b$ where $b \in \N$ then there is always a
+        $b \in \N$ such that $f(b) = 1/b = a$ i.e. $f$ is an onto map.
+
+        Now we want to prove that $f$ is continuous. Let $f^{-1}:M \to \N$
+        defined as $f^{-1}(1/n) = n$. Since $\N$ and $M$ are discrete then a
+        subset $V \subset M$ is open and because $f^{-1}$ is bijective then
+        $f^{-1}(V) \subset \N$ is also open. Therefore $f$ is continuous.
+
+        In the same way, we want to prove that $f^{-1}$ defined as we said is
+        also continuous. Since $\N$ and $M$ are discrete then a
+        subset $V' \subset \N$ is open and because $f$ is bijective
+        $(f^{-1})^{-1}(V') = f(V') \subset M$ is also open. Therefore
+        $f^{-1}$ is continuous.
+        
+        So taking into account all these results we conclude that $\N$ is
+        homeomorphic to $M$. 
+    \end{proof}
+\cleardoublepage
+    \begin{proof}{\textbf{48}}
+        We want to prove first that $\R$ is homeomorphic to $(0,1)$ this can
+        be accomplished if we define $f:\R \to (0,1)$ such that
+        $f(x) = \arctan(x)/\pi + 1/2$ since this map is
+        bijective and continuous also $f^{-1}(x) = \tan(\pi(x - 1/2))$ is
+        continuous over $(0,1)$.
+        
+        Now we want to prove that $(0,1)$ is homeomorphic to $(0,\infty)$ but
+        we will prove first that $\R$ is homeomorphic to $(0,\infty)$ so we
+        define $f:\R \to (0,\infty)$ such that $f(x)=e^{x}$ we see that $f$
+        is bijective and continuous also $f^{-1}(x) = \log(x)$ is continuous
+        over $(0,\infty)$. So by composing these results, we have that
+        a map $g:(0,1) \to (0,\infty)$ such that
+        $g(x) = e^{\tan(\pi(x - 1/2))}$ is an homeomorphism between $(0,1)$
+        and $(0,\infty)$ as we wanted.
+
+        Let $x=0$ and $y=2$ then $|0-2| = 2$ but $|f(0)-f(2)|$ is at most
+        close to $1$. Therefore $\R$ is not isometric to $(0,1)$.
+
+        Let $f:\R \to (0,\infty)$ be an isometry from $\R$ to $(0,\infty)$ we
+        want to arrive at a contradiction. Let $x \in \R$ and suppose
+        $|x-0| = |x| = |f(x) - f(0)|$ then we have that
+        $f(x) = f(0) + x$ or $f(x) = f(0) - x$.
+        Let us take $a \not\in (0,\infty)$ then
+        $f(a - f(0)) = f(0) + a - f(0) = a$ or
+        $f(a - f(0)) = f(0) -a + f(0) = 2f(0) - a$ where we see that the first
+        one cannot happen (otherwise $a \in (0,\infty)$). Also, let us consider
+        that $f(f(0) - a) = 2f(0) - a$ or $f(f(0)-a) = a$ must be true
+        where again the last case cannot happen, but also since $f$ is
+        injective we have that $f(0) - a = a - f(0)$  which implies that
+        $f(0)= a$ hence $a \in (0, \infty)$ a contradiction.
+        Therefore $\R$ is not isometric to $(0,\infty)$.
+    \end{proof}
+\cleardoublepage
+    \begin{proof}{\textbf{49}}
+        Let $y \in V$ and  $f:V\to V$ which is defined as $f(x) = x + y$
+        we want to show that $f$ is an isometry on $V$. Let $x,z \in V$
+        since $V$ is a normed vector space then we have that 
+        \begin{align*}
+            \|f(x) - f(z)\| = \|x+y-(z+y)\| = \|x-z\|
+        \end{align*}
+        Therefore $f$ is an isometry on $V$.
+
+        Now let $\alpha \in \R$ and $g:V \to V$ which is defined as
+        $g(x)=\alpha x$ we want to prove that $g$ is a homeomorphism on $V$.
+        
+        Let $x,z \in V$ and suppose $g(x)=g(z)$ then $x = z$ hence $g$ is
+        a one-to-one map. Also, let $v \in V$ such that $v$ is in the image
+        of $g$ then by definition there must be an $x \in V$ such that
+        $v = \alpha x$ so $g$ is an onto map too.
+
+        Let us show now that $g$ is continuous. Let $\epsilon > 0$ and
+        $x,z \in V$ then let us take $\delta = \epsilon/|\alpha|$ so
+        when $\|x-z\| < \delta$ we get that
+        \begin{align*}
+            \|x-z\| &< \frac{\epsilon}{|\alpha|}\\
+            |\alpha|\|x-z\| &< \epsilon\\
+            \|\alpha x-\alpha z\| &< \epsilon\\
+            \|g(x) - g(z)\| &< \epsilon
+        \end{align*}
+        Therefore $g$ is continuous.
+
+        Finally, we want to show that $g^{-1}(x) = x/\alpha$ (which we can define
+        this way because $\alpha$ is nonzero) is continuous. Let $\epsilon > 0$
+        and let $x,z \in V$ (the image) then let us take
+        $\delta = \epsilon |\alpha|$ so when $\|x - z\| < \delta$
+        we have that
+        \begin{align*}
+            \|x-z\| &< \epsilon|\alpha|\\
+            \left|\frac{1}{\alpha}\right|\|x-z\| &< \epsilon\\
+            \left\|\frac{x}{\alpha}-\frac{z}{\alpha}\right\| &< \epsilon\\
+            \|g^{-1}(x) - g^{-1}(z)\| &< \epsilon
+        \end{align*}
+        Therefore $g^{-1}$ is continuous.
+
+        Joining all these results we see that $g$ is a homeomorphism on $V$.
+    \end{proof}
+\cleardoublepage
+    \begin{proof}{\textbf{50}}
+        Let us define a map $f:(M,d) \to (M,\rho)$ such that
+        \begin{align*}
+            f(m) = \begin{cases}
+                1 &\quad\text{if }m = 0\\
+                0 &\quad\text{if }m = 1\\
+                1/n &\quad\text{if }m = 1/n\text{ where }n \geq 2
+            \end{cases}
+        \end{align*}
+        Let $a,b \in (M,d)$ then
+        \begin{itemize}
+            \item [(i)] If $a=b=0$ we have that
+            $$d(a,b) = |a-b| = 0 = \rho(1, 1) = \rho(f(a), f(b))$$
+            \item [(ii)] If $a=b=1$ we have that 
+            $$d(a,b) = |a-b| = 0 = \rho(0,0) = \rho(f(a), f(b))$$
+            \item [(iii)] If $a=1/n$ and $b=1/n'$ where $n,n' \geq 2$ we have
+            that 
+            $$d(a,b) = |1/n-1/n'| = \rho(1/n,1/n') = \rho(f(a), f(b))$$
+            \item [(iv)] If $a=0$ and $b=1$ (or $a=1$ and $b=0$) we have that 
+            $$d(a,b) = |a-b| = 1 = \rho(1,0) = \rho(f(a), f(b))$$
+            \item [(v)] If $a=0$ and $b=1/n$ (or $a=1/n$ and $b=0$) where
+            $n \geq 2$ we have that 
+            $$d(a,b) = |0-1/n| = 1/n = \rho(1, 1/n) = \rho(f(a), f(b))$$
+            \item [(vi)] If $a=1$ and $b=1/n$ (or $a=1/n$ and $b=1$) where
+            $n \geq 2$ we have that 
+            $$d(a,b) = |1-1/n| =1 - 1/n = \rho(0, 1/n) = \rho(f(a), f(b))$$
+        \end{itemize}
+        Therefore $f$ is an isometry which implies it's also a homeomorphism.
+
+        Finally, we want to prove that $i:(M,d) \to (M, \rho)$ the identity map
+        is not continuous. We see that $\{0\} \subset (M,d)$ is not an open set
+        since there is no $\epsilon > 0$ such that $B_\epsilon^d(0) \subset (M,d)$.
+        But $\{0\} \subset (M,\rho)$ is an open set since
+        $\rho(0,1/n) = 1 - 1/n \geq 1/2$ and $\rho(0,1) = 1$ then there is
+        $\epsilon = 1/2$ such that $B_\epsilon^\rho(0) = \{0\} \subset (M,\rho)$.
+        So if we take $V=\{0\}$ an open set in $(M,\rho)$ we have that
+        $i^{-1}(V) = i^{-1}(\{0\}) = \{0\} \subset (M,d)$ is not open and
+        therefore $i$ is not continuous.
+    \end{proof}
+\cleardoublepage
+    \begin{proof}{\textbf{52}}
+        We want to probe Theorem 55. Let $f:(M,d)  \to (N,\rho)$ be one-to-one
+        and onto.
+        \begin{itemize}
+            \item [$(i) \Rightarrow (ii)$] Suppose $f$ is a homeomorphisms and there is
+            $(x_n) \subset (M,d)$ such that $x_n \to x$ then since $f$ is
+            continuous we have that $f(x_n) \to f(x)$. Now let us suppose
+            that $f(x_n) \to f(x)$ then since $f$ is an homeomorphism there is
+            $f^{-1}$ which is also continuous then we have that
+            $f^{-1}(f(x_n)) \to f^{-1}(f(x))$ hence $x_n \to x$.
+
+            \item [$(ii) \Rightarrow (iii)$] Let $G$ be an open set in $M$ and let
+            a sequence $(x_n) \subset M$ such that $x_n \to x$ where $x \in G$
+            then we have that $x_n \in G$ for all but finitely many $n$, but
+            also we have that $f(x_n) \to f(x)$ so since $f(x) \in f(G)$ and 
+            $f$ is bijective it must happen that all but finitely many
+            $f(x_n) \in f(G)$ therefore $f(G) \subset N$ is an open set.
+
+            Now let us suppose $f(G) \subset N$ is open, also, let
+            $f(x) \in f(G)$ such that  $f(x_n) \to f(x)$ since $f(G)$ is open
+            then we have that $f(x_n) \in f(G)$ for all but finitely many $n$.
+            But also we know that $f$ is bijective then $x \in G$ and if
+            $x_n \to x$ it must happen that $x_n \in G$ for all but finitely
+            many $n$. Therefore $G \subset M$ is an open set. 
+
+            \item [$(iii) \Rightarrow (iv)$] Let $E \subset M$ be a closed set then
+            $M \setminus E$ is open in $M$ then $f(M \setminus E)$ is an
+            open set in $N$ therefore $N \setminus f(M \setminus E)$ is a
+            closed set in $N$ and since $f$ is bijective it must happen that
+            $f(E) = N \setminus f(M \setminus E)$.
+
+            Let now $f(E)$ be a closed set in $N$ then $N \setminus f(E)$ is an
+            open set in $N$ then $f^{-1}(N \setminus f(E))$ is an open set in
+            $M$ therefore $M \setminus f^{-1}(N \setminus f(E))$ is closed and
+            since $f^{-1}$ is bijective (as well as $f$) we have that
+            $E = M \setminus f^{-1}(N \setminus f(E))$.
+
+            \item [$(i) \Leftrightarrow (v)$] Let $f$ be a homeomorphisms and
+            $(x_n) \subset (M,d)$ be a sequence that tends to $x \in M$.
+            Since $f$ is continuous if $x_n \to x$ then $f(x_n) \to f(x)$ then
+            $d(x_n,x) \to 0$ and $\hat{d}(x_n,x) = \rho(f(x_n), f(x)) \to 0$
+            hence $d$ is equivalent to $\hat{d}$.
+
+            Let $\hat{d}(x,y) = \rho(f(x),f(y))$ be equivalent to the metric
+            $d(x,y)$ on $M$. We want to prove that $f$ and $f^{-1}$ are
+            continuous, i.e. $f$ is a homeomorphism (we already know $f$ is
+            bijective). Let $(x_n) \subset M$ be a sequence that tends to
+            $x \in M$, then $d(x_n,x) \to 0$ but since $\hat{d}$ is also
+            equivalent to $d$ this implies that $\rho(f(x_n), f(x)) \to 0$
+            hence $f$ is continuous.
+            Now let $(f(x_n)) \subset N$ be a sequence that tends to
+            $f(x) \in N$ then $\hat{d}(x_n,x) = \rho(f(x_n), f(x)) \to 0$ but
+            since $\hat{d}$ is equivalent to $d$ this implies that
+            $d(x_n,x) \to 0$, hence $f^{-1}$ is continuous. Therefore $f$ is a
+            homeomorphism.
+
+            \item [$(iv) \Rightarrow (i)$]  We want to prove that $f$ and
+            $f^{-1}$ are continuous (we already know that $f$ is bijective).
+            Let $E$ be closed in $N$, then because of $(iv)$ we have that
+            $f^{-1}(E)$ is closed in $M$ hence $f$ is continuous.
+            In the same way, if $E$ is closed in $M$ then $f(E)$ is closed in
+            $N$ so $f^{-1}$ is also continuous. Therefore $f$ is a
+            homeomorphism. 
+        \end{itemize}
+    \end{proof}
+    \begin{proof}{\textbf{55}}
+
+        ($\rightarrow$) Let $M$ be separable and $f:(M,d) \to (N,\rho)$ a
+        homeomorphism. Also, let $A \subset M$ be a countable dense set in $M$
+        then $f(A)$ is countable since $f$ is bijective but also we know that
+        for every $x \in M$ there is a sequence $(x_n) \subset A$ such that
+        $x_n \to x$. Since $f$ is continuous we have $(f(x_n)) \subset f(A)$
+        such that $f(x_n) \to f(x)$ where $f(x) \in N$. Hence $f(A)$ is a
+        countable dense subset of $N$ and therefore $N$ is separable.
+
+        ($\leftarrow$) In the same way, if $N$ is separable let us define a
+        countable dense subset $B \subset N$ then $f^{-1}(B) \subset M$ is
+        countable since $f^{-1}$ is bijective (as well as $f$). But also we
+        know that for every $y \in N$ there is a sequence $(y_n) \subset B$
+        such that $y_n \to y$. Since $f^{-1}$ is continuous we have 
+        $(f^{-1}(y_n)) \subset f^{-1}(B)$ such that $f^{-1}(y_n) \to f^{-1}(y)$
+        where $f^{-1}(y) \in M$. Hence $f^{-1}(B)$ is a countable dense subset
+        of $M$ and therefore $M$ is separable. 
+    \end{proof}
+
+    \begin{proof}{\textbf{57}}
+        Let $f:(M,d) \to (N, \rho)$ be one-to-one and onto.
+        \begin{itemize}
+        \item [$(i) \Rightarrow (ii)$]
+        Suppose $f$ is open, so if  $U \subset M$ is open then
+        $f(U) \subset N$ is open.
+        From Theorem 5.5. we know that "$U$ is open if and only if $f(U)$ is open"
+        is equivalent to "$E$ is closed if and only if $f(E)$ is closed"
+        when $f$ is bijective (like in this case). Therefore $f$ is closed
+        % Let $E \subset M$
+        % be a closed set then $M \setminus E$ is open in $M$ then
+        % $f(M \setminus E)$ is an open set in $N$ therefore
+        % $N \setminus f(M \setminus E)$ is a closed set in N and since $f$ is 
+        % bijective it must happen that $f(E) = N \setminus f(M \setminus E)$.
+
+        % Let now $f(E)$ be a closed set in $N$ then $N \setminus f(E)$ is an
+        % open set in $N$ then $f^{-1}(N \setminus f(E))$ is an open set in
+        % $M$ therefore $M \setminus f^{-1}(N \setminus f(E))$ is closed and
+        % since $f^{-1}$ is bijective (as well as $f$) we have that
+        % $E = M \setminus f^{-1}(N \setminus f(E))$.
+
+        \item [$(ii) \Rightarrow (iii)$] We want to prove that $f^{-1}$ is
+        continuous.
+        We know that if $E$ is closed in $M$ then $f(E)$ is closed in $N$
+        therefore $f^{-1}$ is continuous.
+        
+        \item [$(iii) \Rightarrow (i)$] From Theorem 5.1. we know that if
+        $f^{-1}$ is continuous and if $U$ is open in $M$ then $f(U)$ is open
+        in $N$. Therefore $f$ is open.
+        \end{itemize}
+        
+    \end{proof}
+\cleardoublepage
+    \begin{proof}{\textbf{58}}
+
+        ($\Rightarrow$) Let $f$ be a homeomorphism and $A$ a subset of $M$.
+        Also let $x \in \overline{A}$ then there is $(x_n) \in A$ such that
+        $x_n \to x$.
+        Since $f$ is a homeomorphism we have that also $f(x_n) \to f(x)$ where
+        $f(x_n) \in f(A)$ and $f(x) \in f(\overline{A})$ because $f$ is
+        bijective. But also $f(x) \in \overline{f(A)}$ because of Corollary
+        4.11. Then this implies that $f(\overline{A}) \subseteq \overline{f(A)}$.
+
+        In the same way, let $f(x) \in \overline{f(A)}$ then there is
+        $(f(x_n)) \subset f(A)$ such that $f(x_n) \to f(x)$.
+        Since $f$ is a homeomorphism we also have that $x_n \to x$ where
+        $x_n \in A$ and $x \in \overline{A}$ because $f$ is bijective. But also
+        again since $f$ is bijective we have that
+        $f(x) \in f(\overline{A})$. Then this implies that
+        $\overline{f(A)} \subseteq f(\overline{A})$.
+        Therefore $\overline{f(A)} = f(\overline{A})$.
+
+        ($\Leftarrow$) Let $E$ be a closed set in $M$ so $E = \overline{E}$
+        then $f(E) = f(\overline{E}) = \overline{f(E)}$ therefore $f$ is closed.
+
+        On the other hand, let $B$ be closed set in $N$
+        since $f$ is bijective there must be $A$ such that $f(A) = B$ but also
+        since $B$ is closed we have that $B = \overline{B} = \overline{f(A)}$.
+        We also have that $f(\overline{A}) = \overline{f(A)}$ so
+        $B = f(\overline{A})$ then $f^{-1}(B) = \overline{A}$ which is closed.
+        Therefore $f^{-1}$ is closed.
+
+        Finally, since $f$ and $f^{-1}$ are both closed then $f$ is a
+        homeomorphism.
+    \end{proof}
+\cleardoublepage
+    \begin{proof}{\textbf{63}}
+        \begin{itemize}
+            \item [\textbf{(i)}]
+            We want to show that $\sigma(t) = a + t(b-a)$ is a homeomorphism.
+            We will assume $b \neq a$.
+            
+            Let us prove first it is a one-to-one function. Suppose
+            $\sigma(t) =\sigma(t')$ then $a + t(b-a) = a + t'(b-a)$ which
+            implies that $t = t'$ since $b \neq a$.
+            
+            Now we want to prove it is an onto function. Let
+            $c \in [a,b]$ then there is $t_c = \frac{c - a}{b-a}$ such that
+            $\sigma(t_c) = c$ i.e. $\sigma$ is onto.
+
+            Next, we want to prove that $\sigma$ is continuous. Let
+            $\epsilon > 0$ we want to show that
+            $|\sigma(x) - \sigma(y)| < \epsilon$ whenever $|x-y| < \delta$.
+            Let $\delta = \epsilon/|b-a|$ then if $|x-y| < \delta$ we have
+            that
+            \begin{align*}
+                |x-y| &< \frac{\epsilon}{|b-a|}\\
+                |x-y||b-a| &< \epsilon\\
+                |a + x(b-a) -a - y(b-a)| &< \epsilon\\
+                |\sigma(x) - \sigma(y)| &< \epsilon
+            \end{align*}
+
+            Finally, we want to prove that
+            $\sigma^{-1}(t) = \frac{t -a}{b-a}$ is also continuous. Let
+            $\epsilon > 0$ we want to show that
+            $|\sigma^{-1}(x) - \sigma^{-1}(y)| < \epsilon$ whenever
+            $|x-y| < \delta$. Let $\delta = \epsilon |b-a|$ then if
+            $|x-y| < \delta$ we have that
+            \begin{align*}
+                |x-y| &< \epsilon|b-a|\\
+                \frac{|x-y|}{|b-a|} &< \epsilon\\
+                \frac{|(x - a) - (y - a)|}{|b-a|} &< \epsilon\\
+                \bigg|\frac{x-a}{b-a} - \frac{y-a}{b-a}\bigg| &< \epsilon\\
+                |\sigma^{-1}(x) - \sigma^{-1}(y)| &< \epsilon
+            \end{align*}
+
+            \item [\textbf{(ii)}]
+            
+            ($\Rightarrow$) Let $f \in C[a,b]$. Since $\sigma$ is 
+            a homeomorphism it is also continuous and because of the Lemma 5.7
+            we have that $f \circ \sigma$ is also continuous therefore
+            $f \circ \sigma$ is a continuous map from $[0,1]$ to $\R$ i.e.
+            $f \circ \sigma \in C[0,1]$.
+
+            ($\Leftarrow$) Let $f \circ \sigma \in C[0,1]$, since $\sigma$ is
+            a homeomorphism then $\sigma^{-1}$ is continuous and because of the
+            Lemma 5.7 we have that $(f \circ \sigma) \circ \sigma^{-1}$ is
+            also continuous but $(f \circ \sigma) \circ \sigma^{-1} = f$
+            therefore $f \in C[a,b]$.
+\cleardoublepage
+            \item [\textbf{(iii)}] Let $f,g \in C[a,b]$ we want to prove that
+            the map $f \to f\circ\sigma$ is an isometry from $C[a,b]$ to
+            $C[0,1]$ then we have on one hand that 
+            $$d(f,g) = \|f - g\|_\infty = \max_{a\leq t\leq b}{|f(t) - g(t)|}$$
+            And on the other hand, we have that
+            \begin{align*}
+                \rho(f\circ\sigma, g\circ\sigma)
+                &= \|f\circ \sigma - g\circ \sigma\|_\infty\\
+                &= \max_{0\leq t\leq 1}{|(f \circ \sigma)(t) - (g\circ\sigma)(t)|}\\
+                &= \max_{0\leq t\leq 1}{|f(a + t(b-a)) - g(a + t(b-a))|}\\
+                &= \max_{a\leq t\leq b}{|f(t) - g(t)|}
+            \end{align*}
+            Therefore the map $f \to f \circ\sigma$ is an isometry.
+
+            \item [\textbf{(iv)}] Let $\alpha, \beta \in \R$ then we have that
+            \begin{align*}
+                T((\alpha f + \beta g)(t)) &= ((\alpha f + \beta g) \circ \sigma)(t)\\
+                    &= (\alpha f + \beta g) (a + t(b-a))\\
+                    &= \alpha f(a + t(b-a)) + \beta g(a + t(b-a))\\
+                    &= \alpha (f\circ\sigma)(t) + \beta (g\circ\sigma)(t)\\
+                    &= \alpha T(f(t)) + \beta T(g(t))
+            \end{align*}
+
+            \item [\textbf{(v)}] In this case, we have that
+            \begin{align*}
+                T((fg)(t)) &= ((fg) \circ \sigma)(t)\\
+                    &= (f g) (a + t(b-a))\\
+                    &= f(a + t(b-a))g(a + t((b-a)))\\ 
+                    &= (f\circ\sigma)(t)(g\circ\sigma)(t)\\
+                    &= T(f(t))T(g(t))
+            \end{align*}
+            \item [\textbf{(vi)}]
+
+            ($\Rightarrow$) If $T(f(t)) \leq T(g(t))$ for any $t \in [0,1]$
+            then we have that
+            \begin{align*}
+                f\circ\sigma(t) &\leq g\circ\sigma(t)\\
+                f(a + t(b-a)) &\leq g(a + t(b-a))\\
+                f(t') &\leq g(t')
+            \end{align*}
+            This implies that $f \leq g$ for any $t' \in [a,b]$.
+
+            ($\Leftarrow$) If $f(t) \leq g(t)$ for any $t \in [a,b]$ then we
+            have that $f(a + t'(b-a)) \leq g(a + t'(b-a))$ for any
+            $t' \in [0,1]$ so $f \circ\sigma(t') \leq g\circ\sigma(t')$.
+            Therefore $T(f(t)) \leq T(g(t))$.
+        \end{itemize}
+    \end{proof}
+\cleardoublepage
+    \begin{proof}{\textbf{64}}
+        Given $f,g \in C(\R)$, we want to prove that
+        $$d(f,g) = \sum_{n=1}^{\infty}\frac{2^{-n}d_n(f,g)}{(1+d_n(f,g))}$$
+        defines a metric on $C(\R)$ then
+        \begin{itemize}
+        \item [(i)] Since $d_n(f,g) \geq 0$ for any $n \in \N$ and any
+        $f,g \in C(\R)$ then $d(f,g) \geq 0$.
+        Also, given that $d_n(f,g) < 1 + d_n(f,g)$ we have that
+        $$0 \leq \frac{2^{-n}d_n(f,g)}{(1+d_n(f,g))} \leq 2^{-n}$$
+        and since $\sum_{n=1}^{\infty} 2^{-n}$ converges we have that $d(f,g)$
+        also converges i.e. $d(f,g) < \infty$.
+
+        \item [(ii)]
+        
+        $(\Rightarrow)$ Suppose $d(f,g) = 0$ then
+        \begin{align*}
+            \sum_{n=1}^{\infty}\frac{2^{-n}d_n(f,g)}{(1+d_n(f,g))} = 0
+        \end{align*}
+        So it must happen that $d_n(f,g) = 0$ for every $n \in \N$ this implies
+        that $\max_{|t|\leq n} |f(t) - g(t)| = 0$  for every $n \in \N$ 
+        hence it must happen that $f(t) = g(t)$ for all $|t| \leq n$.
+        Since this is true for every $n \in \N$ then $f = g$.
+
+        $(\Leftarrow)$ Suppose $f = g$ then it must happen that $d_n(f,g) = 0$
+        for every $n \in \N$ since it is a pseudometric. Therefore
+        $d(f,g) = \sum_{n=1}^{\infty}\frac{2^{-n}d_n(f,g)}{(1+d_n(f,g))} = 0$.
+
+        \item [(iii)] Let $f,g \in C(\R)$ then
+        \begin{align*}
+            d(f,g) = \sum_{n=1}^{\infty}\frac{2^{-n}d_n(f,g)}{(1+d_n(f,g))}
+            = \sum_{n=1}^{\infty}\frac{2^{-n}d_n(g,f)}{(1+d_n(g,f))} = d(g,f)
+        \end{align*}
+        Where we used that $d_n(f,g) = d_n(g,f)$ for every $n \in \N$ since it
+        is a pseudometric and it has the symmetry property. 
+
+        \item [(iv)] Let $f,g,h \in C(\R)$.
+        Since $d_n$ is a pseudometric we have that
+        \begin{align*}
+            d_n(f,g) \leq d_n(f,h) + d_n(h,g)
+        \end{align*}
+        Also, from problem 5 (of Chapter 3) we know that the function
+        $F(t) = t/(1+t)$ is increasing so we have that
+        \begin{align*}
+            F(d_n(f,g)) \leq F(d_n(f,h) + d_n(h,g))\\
+            \frac{d_n(f,g)}{1 + d_n(f,g)} \leq
+            \frac{d_n(f,h) + d_n(h,g)}{1 +d_n(f,h) + d_n(h,g)}
+        \end{align*}
+        But also $F$ satisfies $F(s+t) \leq F(s) + F(t)$ for $s,t \geq 0$ then
+        joining these inequalities we have that
+        \begin{align*}
+            \frac{d_n(f,g)}{1 + d_n(f,g)}
+            \leq \frac{d_n(f,h) + d_n(h,g)}{1 + d_n(f,h) + d_n(h,g)}
+            \leq \frac{d_n(f,h)}{1 + d_n(f,h)}
+            + \frac{d_n(h,g)}{1 + d_n(h,g)} 
+        \end{align*}
+        This implies that
+        \begin{align*}
+            \sum_{n=1}^\infty\frac{2^{-n}d_n(f,g)}{1 + d_n(f,g)}
+            &\leq\sum_{n=1}^\infty \frac{2^{-n}d_n(f,h)}{1 + d_n(f,h)}
+            + \frac{2^{-n}d_n(h,g)}{1 + d_n(h,g)}
+        \end{align*}
+        Therefore $d(f,g) \leq d(f,h) + d(h,g)$ as we wanted.        
+        \end{itemize}
+        Finally, since the metric $d$ satisfies $(i)$ to $(iv)$ it defines a
+        metric on $C(\R)$.
+    \end{proof}
 
 \end{document}
-
-
-
-
-
-
 
 
 

@@ -1,0 +1,247 @@
+\documentclass[11pt]{article}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{adjustbox}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usepackage[mathscr]{euscript}
+
+\title{\textbf{Solved selected problems of Real Analysis - Carothers}}
+\author{Franco Zacco}
+\date{}
+
+\addtolength{\topmargin}{-3cm}
+\addtolength{\textheight}{3cm}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\diam}{\text{diam}}
+\newcommand{\cl}{\text{cl}}
+\newcommand{\bdry}{\text{bdry}}
+\newcommand{\inter}{\text{int}}
+
+\theoremstyle{definition}
+\newtheorem*{solution*}{Solution}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\section*{Chapter 6 - Connectedness}
+
+	\begin{proof}{\textbf{1}}
+        To finalize the Lemma 6.3 proof we need to prove the Claim which states
+        that $B_{\epsilon_x/2}(x) \cap B_{\delta_y/2}(y) = \emptyset$ for every
+        $x \in U$ and $y \in V$.
+
+        Let $z \in M$ such that $d(x,z) < \epsilon_x / 2$ and
+        $d(y,z) < \delta_y / 2$ we want to arrive to a contradiction then
+        $$d(x,y) \leq d(x,z) + d(z,y) < \epsilon_x / 2 + \delta_y / 2$$
+        Since $y \not\in B_{\epsilon_x}(x)$ then $d(x,y) > \epsilon_x$ and 
+        since $x \not\in B_{\delta_y}(y)$ then $d(x,y) > \delta_y$ so we have
+        that $\epsilon_x < \epsilon_x/2 + \delta_y/2$ and
+        $\delta_y < \epsilon_x/2 + \delta_y/2$ and then
+        $\epsilon_x > \delta_y$ and $\epsilon_x < \delta_y$ which is a
+        contradiction. 
+        Therefore $B_{\epsilon_x/2}(x) \cap B_{\delta_y/2}(y) = \emptyset$.
+    \end{proof}
+	\begin{proof}{\textbf{3}}
+        Let $A$ and $B$ be disjoint open sets in $M$ and $E \subset A \cup B$
+        be connected in $M$ we want to show that $E \subset A$ or $E \subset B$
+        by contradiction. We know that if $x \in E$ it must happen that
+        $x \in A$ or $x \in B$ because they are disjoint.
+        But then if we Let $x,y \in E$ such that $x\in A$ and $y \in B$ we have
+        that $A \cap E \neq \emptyset$ and $B \cap E \neq \emptyset$. That,
+        in addition to $E \subset A \cup B$ implies that $E$ is disconnected
+        which is a contradiction, then either $x,y \in A$ or $x,y \in B$.
+        Therefore $E \subset A$ or $E \subset B$.
+    \end{proof}
+	\begin{proof}{\textbf{5}}
+        Suppose $E \cup F$ is disconnected we want to arrive at a contradiction.
+        Then there are $A, B \subset E \cup F$ such that $A$ and $B$ are disjoint,
+        nonempty open sets of $E \cup F$ and $A \cup B = E \cup F$.
+        Also, since $E$ is connected and $E \subset A \cup B$
+        because of problem 3 we have that $E \subset A$ of $E \subset B$
+        and in the same way $F \subset A$ or $F \subset B$. It must happen that
+        both $E,F \subset A$ or $E,F \subset B$ because otherwise
+        $E \cap F = \emptyset$ which cannot happen because we know that
+        $E \cap F  \neq \emptyset$. But then if $E,F \subset A$ then 
+        $E \cup F  \subset A$ but we know that $E \cup F = A \cup B$ where $A$
+        and $B$ are disjoint therefore we have a contradiction and $E \cup F$
+        must be connected.
+    \end{proof}
+\cleardoublepage
+	\begin{proof}{\textbf{6}}
+        Let $\mathcal{C}$ be a collection of connected subsets of $M$.
+        Suppose $\bigcup \mathcal{C}$ is disconnected we want to arrive at a
+        contradiction.
+
+        Then there are $A,B \subset \bigcup \mathcal{C}$ such that $A$ and $B$
+        are disjoint nonempty open sets of $\bigcup \mathcal{C}$ and
+        $A \cup B = \bigcup \mathcal{C}$. Let $C,D \in \mathcal{C}$ be
+        connected sets of $M$ then $C \subset A \cup B$ and $D \subset A \cup B$
+        also, because of proof 3 we have that $C \subset A$ or $C \subset B$
+        and $D \subset A$ or $D \subset B$. But since $C$ and $D$ share a point
+        it must happen that $C,D \subset A$ or $C,D \subset B$ because $A$ and
+        $B$ are disjoint, let us suppose that $C,D \subset A$ (if
+        $C,D \subset B$ the proof is analogous) then all subsets of
+        $\mathcal{C}$ must be in $A$ because they share a point but
+        $A \cup B = \bigcup \mathcal{C}$ so $B$ must be empty, a contradiction.
+        Therefore $\bigcup \mathcal{C}$ is connected.
+        
+        Finally, we want to prove that $\R$ is connected. We know that
+        $(-\infty, a]$ and $[a,\infty)$ are connected sets so
+        $(-\infty, a] \cup [a,\infty) = \R$  is connected because of what we
+        proved before.  
+    \end{proof}
+	\begin{proof}{\textbf{7}}
+        Let $a \in M$ then for every $x \in M$ there is a connected set
+        $E_x \subset M$ such that $a,x \in E_x$ then $M = \bigcup E_x$ and
+        since each connected set $E_x$ share the element $a$ with every other
+        connected set $E_x$ we have that  $M$ is connected because of proof 6. 
+    \end{proof}
+	\begin{proof}{\textbf{9}}
+        Let $A \subset B \subset \bar{A} \subset M$ and let $A$ be connected.
+        Suppose that $B$ is disconnected, we want to arrive at a contradiction.
+        If $B$ is disconnected then there are $C,D \subset B$ such that they
+        are disjoint nonempty open sets of $B$ and $C \cup D = B$ but since
+        $A$ is connected then $A \subset C$ or $A \subset D$. Suppose
+        $A \subset C$ i.e. $A \cap C \neq \emptyset$ and $A \cap D = \emptyset$.
+        Now let us take
+        $x \in B$ such that $x \in D$ since $x \in \bar{A}$ it must happen that
+        $B_\epsilon(x) \cap A \neq \emptyset$ for every $\epsilon > 0$ in
+        particular $D$ is an open neighborhood of $x$ so it must happen that
+        $D \cap A \neq \emptyset$ which is a contradiction. Therefore $B$ is
+        connected.
+
+        In the same way, suppose now that $\bar{A}$ is disconnected we want to
+        arrive at a contradiction. If $\bar{A}$ is disconnected then there are
+        $C,D \subset \bar{A}$ such that they are disjoint nonempty open sets
+        and $C \cup D = \bar{A}$ but since $A$ is connected then $A \subset C$
+        or $A \subset D$. Suppose $A \subset C$ i.e. $A \cap C \neq \emptyset$
+        and $A \cap D = \emptyset$.
+        Now let us take $x \in \bar{A}$ such that $x \in D$ it must happen that
+        $B_\epsilon(x) \cap A \neq \emptyset$ for every $\epsilon > 0$ in
+        particular $D$ is an open neighborhood of $x$ so it must happen that
+        $D \cap A \neq \emptyset$ which is a contradiction. Therefore $\bar{A}$
+        is connected.
+    \end{proof}
+\cleardoublepage
+	\begin{proof}{\textbf{12}}
+        Let $a,b \in M$ and let us define $f(x) = d(x,a)$ we want to show that
+        $f(M) \subset \R$ is an interval. Suppose $f(M)$ is not an
+        interval we want to arrive at a contradiction. Then if
+        $f(a),f(b) \in f(M)$ there exist $c \in M$ such that
+        $f(a) < f(c) < f(b)$ and $f(c) \not\in f(M)$. We know that since $M$
+        is connected then $f(M)$ is connected because $d$ is continuous.
+        So let us take the sets
+        \begin{align*}
+            A = \{f(x) \in f(M): f(x) < f(c)\} \quad\text{ and }\quad
+            B = \{f(x) \in f(M): f(x) > f(c)\}
+        \end{align*}
+        Then we have that $f(M) = A \cup B$ and $A$ and $B$ are disjoint,
+        nonempty, open sets so this would imply that $f(M)$ is disconnected,
+        a contradiction. Therefore $f(M)$ is an interval.
+        
+        Now let us prove that $f$ is surjective and $f(M)$ is not a
+        singleton. Let us start with surjective-ness for that let $c \in f(M)$
+        we know that $c$ is of the form $d(e,a)$ for some $e \in M$ then $f$
+        is surjective. Also, let $a,b \in M$ by definition, then
+        $f(a), f(b) \in f(M)$ and $d(a,a)= 0 \neq d(b,a)$ otherwise $a=b$ so
+        $f(M)$ is not a singleton.
+
+        Finally, suppose $M$ is countable we want to arrive at a
+        contradiction. Since $f$ is surjective this would imply that $f(M)$ is
+        countable, which is a contradiction since it is an interval from $\R$.
+        Therefore it must be that $M$ is uncountable. 
+    \end{proof}
+	\begin{proof}{\textbf{26}}
+        Let $H = \{(x,f(x)) : x \in (0,1]\}$ and $G = \{(x,f(x)) : x \in [0,1]\}$.
+        We want to prove that $H$ is connected. Let $h: (0,1] \to \R^2$ where
+        $h(x) = (x, f(x))$ we know because of Lemma 5.8 that $h$ is continuous
+        because $f$ is continuos in $(0,1]$.
+        Then since $(0,1]$ is connected we have that $h((0,1]) = H$ is also
+        connected.
+
+        Let $x_n = 1/n\pi$ and $y_n = \sin(n\pi)$ where $(x_n)\subset(0,1]$ and
+        $(y_n) \subset (0,1]$. We know that $x_n \to 0$ and 
+        $y_n \to 0$ so it must happen that $(x_n,y_n) \to (0,0)$ which implies
+        that $(0,0) \in \cl(H)$ hence $G \subset \cl(H)$ but also we have that
+        $H \subset G \subset \cl(H)$ therefore since $H$ is connected $G$ is
+        also connected i.e. the graph of the function $f$ is connected.    
+    \end{proof}
+\cleardoublepage
+	\begin{proof}{\textbf{27}}
+        We want to prove that $f(t) = x + t(y-x)$ is a homeomorphism from $[0,1]$
+        to $V$ where $x \neq y$.
+
+        First, we want to prove $f$ is continuous. Let $\epsilon > 0$ and let
+        $s,t \in [0,1]$ if $|s-t|< \delta$ where $\delta = \epsilon/\|y-x\|$
+        (we can do this since $x\neq y$) we have that
+        \begin{align*}
+            |s-t| &< \frac{\epsilon}{\|y-x\|}\\
+            \|(s-t)(y-x)\| &< \epsilon\\
+            \|s(y-x)-t(y-x)\| &< \epsilon\\
+            \|x + s(y-x)-(x + t(y-x))\| &< \epsilon\\
+            \|f(s)-f(t)\| &< \epsilon
+        \end{align*}
+        Therefore $f$ is continuous.
+
+        To prove that $f$ is one-to-one suppose $f(t) = f(s)$ then
+        $x + t(y-x) = x + s(y-x)$ which implies that $t=s$ and therefore $f$ is
+        one-to-one.
+
+        To prove that $f$ is onto let $w \in V$ then there is $t \in [0,1]$
+        where $t = (w-x)/(y-x)$ such that
+        $f(t) = x + \frac{(w-x)}{(y-x)}(y-x) = w$ therefore $f$ is onto.
+
+        If $f(t_n) \to f(t)$ then given $\epsilon'>0$ there is $N \in \N$ such
+        that when $n \geq N$ we have that $\|f(t_n) - f(t)\| < \epsilon'$
+        so we have that
+        \begin{align*}
+            \|x + t_n(y-x)-(x + t(y-x))\| &< \epsilon'\\
+            \|t_n(y-x)- t(y-x))\| &< \epsilon'\\
+            |t_n - t|\|y-x\| &< \epsilon'\\
+            |t_n - t| &< \frac{\epsilon'}{\|y-x\|} = \epsilon
+        \end{align*}
+        Therefore when $f(t_n) \to f(t)$ we have that also must happen that
+        $t_n \to t$ so $f^{-1}$ is also continuous.
+
+        Finally, since $f$ and $f^{-1}$ are continuous and $f$ is one-to-one
+        and onto then $f$ is a homeomorphism from $[0,1]$ to $V$.
+    \end{proof}
+	\begin{proof}{\textbf{28}}
+        Let $f$ be a homeomorphism from $[0,1]$ to $V$ where $V$ is a normed
+        vector space and it's defined as $f(t) = x + t(y - x)$ where
+        $x\neq y\in V$.
+        
+        We know that $[0,1]$ is connected then $f([0,1]) = [x,y]$ is also
+        connected because of Theorem 6.6 and the interval notation is justified
+        because $f$ is a homeomorphism then $E = \bigcup_{x\neq y \in V} [x,y]$
+        is also connected so every pair of points of $V$ is in $E$ and because
+        of the result of problem 7 we have that $V$ is also connected.   
+    \end{proof}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

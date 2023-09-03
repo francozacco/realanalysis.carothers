@@ -1,0 +1,415 @@
+\documentclass[11pt]{article}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{adjustbox}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usepackage[mathscr]{euscript}
+
+\title{\textbf{Solved selected problems of Real Analysis - Carothers}}
+\author{Franco Zacco}
+\date{}
+
+\addtolength{\topmargin}{-3cm}
+\addtolength{\textheight}{3cm}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\diam}{\text{diam}}
+\newcommand{\cl}{\text{cl}}
+\newcommand{\bdry}{\text{bdry}}
+\newcommand{\inter}{\text{int}}
+
+\theoremstyle{definition}
+\newtheorem*{solution*}{Solution}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\section*{Chapter 7 - Completeness}
+
+	\begin{proof}{\textbf{1}}
+        If $B$ is totally bounded then given $\epsilon > 0$ there are
+        finitely many sets $B_1, ..., B_n \subset B$ with $\diam(B_i) < \epsilon$            
+        for all $i$ such that $B \subset \bigcup_{i=1}^n B_i$. Then if
+        $A \subset B$ we see that $A \subset B \subset \bigcup_{i=1}^n B_i$
+        then $A$ is also totally bounded.
+    \end{proof}
+	\begin{proof}{\textbf{2}}
+
+    ($\Rightarrow$) Let $A \subset \R$ such that $A$ is totally bounded then
+    given $\epsilon > 0$ there are finitely many points $x_1,...,x_n \in \R$
+    such that $A \subset \bigcup_{i=1}^n B_\epsilon(x_i)$. Now let us grab
+    $x_M = \max_{1\leq i\leq n}(x_i)$ so we have that $a \leq x_M + \epsilon$
+    for every $a \in A$ hence $A$ has an upper bound, if we now grab
+    $x_m = \min_{1\leq i\leq n}(x_i)$ then we have that $ x_m - \epsilon \leq a$
+    so $A$ has a lower bound and therefore $A$ is bounded.
+
+    ($\Leftarrow$) Let $A \subset \R$ such that $A$ is bounded then there are
+    $x_m, x_M \in \R$ such that $x_m \leq a\leq x_M$ for every $a \in A$.
+    Given some $\epsilon > 0$ we select $x_1 = x_m + \epsilon$ then
+    $x_2 = x_1 + 2\epsilon$ and so on such that $x_{i+1} = x_{i} + 2\epsilon$
+    until we arrive to some finite $n$ where $x_n \geq x_M - \epsilon$. Then
+    with this set we conclude that $A \in \bigcup_{i=1}^n B_\epsilon(x_i)$.
+    Therefore $A$ is totally bounded.
+
+    Finally let $I$ be a closed, bounded, interval in $\R$ and $\epsilon >0$.
+    Then there are $x_m,x_M \in I$ such that $x_m \leq y \leq x_M$ for all
+    $y \in I$. Let us select $x_1 \in I$ such that $x_1 = x_m + \epsilon/2$
+    then the ball $J_1 = B_{\epsilon/2}(x_1)$ covers the interval
+    $[x_m, x_m + \epsilon]$ the following $x_2 \in I$ let us select it as
+    $x_2 = x_1 + \epsilon$ so it covers $J_2 = [x_m + \epsilon, x_m + 2\epsilon]$
+    if we continue this way we can select finitely many $x_{i+1} = x_i + \epsilon$
+    such that $\bigcup_{i=1}^n J_i$ covers $I$ as we wanted.
+    \end{proof}
+	\begin{proof}{\textbf{3}}
+        Given that $(0,1) \subset \R$ and that $(0,1)$ is bounded then $(0,1)$
+        is totally bounded because of the result we got in problem 2. But $\R$
+        is not bounded therefore it's not totally bounded. Hence totally
+        boundedness is not preserved by homeomorphisms. 
+    \end{proof}
+\cleardoublepage
+	\begin{proof}{\textbf{4}}
+
+        ($\Rightarrow$) Let $A$ be a totally bounded set then given $\epsilon/2 > 0$
+        there exists finitely many points $x_1, ..., x_n \in M$ such that
+        $A \subset \bigcup_{i=1}^n B_{\epsilon/2}(x_i)$. In particular,
+        if we take the closed balls
+        $B_{\epsilon/2}'(x_i) = \{y \in M : d(x_i,y) \leq \epsilon/2 \}$
+        we see that $A \subset \bigcup_{i=1}^n B_{\epsilon/2}'(x_i)$ is still
+        true therefore $A$ can be covered by finitely many closed sets of
+        diameter at most $\epsilon$.
+
+        ($\Leftarrow$) If $A$ can be covered by finitely many closed sets of
+        diameter at most $\epsilon$ then $A$ can be also covered by
+        a finite set of closed balls i.e. there are $x_1, ..., x_n$ such that
+        $A \subset \bigcup_{i=1}^n B'_{\epsilon/2}(x_i)$ where 
+        $B_{\epsilon/2}'(x_i) = \{y \in M : d(x_i,y) \leq \epsilon/2 \}$.
+        Now let us take the set of open balls $B_\epsilon(x_i)$ where we know
+        that $B_{\epsilon/2}'(x_i) \subset B_\epsilon(x_i)$ so $A$ can be
+        covered by this set too i.e.
+        $A \subset \bigcup_{i=1}^n B_{\epsilon}(x_i)$.
+        Therefore $A$ is totally bounded.
+    \end{proof}
+	\begin{proof}{\textbf{5}}
+
+        ($\Rightarrow$) Let $A$ be a totally bounded set and $\epsilon/2 > 0$
+        then there exist finitely many points $x_1, ..., x_n \in M$ such that
+        $A \subset \bigcup_{i=1}^n B_{\epsilon/2} (x_i)$ for each ball we have
+        that $\overline{B_{\epsilon/2} (x_i)} \subseteq B_{\epsilon}(x_i)$.
+        Also, since the closure is the smallest closed set that contains $A$.
+        It must happen that
+        \begin{align*}
+            \overline{A} \subseteq \bigcup_{i=1}^n \overline{B_{\epsilon/2} (x_i)}
+            \subseteq \bigcup_{i=1}^n B_{\epsilon}(x_i)
+        \end{align*} 
+        Hence, $\overline{A}$ is totally bounded too.
+    
+        ($\Leftarrow$) Let $\overline{A}$ be totally bounded and let
+        $\epsilon > 0$ then there exist finitely many points
+        $x_1, ..., x_n \in M$ such that
+        $\overline{A} \subset \bigcup_{i=1}^n B_{\epsilon} (x_i)$
+        but since $A \subseteq \overline{A}$ we have that 
+        $A \subset \bigcup_{i=1}^n B_{\epsilon} (x_i)$.
+        Therefore $A$ is totally bounded.
+    \end{proof}
+	\begin{proof}{\textbf{10}}
+        Let $M$ be a totally bounded metric space then for each
+        $1/n > 0$ there is a set $D_n$ with $m$ finitely many points such that
+        $M \subset \bigcup_{i=1}^m B_{1/n}(x_i)$.
+        Now let us define $D = \bigcup_{n=1}^\infty D_n$ since the union
+        of countable sets is still countable then $D$ is a countable set too.
+        Also, for each $x \in M$ there is some $x_j \in D$ and some $1/n >0$
+        such that $x \in B_{1/n}(x_j)$ i.e. $B_{1/n}(x_j) \cap M \neq \emptyset$
+        which implies that for every open set
+        $U$ formed by an arbitrary union of open balls
+        we have that $U \cap M \neq \emptyset$. Therefore $D$ is a countable
+        dense set which implies that $M$ is separable.
+    \end{proof}
+	\begin{proof}{\textbf{12}}
+        Suppose $(A,d)$ is a complete subset of $(M,d)$ and let $(x_n)$ be
+        a sequence in $A$ that converges to some $x \in M$ then $(x_n)$ is
+        Cauchy in $(A,d)$ hence it converges to some point in $A$ this implies
+        that $x \in A$. Therefore $(A,d)$ is closed in $(M,d)$. 
+    \end{proof}
+	\begin{proof}{\textbf{15}}
+        Let $f:\R \to (0,1)$ such that $f(x) = \arctan(x)/\pi + 1/2$ we know
+        that $f$ is continuous and $\R$ is complete but $f(\R) = (0,1)$ is not
+        complete since we have a sequence $x_n = 1/n$ which is Cauchy
+        and converges to $0 \not\in (0,1)$. Therefore we disproved the statement.
+    \end{proof}
+	\begin{proof}{\textbf{16}}
+        Let us assume $\R^n$ is complete under $\|\cdot\|_1$ we want to prove
+        that $\R^n$ is also complete under $\|\cdot\|_\infty$ then
+        let $(x_m)$ be a Cauchy sequence on $\R^n$ under the norm
+        $\|\cdot\|_\infty$ then we know that for some $\epsilon > 0$ there is
+        some $N \in \N$ such that when $i,j > N$ we
+        have that $\|x_{i} - x_{j}\|_\infty < \epsilon$ also, let $x \in \R^n$ 
+        be the limit of $(x_m)$ under $\|\cdot\|_1$ which we know converges
+        since $(x_m)$ is also a Cauchy sequence under $\|\cdot\|_1$ and
+        $\R^n$ is complete under $\|\cdot\|_1$ then we have that 
+        \begin{align*}
+            \|x_{i} - x_{j}\|_\infty = \|x_{i} - x + x - x_{j}\|_\infty
+            \leq \|x_{i} - x\|_\infty + \|x - x_{j}\|_\infty
+        \end{align*}
+        Also, we know that there is $M \in \N$ such that when $m > M$
+        we get that $\|x - x_m\|_1 < \epsilon$ but in addition we know that
+        $\|\cdot\|_\infty \leq \|\cdot\|_2 \leq \|\cdot\|_1  \leq n\|\cdot\|_\infty$
+        then we get that
+        \begin{align*}
+            \|x_{i} - x\|_\infty + \|x - x_{j}\|_\infty
+            \leq \|x - x_m\|_1 + \|x - x_m\|_1 < 2\epsilon
+        \end{align*}
+        Therefore  since $(x_m)$ also converges under $\|\cdot\|_\infty$
+        we get that $\R^n$ is complete under $\|\cdot\|_\infty$
+
+        In the same way, using the inequality we have, we can prove that assuming
+        $\R^n$ is complete in any metric it is also complete in any of the
+        other metrics.
+    \end{proof}
+	\begin{proof}{\textbf{17}}
+
+        ($\Rightarrow$)
+        Let $(x_n) \subseteq M$ and $(y_n) \subseteq N$ be Cauchy sequences we
+        want to prove that $x_n \to x$ and $y_n \to y$ for some $x \in M$ and
+        $y \in N$. We know that $((x_n, y_n)) \subseteq M \times N$ is a Cauchy 
+        sequence from $M \times N$ and since $M \times N$ is complete this
+        implies that $(x_n, y_n) \to (x,y)$ for some $(x,y) \in M \times N$ but
+        this implies that $x_n \to x$ and $y_n \to y$ for $x \in M$ and
+        $y \in N$. Therefore $M$ and $N$ are both complete.
+
+        ($\Leftarrow$)
+        Let $((x_n, y_n)) \subseteq M \times N$ be a Cauchy sequence we want to
+        prove that $(x_n,y_n) \to (x,y)$ where $(x,y) \in M \times N$. We know
+        that $(x_n) \subseteq M$ and $(y_n) \subseteq N$ are Cauchy sequences
+        such that $x_n \to x$ and $y_n \to y$ because both $M$ and $N$ are
+        complete but this implies that $(x_n, y_n) \to (x,y)$. Therefore
+        $M \times N$ is also complete.
+    \end{proof}
+\cleardoublepage
+	\begin{proof}{\textbf{20}}
+        If $(x_n)$ and $(y_n)$ are Cauchy in $(M,d)$ then for some $\epsilon/2 > 0$
+        we know that there is $N_x \in \N$ and $N_y \in \N$ such that when $n,m \geq N_x$
+        and $n',m' \geq N_y$ we have that $d(x_n, x_m) < \epsilon/2$ and
+        $d(y_{n'},y_{m'}) < \epsilon/2$ so let us define $N = \max(N_x, N_y)$
+        such that when $n,m \geq N$ we have that $d(x_n, x_m) < \epsilon/2$
+        and $d(y_n, y_m) < \epsilon/2$.
+        
+        On the other hand, we have that
+        \begin{align*}
+            d(x_n, y_n) \leq d(x_n, x_m) + d(x_m, y_n)
+            \leq d(x_n, x_m) + d(x_m, y_m) + d(y_m, y_n) 
+        \end{align*}
+        and that
+        \begin{align*}
+            d(x_m, y_m) \leq d(x_m, x_n) + d(x_n, y_m)
+            \leq d(x_m, x_n) + d(x_n, y_n) + d(y_n, y_m)
+        \end{align*}
+        Hence
+        \begin{align*}
+            d(x_n, y_n) -  d(x_m, y_m)
+            &\leq d(x_n, x_m) + d(y_n, y_m) < \epsilon/2 + \epsilon/2 = \epsilon\\
+            d(x_m, y_m) -  d(x_n, y_n)
+            &\leq d(x_n, x_m) + d(y_n, y_m) < \epsilon/2 + \epsilon/2 = \epsilon
+        \end{align*}
+        Therefore $|d(x_n, y_n) -  d(x_m, y_m)| < \epsilon$ which implies that
+        $(d(x_n,y_n))_{n=1}^\infty$ is Cauchy in $\R$. 
+    \end{proof}
+	\begin{proof}{\textbf{21}}
+
+        ($\Rightarrow$) Let $(x_n)$ and $(y_n)$ be two Cauchy sequences with
+        the same limit $m \in (M,d)$ then $d(x_n, m) \to 0$ and
+        $d(y_n, m) \to 0$ also we know that
+        \begin{align*}
+            0 \leq d(x_n, y_n) \leq d(x_n,m) + d(y_n,m) \to 0
+        \end{align*}
+        Therefore it must also happen that $d(x_n,y_n) \to 0$.
+
+        ($\Leftarrow$) Let $d(x_n, y_n) \to 0$  also we know that 
+        $(x_n)$ and $(y_n)$ are Cauchy in $(M,d)$ which is complete hence they
+        converge to some $x \in M$ and $y \in M$ respectively then
+        $d(x_n,x) \to 0$ and $d(y_n,y) \to 0$.
+        Also, let us notice that
+        \begin{align*}
+            0 \leq d(x,y) \leq d(x_n,x) + d(x_n, y)
+            \leq  d(x_n,x) + d(x_n, y_n) + d(y_n,y) \to 0
+        \end{align*}
+        Where $d(x_n,x) + d(x_n, y_n) + d(y_n,y) \to 0$ since every term tend
+        to 0. Therefore $d(x,y) \to 0$ and $x=y$ which implies that $(x_n)$
+        and $(y_n)$ have the same limit.  
+    \end{proof}
+\cleardoublepage
+    \begin{proof}{\textbf{31}}
+        Let $\sum_{n=1}^\infty x_n$ be a convergent series in a normed vector
+        space $X$.
+        Let us some $x_n \in X$ then they must preserve the triangle
+        inequality, hence
+        \begin{align*}
+            \|x_n + x_{n+1}\| \leq \|x_n\| + \|x_{n+1}\|
+        \end{align*}
+        this implies that
+        \begin{align*}
+            \bigg\|\sum_{n=1}^N x_n\bigg\| \leq \sum_{n=1}^N \|x_n\|
+        \end{align*}
+        for some $N \in \N$. Now if we take the limit of the series on both 
+        sides as $N \to \infty$ we get that
+        \begin{align*}
+            \bigg\|\sum_{n=1}^\infty x_n\bigg\| \leq \sum_{n=1}^\infty \|x_n\|
+        \end{align*}
+    \end{proof}
+    \begin{proof}{\textbf{36}}
+        Let $f(x) = x^2$ and let $0 < \delta < 1$ also suppose that
+        $|x - p_0| < \delta$ then
+        since $p_0 = 0$ we have that $|x|< 1$ so if we multiply both sides of
+        the inequality by $|x|$ we get that $|x|^2 < |x|$ hence
+        $|x^2 - 0| < |x - 0|$ and therefore $|f(x) - p_0| < |x - p_0|$.
+
+        Now we want to conclude that $f^n(x) \to p_0$ whenever
+        $|x - p_0| < \delta$. So given $\epsilon > 0$ we take some $\delta$
+        such that $\delta < \epsilon$ and $0 < \delta < 1$. We know that
+        $|f^n(x) - p_0| = |f(f^{n-1}(x)) - p_0|$ and we saw that
+        $|f(f^{n-1}(x)) - p_0| < |f^{n-1}(x) - p_0|$ so we can continue this
+        process $n$ times to see that
+        $|f^n(x) - p_0| < |x - p_0| < \delta < \epsilon$ which implies that
+        $f^{n}(x) \to p_0$.
+        
+        On the other hand, let $\delta = 1/2$ then if $|x-1| < 1/2$ we get that\\
+        $1/2 < x < 3/2$ hence $x+1 > 3/2$ but also $|x + 1| > 3/2$ so
+        we see that
+        \begin{align*}
+            |x^2 - 1| = |x + 1||x - 1| > \frac{3}{2}|x - 1| > |x - 1| 
+        \end{align*}
+        Therefore since $f(x) = x^2$ and $p_1 = 1$ we get that
+        $|f(x) - p_1| > |x - p_1|$.
+    \end{proof}
+\cleardoublepage
+    \begin{proof}{\textbf{37}}
+        Let $f:(a,b) \to (a,b)$ with a fixed point $p \in (a,b)$ where $f$
+        is differentiable. If $|f'(p)| < 1$ then from the definition of $f'(p)$
+        we have that
+        $$f'(p) = \lim_{x\to p} \frac{f(x) - f(p)}{x-p}
+        = \lim_{x\to p} \frac{f(x) - p}{x-p}$$
+        and we know that $\bigg|\lim_{x\to p} \frac{f(x) - p}{x-p}\bigg| < 1$.
+        Then by using the limits definition, let $\epsilon < 1 - |f'(p)|$
+        we know there is some $\delta > 0$ such that when $|x - p| < \delta$
+        we have that
+        \begin{align*}
+            \bigg|\bigg|\frac{f(x) - p}{x-p}\bigg| - |f'(p)|\bigg| \leq 
+            \bigg|\frac{f(x) - p}{x-p} - f'(p)\bigg| < \epsilon < 1 - |f'(p)|
+        \end{align*}
+        Then we have that
+        \begin{align*}
+            \bigg|\frac{f(x) - p}{x-p}\bigg|
+            \leq \bigg|\bigg|\frac{f(x) - p}{x-p}\bigg| - |f'(p)|\bigg| +  |f'(p)|
+            < 1
+        \end{align*}
+        Therefore we get that $|f(x) - p| < |x -p|$ which implies that $p$ is
+        an attracting fixed point for $f$.
+
+        In the same way if $|f'(p)| > 1$ we get that
+        $\bigg|\lim_{x\to p} \frac{f(x) - p}{x-p}\bigg| > 1$.
+        Then by using the limits definition, let $\epsilon < |f'(p)| - 1$
+        we know there is some $\delta > 0$ such that when $|x - p| < \delta$
+        we have that
+        \begin{align*}
+            \bigg|\bigg|\frac{f(x) - p}{x-p}\bigg| - |f'(p)|\bigg| \leq 
+            \bigg|\frac{f(x) - p}{x-p} - f'(p)\bigg| < \epsilon < |f'(p)| - 1
+        \end{align*}
+        Then we have that
+        \begin{align*}
+            \bigg|\bigg|\frac{f(x) - p}{x-p}\bigg| - |f'(p)|\bigg| -  |f'(p)|
+            < -1
+        \end{align*}
+        so multiplying by -1 and applying to both sides of the inequality the 
+         absolute value we get that
+        \begin{align*}
+            1 < 
+            \bigg||f'(p)| - \bigg|\bigg|\frac{f(x) - p}{x-p}\bigg| - |f'(p)|\bigg|\bigg|
+        \end{align*}
+        Hence
+        \begin{align*}
+            1 &< \bigg||f'(p)| - \bigg|\bigg|\frac{f(x) - p}{x-p}\bigg|
+            - |f'(p)|\bigg|\bigg|
+            \leq \bigg|\frac{f(x) - p}{x-p}\bigg|
+        \end{align*}
+        Therefore we get that $|f(x) - p| > |x -p|$ which implies that $p$ is
+        a repelling fixed point for $f$.
+    \end{proof}
+\cleardoublepage
+    \begin{proof}{\textbf{38}}
+    \begin{itemize}
+    \item [(a)] Let $f(x) = \arctan x$ we know that $f'(x) = 1/(x^2 + 1)$ then
+    if $x = 0$ we get that $f'(0) = 1$ also we know that
+    \begin{align*}
+        |f(x) - 0| = |\arctan x| < |x| = |x - 0|
+    \end{align*}
+    Therefore from problem 36, we can say that $0$ is an attracting fixed point
+    for $f$.
+    \item [(b)] Let $g(x) = x^3 + x$ we know that $g'(x) = 3x^2 + 1$ then
+    if $x = 0$ we get that $g'(0) = 1$. Now we want to prove that
+    $$|x^3 + x| = |g(x) - 0| > |x -0| = |x|$$
+    For $x \geq 0$ we see that
+    \begin{align*}
+        x^3 &\geq 0\\
+        x^3 + x &\geq x = |x|
+    \end{align*}
+    and if $x < 0$ we see that
+    \begin{align*}
+        x^3 &< 0\\
+        x^3 + x &< x = -|x|
+    \end{align*}
+    Therefore $|x^3 + x| > |x|$ which implies that $0$ is a repelling fixed
+    point for $g$ according to problem 36.
+
+    \item [(c)] Let $h(x) = x^2 + 1/4$ we know that $h'(x) = 2x$ then
+    if $x = 1/2$ we get that $h'(1/2) = 1$. If $x \geq 1/2$ we see that
+    \begin{align*}
+        x^2 - 1/4 \geq x - 1/2
+    \end{align*}
+    hence $|x^2 - 1/4| \geq |x - 1/2|$. On the other hand, we are interested in
+    knowing if this is also true for $x < 1/2$. Suppose $x \in (0, 1/2)$
+    then we have that $|x - 1/2| = -x + 1/2$ but also in this interval we have
+    that $|x^2 - 1/4| = -x^2 + 1/4$ and we see that
+    \begin{align*}
+        -x^2 + 1/4 < -x + 1/2
+    \end{align*}
+    Then $|x^2 - 1/4| < |x - 1/2|$ when $x \in (0, 1/2)$. Therefore $h(x)$ is
+    neither an attracting nor a repelling fixed point because
+    $|h(x) - 1/2| \not< |x - 1/2|$ nor $|h(x) - 1/2| \not> |x - 1/2|$ for
+    every $x \in \R$.
+    \end{itemize}
+    \end{proof}
+    \begin{proof}{\textbf{46}}
+        Let $\hat{M}$ be the completion of $M$ then $M$ is dense in $\hat{M}$
+        which impliest that $\overline{M} = \hat{M}$. But also we know that
+        $\overline{A} = M$ because $A$ is dense in $M$ hence
+        $\overline{M} = \overline{\overline{A}} = \overline{A}= \hat{M}$
+        which implies that $A$ is also dense in $\hat{M}$. Therefore since
+        $(A,d)$ is an isometry to $A$ and $A$ is dense in $\hat{M}$ we see
+        that $\hat{M}$ is a completion to $A$ too.
+    \end{proof}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

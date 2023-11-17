@@ -1,0 +1,406 @@
+\documentclass[11pt]{article}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{adjustbox}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usepackage[mathscr]{euscript}
+
+\title{\textbf{Solved selected problems of Real Analysis - Carothers}}
+\author{Franco Zacco}
+\date{}
+
+\addtolength{\topmargin}{-3cm}
+\addtolength{\textheight}{3cm}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\diam}{\text{diam}}
+\newcommand{\cl}{\text{cl}}
+\newcommand{\bdry}{\text{bdry}}
+\newcommand{\inter}{\text{int}}
+
+\theoremstyle{definition}
+\newtheorem*{solution*}{Solution}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\section*{Chapter 8 - Compactness}
+
+	\begin{proof}{\textbf{1}}
+        If $K$ is a non-empty compact subset of $\R$ then $K$ is bounded and
+        closed therefore the $\sup K \in K$ and $\inf K \in K$.  
+    \end{proof}
+	\begin{proof}{\textbf{2}}
+        Let $E = \{x \in \Q: 2 < x^2 < 3\}$ then the complement on $\Q$ is
+        \begin{align*}
+            E^c = &\{x \in \Q: x > 0 \text{ and } x^2 > 3\} \cup\\
+            &\{x \in \Q: x < 0 \text{ and } x^2 > 3\} \cup\\
+            &\{x \in \Q: x^2 < 2\}
+        \end{align*}
+        We see that
+        $\{x \in \Q: x > 0 \text{ and } x^2 > 3\} = (\sqrt{3},\infty) \cap\Q$
+        where $(\sqrt{3},\infty)$ and $\Q$ are open sets hence
+        $\{x \in \Q: x > 0 \text{ and } x^2 > 3\}$ is open.
+        Also, we see that
+        $\{x \in \Q: x < 0 \text{ and } x^2 > 3\} = (-\infty, -\sqrt{3}) \cap\Q$
+        and that $\{x \in \Q: x^2 < 2\} = (-\sqrt{2},\sqrt{2}) \cap \Q$
+        so both $\{x \in \Q: x < 0 \text{ and } x^2 > 3\}$ and
+        $\{x \in \Q: x^2 < 2\}$ are open sets. Therefore since $E^c$ is the
+        union of open sets it's also an open set hence $E$ is closed.
+
+        On the other hand, if $x \in E$ then $x \in (\sqrt{2}, \sqrt{3}) \cap \Q$
+        or $x \in (-\sqrt{2}, -\sqrt{3}) \cap \Q$ hence $-2< x < 2$ which
+        implies that $E$ is bounded.
+
+        Let us call the $\sup E$ (that we know exists) as $\sqrt{3}$ we want
+        to prove that there is a sequence in $E$ that tends to it.
+        Let us form a sequence $(x_n)$ where each element
+        $x_n \in B_{1/n}(\sqrt{3}) = (\sqrt{3} - 1/n, \sqrt{3} + 1/n)$ then we see
+        that $\sqrt{3} - 1/n < x_n < \sqrt{3}$ for every $n \in \N$ which
+        implies that $x_n \to \sqrt{3}$ therefore we have a Cauchy sequence
+        that converges to a point that is not in $E$ hence $E$ is neither
+        complete nor compact.
+    \end{proof}
+\cleardoublepage
+    \begin{proof}{\textbf{3}}
+        Let $A$ be compact in $M$ then $A$ is totally bounded so given
+        $\epsilon > 0$ there are finitely many sets $A_1,...,A_n \subset A$
+        with $\diam(A_i) < \epsilon$ such that $A \subset \bigcup_{i=1}^{n} A_i$
+        so let $B = \bigcup_{i=1}^{n} A_i$ we see
+        that $\diam(B) < \infty$ since every set is of diameter at most
+        $\epsilon$ also we have that $\diam(A) \leq \diam(B) < \infty$ which
+        implies that $\diam(A)$ is finite.
+        
+        On the other hand, we know that $\diam(A) = \sup\{d(a,b): a,b \in A\}$.
+        Let us define $(x_n) \subseteq A$ and $(y_n) \subseteq A$ where each
+        $x_n$ and $y_n$ is defined such that 
+        $\diam(A) - 1/n < d(x_n, y_n) \leq \diam(A)$ which we know it exists
+        because otherwise $\diam(A) - 1/n$ would be an upper bound which is
+        smaller than $\diam(A) = \sup\{d(a,b): a,b \in A\}$, implying a
+        contradiction. This in turn implies that $d(x_n, y_n) \to \diam(A)$.\\
+        Since $A$ is compact from Theorem 8.2 we have that every sequence in
+        $A$ has a subsequence that converges to a point in $A$ hence there 
+        is a subsequence $(x_{n_k}) \subset A$  from $(x_n)$ such that
+        $x_{n_k} \to x$ where $x \in A$ also from $(y_n)$ we can select a
+        subsequence $(y_{n_k}) \subset A$ where we took the $n_k$'s from the
+        $(x_{n_k})$ subsequence this implies that $(y_{n_k})$ might not
+        converge but we know there is a subsequence $(y_{n_{k_t}})$ that
+        converges to a point $y \in A$ hence we can take $(x_{n_{k_t}})$
+        from $(x_{n_k})$ that also converges to $x \in A$. This implies that 
+        $d(x_{n_{k_t}}, y_{n_{k_t}}) \to d(x,y)$. Finally, since every
+        subsequence must converge to the same limit as the main sequence
+        therefore we have that $d(x,y) = \diam(A)$.
+    \end{proof}
+    \begin{proof}{\textbf{4}}
+        Let $A$ and $B$ be compact in $M$, we want to show that $A \cup B$ is
+        compact.
+        Let $(x_n) \subseteq A\cup B$ be a sequence
+        then either $(x_n) \subset A$ or $(x_n) \subset B$ or in both for
+        infinitely many points in any case we can take a subsequence
+        $(x_{n_k})$ that converges to a point in $A$ and/or in $B$ since they
+        are compact. Therefore since $(x_n)$ has a convergent subsequence
+        $(x_{n_k}) \subset A \cup B$ we get from Theorem 8.2 that $A \cup B$
+        is compact.
+    \end{proof}
+    \begin{proof}{\textbf{6}}
+        Let $(a_n) \subset A$ and $(b_n) \subset B$ be sequences, since $A$
+        is compact then there is $(a_{n_k}) \subset A$ such that it converges
+        to $a \in A$. We can also take a sequence
+        $(b_{n_k}) \subset (b_n) \subset B$ which has a convergent subsequence
+        $(b_{n_{k_t}}) \subset B$ that converges to $b \in B$ since $B$ is
+        compact, hence we can also take
+        $(a_{n_{k_t}}) \subset A$ which still converges to $a \in A$.        
+        
+        On the other hand, let us also define a sequence
+        $(a_n, b_n) \subset A \times B$. We know because of problem 3.46
+        that the subsequence $(a_{n_{k_t}}, b_{n_{k_t}}) \subset A \times B$
+        also converges in $A \times B$ because each subsequence converges
+        separately in $A$ and $B$. Therefore $A \times B$ is compact as
+        well. 
+    \end{proof}
+\cleardoublepage
+    \begin{proof}{\textbf{8}}
+        Let $K = \{x \in \R^n: \|x\|_1 = 1\}$ since $K$ is a subset of $\R^n$
+        to show $K$ is compact in $\R^n$ under the Euclidean norm we need to
+        show that $K$ is closed and bounded under the Euclidean norm.
+
+        Let $x \in K$ we know that $0 \leq \|x\|_2 \leq \|x\|_1 = 1$ hence
+        $K$ is bounded under the Euclidean norm.
+
+        Now let us define $f(x) = \|x\|_1$ we see that $K = f^{-1}(\{1\})$
+        since $\{1\}$ is a closed set and $f$ is cotinuous in $\R^n$ under the
+        1-norm we see that $K$ must be closed under the 1-norm. This implies
+        that for some $\epsilon > 0$ there is some $N \in \N$ such that
+        when $n \geq N$ we have that $\|x_n - x\|_1 < \epsilon$
+        but also we know that $\|x_n - x\|_2 \leq \|x_n - x\|_1 < \epsilon$
+        hence $K$ is also closed under the Euclidean norm.
+
+        Therefore $K$ is compact in $\R^n$ under the Euclidean norm.
+    \end{proof}
+    \begin{proof}{\textbf{21}}
+        Let $f:[a,b]\to\R$ be a continuous function, since $[a,b]$ is a
+        closed and bounded subset of $\R$ we know that $[a,b]$ is compact hence
+        $f([a,b]) \in \R$ is compact because of Theorem 8.4. then $f([a,b])$
+        is bounded and closed so there is $c,d \in \R$ such that
+        $c \leq f(x) \leq d$ for every $f(x) \in f([a,b])$ or $f([a,b]) \subset [c,d]$
+        moreover there is $x_1,x_2 \in[a,b]$ such that $f(x_1) = c$ and
+        $f(x_2) = d$.
+
+        Let us take $J = [x_1,x_2]$ if $x_1 \leq x_2$ or $J = [x_2,x_1]$ if
+        $x_1 > x_2$ where $J \subset [a,b]$. Since $f$ is continuous and
+        because of the Intermediate Value Theorem we know that $f$ takes any
+        value between $f(x_1)$ and $f(x_2)$ which implies that
+        $[f(x_1), f(x_2)] = [c,d] \subset f([a,b])$.
+        Therefore $f([a,b]) = [c,d]$.  
+
+    \end{proof}
+    \begin{proof}{\textbf{22}}
+        Let $E \subseteq M$ be a closed set (hence compact because of
+        Corollary 8.3) and let us take a convergent sequence
+        $(y_n) \subseteq f(E)$ such that it converges to $y \in N$ we want to
+        prove that also $y \in f(E)$ which would imply that $f(E)$ is a
+        closed set.
+
+        By definition, there is $x_n \in E$ such that $f(x_n) = y_n$ hence
+        we can form a sequence $(x_n) \subseteq E$, but $E$ is compact
+        so there is $(x_{n_k}) \subseteq E$ such that $x_{n_k} \to x$ where
+        $x \in E$. Also, $f$ is continuous so $f(x_{n_k}) \to f(x)$ or
+        $y_{n_k} \to f(x)$ but we knew that $y_n \to y$ so by unicity
+        of limits we have that $y = f(x) \in f(E)$. Therefore $f(E)$ is closed
+        and $f$ is a closed map.
+    \end{proof}
+    \begin{proof}{\textbf{23}}
+        Let $E$ be a closed set from $M$ since $M$ is compact and $f:M \to N$
+        is continuous then from proof 22 we know that $f$ is a closed map hence
+        $f(E)$ is closed in $N$ but also we know that $f(E) = (f^{-1})^{-1}(E)$
+        since $f$ is bijective therefore $f^{-1}$ is continuous and $f$ is a
+        homeomorphism.  
+    \end{proof}
+\cleardoublepage
+    \begin{proof}{\textbf{25}}
+        Let $V$ be a normed vector space and let a function $f:[0,1] \to V$
+        defined as $f(t) = x + t(y-x)$ where $x \neq y \in V$.
+
+        First, we want to prove that $f$ is continuous.
+        Let $\epsilon > 0$ and let
+        $s,t \in [0,1]$ if $|s-t|< \delta$ where $\delta = \epsilon/\|y-x\|$
+        (we can do this since $x\neq y$) we have that
+        \begin{align*}
+            |s-t| &< \frac{\epsilon}{\|y-x\|}\\
+            \|(s-t)(y-x)\| &< \epsilon\\
+            \|s(y-x)-t(y-x)\| &< \epsilon\\
+            \|x + s(y-x)-(x + t(y-x))\| &< \epsilon\\
+            \|f(s)-f(t)\| &< \epsilon
+        \end{align*}
+        Therefore $f$ is continuous.
+
+        Now we want to prove that $f$ is one-to-one and onto (i.e. bijective).
+        Suppose $f(t) = f(s)$ for some $t,s \in [0,1]$ hence
+        \begin{align*}
+            x + t(y-x) &= x + s(y-x)\\
+            t(y-x) &= s(y-x)\\
+            t &= s
+        \end{align*}
+        Therefore $f$ is one-to-one.
+
+        To prove that $f$ is onto suppose $z \in V$ we want to prove that
+        there is $t \in [0,1]$ such that $f(t) = z$ let us take
+        $t = (z - x)/(y-x)$ hence
+        \begin{align*}
+            f(t) &= x + \frac{z-x}{y-x}(y-x) = z
+        \end{align*}
+        Therefore $f$ is onto as we wanted.
+        
+        Finally, since $[0,1]$ is compact in $\R$ because it's closed and bounded
+        and $f$ is continuous and bijective from proof 23 we have that $f$ is
+        a homeomorphism from $[0,1]$ to $V$.
+    \end{proof}
+    \cleardoublepage
+    \begin{proof}{\textbf{30}}
+        We want to prove first that $(a)$ is equivalent to $(b)$.
+        Let $\mathcal{F}$ be a collection of closed sets in $M$ such that
+        $\bigcap_{i=1}^n F_i \neq \emptyset$ for all choices of finitely many
+        sets $F_1, ..., F_n$ let us suppose
+        $\bigcap \{F: F \in \mathcal{F}\} = \emptyset$ we want to arrive at
+        a contradiction.
+
+        Now let us define $\mathcal{G} = \{F^c: F \in \mathcal{F}\}$ we see
+        that $(\bigcap\{F: F \in \mathcal{F}\})^c = M$
+        also from De Morgan's law, we have that
+        $(\bigcap\{F: F \in \mathcal{F}\})^c = \bigcup\{F^c: F \in \mathcal{F}\}$
+        hence $M \subseteq \bigcup\{G: G \in \mathcal{G}\}$ then from $(a)$ we
+        have that there are finitely many sets $G_1, ..., G_n \in \mathcal{G}$
+        such that $M \subseteq \bigcup_{i=1}^n G_i$ where $G_i = (F_i)^c$ then
+        $(\bigcup_{i=1}^n (F_i)^c)^c = \emptyset$ but we know that
+        $(\bigcup_{i=1}^n (F_i)^c)^c = \bigcap_{i=1}^n ((F_i)^c)^c
+        = \bigcap_{i=1}^n F_i$ hence $\bigcap_{i=1}^n F_i = \emptyset$ but we
+        know that $\bigcap_{i=1}^n F_i \neq \emptyset$ then we have a
+        contradiction therefore it must be that
+        $\bigcap \{F: F \in \mathcal{F}\} \neq \emptyset$.
+
+        Finally, we want to prove that $(b)$ is equivalent to $(a)$.
+        Let $\mathcal{G}$ be a collection of open sets in $M$ such that
+        $M \subseteq \bigcup\{G: G \in \mathcal{G}\}$ and let us suppose that
+        for every combination of finitely many sets
+        $G_1, ..., G_n \in \mathcal{G}$ we have that 
+        $M \not\subseteq \bigcup_{i=1}^n G_i$ we want to arrive at a
+        contradiction.
+        
+        Let us define $\mathcal{F} = \{(G_i)^c: G_i \in \mathcal{G}\}$ for
+        $1 \leq i \leq n$ such that $\bigcap_{i=1}^n (G_i)^c \neq \emptyset$
+        which we know it exists because if $\bigcap_{i=1}^n (G_i)^c = \emptyset$
+        then $\bigcap_{i=1}^n (G_i)^c = (\bigcup_{i=1}^n G_i)^c = \emptyset$
+        which implies that $\bigcup_{i=1}^n G_i = M$ but we said that
+        $M \not\subseteq \bigcup_{i=1}^n G_i$.
+        Then because of $(b)$ we have that
+        $\bigcap\{(G)^c: G \in \mathcal{G}\} \neq \emptyset$
+        but also from De Morgan's law, we have that
+        $(\bigcap\{(G)^c: G \in \mathcal{G}\})^c = \bigcup\{G: G \in \mathcal{G}\}$
+        so $M \subseteq (\bigcap\{(G)^c: G \in \mathcal{G}\})^c$ hence it must happen
+        that $\bigcap\{(G)^c: G \in \mathcal{G}\} = \emptyset$ which is a
+        contradiction to what we've got from $(b)$, therefore it must happen
+        that there are finitely  many sets
+        $G_1, ..., G_n \in \mathcal{G}$ such that
+        $M \subseteq \bigcup_{i=1}^n G_i$.
+    \end{proof}
+    \begin{proof}{\textbf{36}}
+        Let us suppose that $d(F,K) = \inf\{d(x,y): x \in F, y \in K\} = 0$ 
+        we want to arrive at a contradiction. Let us take
+        $(x_n) \subseteq F$ and $(y_n) \subseteq K$ such that
+        $d(x_n, y_n) \to 0$. Since $K$ is compact then $(y_n)$ has a 
+        subsequence such that $y_{n_k} \to y$ where $y \in K$. Also, let us
+        take a subsequence $(x_{n_k}) \subseteq (x_n)$ so we have that
+        \begin{align*}
+            0 \leq d(x_{n_k}, y) \leq d(x_{n_k}, y_{n_k}) + d(y_{n_k}, y)
+        \end{align*}
+        We see that $d(x_{n_k}, y_{n_k}) \to 0$ since it is a subsequence
+        of $d(x_n, y_n)$ hence both have the same limit and $d(y_{n_k}, y) \to 0$
+        because $K$ is compact as we just saw therefore $x_{n_k} \to y$
+        but we know $F$ is closed then $y \in F$ but also
+        $K \cap F = \emptyset$ hence we have a contradiction and must be
+        that $d(F,K) = \inf\{d(x,y): x \in F, y \in K\} > 0$.
+        
+        Finally, let $F = \{(x,y): y= 0\}$ and $K = \{(x,y) : y = 1/x\}$ we see
+        that both $F$ and $K$ are closed sets and disjoint but
+        $d(F,K) = \inf\{d(x,y): x \in F, y\in K\} = 0$.
+    \end{proof}
+    \cleardoublepage
+    \begin{proof}{\textbf{44}}
+        Let $f:(M,d) \to (N, \rho)$ be a Lipschitz map then there is
+        $K < \infty$ such that $\rho(f(x), f(y)) \leq Kd(x,y)$ for all
+        $x,y \in M$ hence given $\epsilon > 0$ there is $\delta = \epsilon/K$
+        such that when $d(x,y) < \delta = \epsilon/K$ we have that
+        $$\rho(f(x), f(y)) \leq Kd(x,y) < \epsilon$$
+        Therefore $f$ is uniformly continuous.
+
+        Let us suppose now that $f$ is isometric then we know that
+        $\rho(f(x), f(y)) = d(x,y)$ hence given $\epsilon > 0$ if we take
+        $\delta = \epsilon$ we have that whenever $d(x,y) < \delta = \epsilon$
+        we get that $\rho(f(x), f(y)) = d(x,y) < \epsilon$. Therefore an
+        isometry is also uniformly continuous. 
+    \end{proof}
+    \begin{proof}{\textbf{45}}
+        Let $f:\N \to \R$ and if we take $\delta = 1/2$
+        we have that $|n - m| < 1/2$ for every $n, m \in \N$ hence
+        $n = m$ so $|f(n) - f(m)| < \epsilon$
+        no mater which $\epsilon > 0$ we take since $f(n) = f(m)$.
+        Therefore $f$ is uniformly continuous.
+    \end{proof}
+    \begin{proof}{\textbf{46}}
+        First, we want to prove that $|d(x,z) - d(y,z)| \leq d(x,y)$. From the
+        triangle inequality we know that
+        \begin{align*}
+            d(x,z) &\leq d(x,y) + d(y,z)\\
+            d(x,z) - d(y,z) &\leq d(x,y)
+        \end{align*}
+        and that
+        \begin{align*}
+            d(y,z) &\leq d(y,x) + d(x,z)\\
+            d(y,z) - d(x,z) &\leq d(x,y)\\
+            -d(x,y) &\leq d(x,z) - d(y,z) 
+        \end{align*}
+        Hence this implies that $|d(x,z) - d(y,z)| \leq d(x,y)$ as we wanted to
+        show.
+
+        Now we will prove that the map $x \to d(x,z)$ for some fixed
+        $z \in M$ is a uniformly continuous map in $M$.
+        Given some $\epsilon > 0$, let us take $\delta = \epsilon$ then when
+        $d(x,y) < \delta = \epsilon$ from what we proved earlier we have that
+        $$|d(x,z) - d(y,z)| \leq d(x,y) < \delta = \epsilon$$
+        Therefore the map $x \to d(x,z)$ is uniformly continuous.
+    \end{proof}
+\cleardoublepage
+    \begin{proof}{\textbf{47}}
+        First, we want to prove that $|d(x, A) - d(y, A)| \leq d(x,y)$. From the
+        triangle inequality for any $a\in A$ we know that
+        \begin{align*}
+            d(x,A) = \inf\{d(x,a): a \in A \} \leq d(x,a) &\leq d(x,y) + d(y,a)\\
+            d(x,A) - d(x,y) &\leq d(y,a)
+        \end{align*}
+        So we see that $d(x,A) - d(x,y)$ is a lower bound for $d(y,a)$
+        hence we have that
+        \begin{align*}
+            d(x,A) - d(x,y) &\leq \inf\{d(y,a): a \in A\} = d(y,A)\\
+            d(x,A) - d(y,A) &\leq d(x,y)
+        \end{align*}
+        Similarly, we have that
+        \begin{align*}
+            d(y,A) = \inf\{d(y,a): a \in A \} \leq d(y,a) &\leq d(y,x) + d(x,a)\\
+            d(y,A) - d(x,y) &\leq d(x,a)
+        \end{align*}
+        So we see that $d(y,A) - d(x,y)$ is a lower bound for $d(x,a)$
+        hence we have that
+        \begin{align*}
+            d(y,A) - d(x,y) &\leq \inf\{d(x,a): a \in A\} = d(x,A)\\
+            d(y,A) - d(x,A) &\leq d(x,y)\\
+            -d(x,y) &\leq d(x,A) - d(y,A) 
+        \end{align*}
+        Hence this implies that $|d(x,A) - d(y,A)| \leq d(x,y)$ as we wanted to
+        show.
+
+        Now we will prove that the map $x \to d(x, A)$ is a uniformly continuous
+        map in $M$.
+        Given some $\epsilon > 0$, let us take $\delta = \epsilon$ then when
+        $d(x,y) < \delta = \epsilon$ from what we proved earlier we have that
+        $$|d(x,A) - d(y,A)| \leq d(x,y) < \delta = \epsilon$$
+        Therefore the map $x \to d(x, A)$ is uniformly continuous.
+    \end{proof}
+    \begin{proof}{\textbf{48}}
+        Let $f:(M,d) \to (N, \rho)$ be a uniformly continuous map
+        and let $(x_n) \subseteq M$ be a Cauchy sequence. We want to prove that
+        $f((x_n))$ is also a Cauchy sequence.
+
+        Since $f$ is uniformly continuous given some $\epsilon > 0$ there is
+        some $\delta > 0$ (which depends on $\epsilon$ and/or $f$) such that
+        $\rho(f(x_n), f(x_m)) < \epsilon$ whenever $x_n, x_m \in (x_n)$ satisfy
+        $d(x_n, x_m) < \delta$ but since $(x_n)$ is Cauchy there is $N \in \N$
+        where this will be satisfied for every $n,m \geq N$ hence we have that
+        $\rho(f(x_n), f(x_m)) < \epsilon$ is also satisfied for every
+        $n,m \geq N$ which implies that $f((x_n))$ is also a Cauchy sequence.
+    \end{proof}
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

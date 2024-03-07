@@ -1,0 +1,586 @@
+\documentclass[11pt]{article}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{adjustbox}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usepackage[mathscr]{euscript}
+
+\title{\textbf{Solved selected problems of Real Analysis - Carothers}}
+\author{Franco Zacco}
+\date{}
+
+\addtolength{\topmargin}{-3cm}
+\addtolength{\textheight}{3cm}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\diam}{\text{diam}}
+\newcommand{\cl}{\text{cl}}
+\newcommand{\bdry}{\text{bdry}}
+\newcommand{\inter}{\text{int}}
+
+\theoremstyle{definition}
+\newtheorem*{solution*}{Solution}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\section*{Chapter 10 - Sequences of Functions}
+
+\begin{proof}{\textbf{4}}
+    Let $f$ be twice continuously differentiable and $2\pi$-periodic,
+    we want to respond why $f'$ and $f''$ are both $2\pi$-periodic.
+    Since $f$ is $2\pi$-periodic we know that $f(x) = f(x + 2\pi n)$ for
+    $n \in \N$ then by differentiating this expression we get that
+    $f'(x) = f'(x + 2\pi n)$ and that $f''(x) = f''(x + 2\pi n)$
+    which implies that both $f'$ and $f''$ are $2\pi$-periodic.
+    \begin{itemize}
+    \item [(a)] Let us now compute the Fourier coefficient $a_n$ of $f$ using
+    integration by parts where we assume $u(x) = f(x)$ and $v'(x) = \cos(nx)$
+    hence $v(x) = \sin(nx) /n$ then
+    \begin{align*}
+        a_n &= \frac{1}{\pi}\int_0^{2\pi}f(x) \cos(nx) dx\\
+        &= \frac{1}{\pi}\bigg[\bigg[f(x)\frac{\sin(nx)}{n}\bigg]_0^{2\pi}
+        - \int_0^{2\pi}f'(x) \frac{\sin(nx)}{n} dx\bigg]\\
+        &= -\frac{1}{n\pi}\int_0^{2\pi}f'(x) \sin(nx) dx
+    \end{align*}
+    So we have that 
+    \begin{align*}
+        |a_n| &= \bigg|\frac{1}{n\pi}\int_0^{2\pi}f'(x) \sin(nx) dx\bigg|\\
+        &\leq \frac{1}{n\pi}\int_0^{2\pi}|f'(x)\sin(nx)| dx\\
+        &\leq \frac{1}{n\pi}\int_0^{2\pi}|f'(x)| dx
+    \end{align*}
+    Where we used that $|\sin(nx)| \leq 1$. Since $f'$ is $2\pi$-periodic
+    then it is bounded, let us take a bound $C'$ then
+    we have that
+    $$\frac{1}{\pi}\int_0^{2\pi}|f'(x)| dx \leq 2\pi C' = C$$
+    which implies that 
+    $$|a_n| \leq C/n$$
+    \cleardoublepage
+    In the same way, we compute the Fourier coefficient $b_n$ of $f$
+    where we assume $u(x) = f(x)$ and $v'(x) = \sin(nx)$
+    hence $v(x) = -\cos(nx)/n$ then
+    \begin{align*}
+        b_n &= \frac{1}{\pi}\int_0^{2\pi}f(x) \sin(nx) dx\\
+        &= \frac{1}{\pi}\bigg[\bigg[-f(x)\frac{\cos(nx)}{n}\bigg]_0^{2\pi}
+        + \int_0^{2\pi}f'(x) \frac{\cos(nx)}{n} dx\bigg]\\
+        &= \frac{1}{\pi}\bigg[\bigg[
+            -\frac{f(2\pi)}{n} + \frac{f(0)}{n}
+        \bigg]
+        + \int_0^{2\pi}f'(x) \frac{\cos(nx)}{n} dx\bigg]\\
+        &= \frac{1}{n\pi}\int_0^{2\pi}f'(x) \cos(nx) dx
+    \end{align*}
+    Where we used that $f$ is $2\pi$-periodic and so $f(2\pi) = f(0)$ so
+    we have that
+    \begin{align*}
+        |b_n| &= \bigg|\frac{1}{n\pi}\int_0^{2\pi}f'(x) \cos(nx) dx\bigg|\\
+        &\leq \frac{1}{n\pi}\int_0^{2\pi}|f'(x)\cos(nx)| dx\\
+        &\leq \frac{1}{n\pi}\int_0^{2\pi}|f'(x)| dx
+    \end{align*}
+    Where we used again that $|\cos(nx)| \leq 1$ and since $f'$ is
+    $2\pi$-periodic then it is bounded, let us take a bound $C'$ then
+    we have that
+    $$\frac{1}{\pi}\int_0^{2\pi}|f'(x)| dx \leq 2\pi C' = C$$
+    which implies that 
+    $$|b_n| \leq C/n$$
+
+    Finally, since $1/n \to 0$ as $n \to \infty$ and we know that
+    $0 \leq |a_n| \leq C/n$ and $0 \leq |b_n| \leq C/n$ by the squeeze theorem
+    we have that $|a_n| \to 0$ and $|b_n| \to 0$ as $n \to \infty$.
+
+\cleardoublepage
+    \item[(b)] Let us now integrate by parts again the Fourier coefficient $a_n$
+    we got where we assume $u(x) = f'(x)$ and $v'(x) = \sin(nx)$
+    hence $v(x) = -\cos(nx)/n$ then
+    \begin{align*}
+        a_n &= -\frac{1}{n\pi}\int_0^{2\pi}f'(x) \sin(nx) dx\\
+        &= -\frac{1}{n\pi}\bigg[\bigg[
+            -f'(x)\frac{\cos(nx)}{n}
+        \bigg]_0^{2\pi}
+        - \int_0^{2\pi}f''(x) \frac{\cos(nx)}{n} dx\bigg]\\
+        &= -\frac{1}{n\pi}\bigg[\bigg[
+            -\frac{f'(2\pi)}{n} + \frac{f'(0)}{n}
+        \bigg]
+        - \int_0^{2\pi}f''(x) \frac{\cos(nx)}{n} dx\bigg]\\
+        &= \frac{1}{n^2\pi}\int_0^{2\pi}f''(x) \cos(nx) dx
+    \end{align*}
+    Where we used that $f'$ is $2\pi$-periodic and so $f'(2\pi) = f'(0)$ so
+    we have that
+    \begin{align*}
+        |a_n| &= \bigg|\frac{1}{n^2\pi}\int_0^{2\pi}f''(x) \cos(nx) dx\bigg|\\
+        &\leq \frac{1}{n^2\pi}\int_0^{2\pi}|f''(x)\cos(nx)| dx\\
+        &\leq \frac{1}{n^2\pi}\int_0^{2\pi}|f''(x)| dx
+    \end{align*}
+    Where we used again that $|\cos(nx)| \leq 1$ and since $f''$ is
+    $2\pi$-periodic then it is bounded, let us take a bound $C'$ then
+    we have that
+    $$\frac{1}{\pi}\int_0^{2\pi}|f''(x)| dx \leq 2\pi C'= C$$
+    which implies that 
+    $$|a_n| \leq C/n^2$$
+    \cleardoublepage
+    In the same way, we can integrate by parts again the Fourier coefficient
+    $b_n$ we got where we assume $u(x) = f'(x)$ and $v'(x) = \cos(nx)$
+    hence $v(x) = \sin(nx)/n$ then
+    \begin{align*}
+        b_n &= \frac{1}{n\pi}\int_0^{2\pi}f'(x) \cos(nx) dx\\
+        &= \frac{1}{n\pi}\bigg[\bigg[f'(x)\frac{\sin(nx)}{n}\bigg]_0^{2\pi}
+        - \int_0^{2\pi}f''(x) \frac{\sin(nx)}{n} dx\bigg]\\
+        &= -\frac{1}{n^2\pi}\int_0^{2\pi}f''(x) \sin(nx) dx
+    \end{align*}
+    So we have that
+    \begin{align*}
+        |b_n| &= \bigg|\frac{1}{n^2\pi}\int_0^{2\pi}f''(x) \sin(nx) dx\bigg|\\
+        &\leq \frac{1}{n^2\pi}\int_0^{2\pi}|f''(x)\sin(nx)| dx\\
+        &\leq \frac{1}{n^2\pi}\int_0^{2\pi}|f'(x)| dx
+    \end{align*}
+    Where we used again that $|\sin(nx)| \leq 1$ and since $f''$ is
+    $2\pi$-periodic then it is bounded, let us take a bound $C'$ then
+    we have that
+    $$\frac{1}{\pi}\int_0^{2\pi}|f''(x)| dx \leq 2\pi C' = C$$
+    which implies that 
+    $$|b_n| \leq C/n^2$$
+
+    Finally, let $x \in \R$ then the Fourier series $s$ for $f(x)$ is given by
+    \begin{align*}
+        s(x) = \frac{a_0}{2} + \sum_{n=1}^\infty a_n\cos(nx) + b_n\sin(nx)
+    \end{align*}
+    we see that both the terms $a_n\cos(nx)$ and $b_n\sin(nx)$ tend to 0 as
+    $n \to \infty$ which implies that the series converges and therefore
+    takes a value on $\R$.
+\end{itemize}
+\end{proof}
+\cleardoublepage
+\begin{proof}{\textbf{7}}
+    Let $(f_n)$ and $(g_n)$ be real-valued function on a set $X$ and suppose
+    that $(f_n)$ and $(g_n)$ converge uniformly on $X$. We want to show
+    $(f_n + g_n)$ converges uniformly on $X$.
+
+    Since $(f_n)$ converge uniformly then given $\epsilon/2 > 0$
+    there is $N \geq 1$ (which may depend on $\epsilon$)
+    such that $|f_n(x) - f(x)| < \epsilon/2$ for all $x \in X$ an all $n \geq N$.
+
+    In the same way, since $(g_n)$ converge uniformly then
+    there is $N' \geq 1$ (which may depend on $\epsilon$)
+    such that $|g_n(x) - g(x)| < \epsilon/2$ for all $x \in X$ an all $n \geq N'$.
+ 
+    Let us take $M = \max(N, N')$ so we know that for all $x \in X$ and
+    for all $n \geq M$ we have that
+    $$|f_n(x) -f(x)| + |g_n(x) -g(x)| < \epsilon/2 + \epsilon/2 = \epsilon$$
+    and by the triangle inequality, we see that
+    \begin{align*}
+        |(f_n(x) + g_n(x)) - (g(x) + f(x))| &\leq |f_n(x) -f(x)| + |g_n(x) -g(x)|
+        < \epsilon
+    \end{align*}
+    which implies that $(f_n + g_n)$ converges uniformly.
+
+    Let us take now $f_n(x) = g_n(x) = x + 1/n$ where we see that they are
+    uniformly convergent to $f(x) = g(x) = x$ on $\R$.
+    So we define $f_ng_n = (x + 1/n)^2$ but we see that
+    \begin{align*}
+        \sup_{x \in \R}\left|\left(x + \frac{1}{n}\right)^2 - x^2\right|
+        = \sup_{x \in \R}\left|\frac{2x}{n} + \frac{1}{n^2}\right| = +\infty
+    \end{align*}
+    Therefore $(f_ng_n)$ is not uniformly convergent.
+\end{proof}
+\cleardoublepage
+\begin{proof}{\textbf{9}}
+\begin{itemize}
+    \item [(a)] Let $f_n(x) = x^n$ on $(-1, 1]$.
+    We know that $(f_n)$ converges to 0 if $x \in [0,1)$ and to 1 if $x = 1$.
+    Let  $-1 < x < 0$ then there must be some $a < 0$ such that $x = 1/a$
+    hence $x^n = 1/a^n$ and we see that $1/a^n \to 0$ as $n \to \infty$ then
+    $x^n \to 0$ as $n \to \infty$. So in summary the pointwise limit for $(f_n)$
+    is given by
+    \begin{align*}
+        f(x) = \begin{cases}
+        0 & x \in (-1,1)\\
+        1 & x = 1
+        \end{cases}
+    \end{align*}
+
+    Let us take now an interval $(a,b) \subset (-1,1]$ then if $x \in (a,b)$
+    we have that
+    \begin{align*}
+        \sup_{x \in (a,b)}|f_n(x) - f(x)|
+        = \sup_{x \in (a,b)}|x^n - 0|
+        = |b^n|
+    \end{align*}
+    and we see that $|b^n| \to 0$ as $n \to \infty$ since $-1 < b < 1$.
+    Therefore $(f_n)$ is uniformly convergent to $0$ in any interval
+    $(a,b) \subset (-1,1]$ as long as $b < 1$.
+
+    Given that $f_n \to f$ pointwise we want to check if $f'_n \to f'$ too.
+    So we have that $f'_n(x) = nx^{n-1}$ if $x \in [0, 1)$
+    then there is some $a > 1$ such that $x = 1/a$ hence
+    $nx^{n-1} = n/a^{n-1} = an/a^{n}$ and we know that the polynomial $an$
+    goes slower to infinity than $a^n$ so we have that $nx^{n-1} \to 0$.
+    The same thing can be shown for $x \in (-1,0)$.
+    But if $x = 1$ then $f_n'(1) = n$ which goes to $\infty$ as $n \to \infty$.
+
+    Finally, we want to check that if $\int f_n \to \int f$.
+    We see that
+    \begin{align*}
+        \int_{-1}^1 f_n(x) dx &= \int_{-1}^1 x^n dx\\
+        &= \left[\frac{1^{n+1}}{n+1} - \frac{(-1)^{n+1}}{n+1}\right]\\
+        &=\frac{-1^n + 1}{n + 1}
+    \end{align*}
+    and we have that $(-1^n + 1)/(n + 1) \to 0$ as $n \to \infty$.
+
+    \cleardoublepage
+    \item [(b)] Let $f_n(x) = n^2x(1 - x^2)^n$ on $[0,1]$. Let us take some
+    $x \in (0,1)$ then we see that $0 < 1 - x^2 < 1$ hence $(1 -x^2)^n \to 0$
+    as $n \to \infty$ but $xn^2 \to \infty$ as $n \to \infty$ so let us write
+    $\lim_{n \to \infty} f_n(x)$ as
+    \begin{align*}
+        \lim_{n\to\infty}f_n(x)
+        = \lim_{n\to\infty} \frac{n^2x}{\frac{1}{(1 - x^2)^n}}
+    \end{align*}
+    So we can apply L'Hôpital rule twice to get
+    \begin{align*}
+        \lim_{n\to\infty}f_n(x)
+        &= \lim_{n\to\infty} \frac{2nx}{-\frac{\log(1 - x^2)}{(1 - x^2)^{n}}}\\
+        &= \lim_{n\to\infty} \frac{2x}{\frac{\log^2(1 - x^2)}{(1 - x^2)^{n}}}\\
+        &= 0
+    \end{align*}
+    Also, if $x=0$ we get that $f_n(0) = 0$ and if $x=1$ we have that
+    $f_n(1) = 0$. Therefore $f_n$ converges pointwise to $f(x) = 0$ on $[0,1]$.
+
+    Let us take now the interval $[0,1]$ and let us analyze the maximum value
+    of the series by derivating
+    \begin{align*}
+        f'_n(x) = -n^2 (1 - x^2)^{n-1} (-1 + (1 + 2 n) x^2)
+    \end{align*}
+    so $f_n(x)$ is a maximum when $x = 1/\sqrt{2n + 1}$ hence we have that
+    \begin{align*}
+        \sup_{x \in [0,1]}|f_n(x) - f(x)|
+        = \sup_{x \in [0,1]}|n^2x(1 - x^2)^n - 0|
+        = \frac{2^nn^{n+2}}{(2n + 1)^{n+1/2}}
+    \end{align*}
+    And we see that $2^nn^{n+2}/(2n + 1)^{n+1/2} \to \infty$ as
+    $n \to \infty$.
+    Therefore $(f_n)$ is not uniformly convergent on $[0,1]$.
+
+    Let us check now if there is another interval where $f_n$ is uniformly
+    convergent. We see that $1/\sqrt{2n + 1} \to 0$ as $n \to \infty$ so the
+    value of $x$ that gives us the maximum will move towards $0$ so if we take
+    an interval $(a,b) \subset [0,1]$ where $a> 0$ then the maximum will happen
+    at $x=a$ but as we saw $f_n(a) \to 0$ hence
+    $\sup_{x \in (a,b)} |f_n(x) - 0| = |f_n(a)|\to 0$ so for any interval
+    $(a,b)$ where $a > 0$ the sequence $(f_n)$ is uniformly convergent to $0$.
+
+    Let us check now if $f_n' \to f'$.
+    We see that
+    $$f_n'(x) = -n^2 (1 - x^2)^{n-1} (-1 + (1 + 2 n) x^2)$$
+    By applying multiple times the L'Hôpital rule we get that $f_n' \to 0$ as
+    $n \to \infty$.
+
+    Let us check now if $\int f_n \to \int f$.
+    We see that
+    $$\int_{0}^1 f_n(x) = \frac{n^2}{2n+2}$$
+    But in this case, we see that $\int f_n \to \infty$ as $n \to \infty$.
+
+    \cleardoublepage
+    \item [(c)] Let $f_n(x) = nx/(1 + xn)$ on $[0,\infty)$. We can write
+    $f_n(x)$ as
+    \begin{align*}
+        f_n(x) = \frac{x}{1/n + x}
+    \end{align*}
+    So we see that $\lim_{n \to \infty} f_n(x) = 1$ for $x \in (0,\infty)$ and
+    if $x = 0$ we get that $f_n(0) = 0$.
+
+    Let us take an interval $(a,b) \subset [0,\infty)$
+    then we have that
+    \begin{align*}
+        \sup_{x \in (a,b)}|f_n(x) - f(x)|
+        &= \sup_{x \in (a,b)}\left|\frac{x}{1/n + x} - 1\right|\\
+        &= \sup_{x \in (a,b)}\left|\frac{x - 1/n - x}{1/n + x}\right|\\
+        &= \sup_{x \in (a,b)}\left|\frac{1}{1 + nx}\right|\\
+        &= \frac{1}{1 + na}
+    \end{align*}
+    Since the supremum for $1/(1+na)$ is given at $x=a$
+    and we see that $1/(1+na) \to 0$ as $n\to \infty$.
+
+    Therefore $(f_n)$ is uniformly convergent to $1$ in any interval
+    $(a,b) \subset [0,\infty)$ as long as $a > 0$ otherwise we get that
+    $\sup_{x \in [0,b)}|f_n(x) - f(x)| = 1$ which does not tend to $0$ as
+    $n \to \infty$.
+
+    Let us check now if $f_n' \to f'$.
+    We see that
+    $$f_n'(x) = \frac{n}{(nx + 1)^2}$$
+    By applying the L'Hôpital rule we get that $f_n' \to 0$ as $n \to \infty$.
+
+    Let us check now if $\int f_n \to \int f$.
+    In this case, the integral $\int_{0}^\infty f_n(x) dx$ does not converge.
+\cleardoublepage
+    \item [(d)] Let $f_n(x) = nx/(1 + x^2n^2)$ on $[0,\infty)$. We can write
+    $f_n(x)$ as
+    \begin{align*}
+        f_n(x) = \frac{x}{1/n + x^2n}
+    \end{align*}
+    So we see that $\lim_{n \to \infty} f_n(x) = 0$ for $x \in (0,\infty)$ and
+    if $x = 0$ we get that $f_n(0) = 0$. Hence $(f_n)$ converges pointwise
+    to $0$.
+
+    Let us take the derivative of $f_n(x)$ to see where the maximum happens
+    \begin{align*}
+        f_n'(x) = \frac{n - n^3 x^2}{(1 + n^2 x^2)^2}
+    \end{align*}
+    Then if $f_n'(x) = 0$ we get that $n^3 x^2 = n$ which implies that the
+    maximum happens at $x = 1/n$. So we have that
+    \begin{align*}
+        \sup_{x \in [0,\infty)} \left|f_n(x) - f(x)\right|
+        = \sup_{x \in [0,\infty)} \left|\frac{x}{1/n + x^2n} - 0\right|
+        = \left|\frac{1/n}{2/n}\right| = 1/2
+    \end{align*}
+    So we see that $\sup_{x \in [0,\infty)} \left|f_n(x) - f(x)\right|$ does
+    not tend to $0$ as $n \to \infty$ which implies that $(f_n)$ is not
+    uniformly convergent on $[0,\infty)$ but we see that $1/n \to 0$ as
+    $n\to \infty$ so the value of $x$ that gives us the maximum will move
+    towards $0$ thus if we take an interval $(a,b) \subset [0,\infty)$ where $a> 0$
+    then the maximum will happen at $x=a$ but as we saw $f_n(a) \to 0$ hence
+    $\sup_{x \in (a,b)} |f_n(x) - 0| = |f_n(a)|\to 0$ so for any interval
+    $(a,b)$ where $a > 0$ the sequence $(f_n)$ is uniformly convergent to $0$.
+
+    Let us check now if $f_n' \to f'$. We saw that
+    $$f_n'(x) = \frac{n - n^3 x^2}{(1 + n^2 x^2)^2}$$
+    By applying the L'Hôpital rule multiple times we get that $f_n' \to 0$
+    as $n \to \infty$.
+
+    Let us check now if $\int f_n \to \int f$. We see that
+    $$\int_0^\infty \frac{x}{1/n + x^2n}~dx
+    = \left[\frac{\log(1 + n^2 x^2)}{2 n}\right]_{0}^\infty = \infty $$
+    So $\int f_n$ does not converge but this was expected since $(f_n)$ is not
+    uniformly convergent on $[0,\infty)$. 
+
+    \cleardoublepage
+    \item [(e)] Let $f_n(x) = xe^{-nx}$ on $[0,\infty)$. We can write
+    $f_n(x)$ as
+    \begin{align*}
+        f_n(x) = \frac{x}{e^{nx}}
+    \end{align*}
+    So we see that $\lim_{n \to \infty} f_n(x) = 0$ for $x \in (0,\infty)$ and
+    if $x = 0$ we get that $f_n(0) = 0$. Hence $(f_n)$ converges pointwise
+    to $0$.
+
+    Let us take the derivative of $f_n(x)$ to see where the maximum happens
+    \begin{align*}
+        f_n'(x) = \frac{1 - nx}{e^{nx}}
+    \end{align*}
+    Then if $f_n'(x) = 0$ we get that $1 - nx = 0$ which implies that the
+    maximum happens at $x = 1/n$. So we have that
+    \begin{align*}
+        \sup_{x \in [0,\infty)} \left|f_n(x) - f(x)\right|
+        = \sup_{x \in [0,\infty)} \left|\frac{x}{e^{nx}} - 0\right|
+        = \left|\frac{1/n}{e}\right| = \left|\frac{1}{ne}\right|
+    \end{align*}
+    And we see that $|1/ne| \to 0$ as $n \to \infty$ which implies
+    that $(f_n)$ is uniformly convergent on $[0,\infty)$.
+
+    Let us check now if $f_n' \to f'$. We saw that
+    $$f_n'(x) = \frac{1 - nx}{e^{nx}}$$
+    By applying the L'Hôpital rule we get that $f_n' \to 0$
+    as $n \to \infty$ which implies that $f_n' \to f'$.
+
+    Let us check now if $\int f_n \to \int f$. We see that
+    $$\int_0^\infty \frac{x}{e^{nx}}~dx
+    = \left[\frac{nx + 1}{n^2e^{nx}}\right]_{0}^\infty = \frac{1}{n^2}$$
+    So we see that $\int f_n \to 0$ as $n \to \infty$ i.e. $\int f_n \to \int f$
+    as we wanted.
+
+    \cleardoublepage
+    \item [(f)] Let $f_n(x) = nxe^{-nx}$ on $[0,\infty)$. Let $x \in (0,\infty)$
+    then by applying L'Hôpital rule we get that
+    $x/ne^{nx} \to 0$ as $n \to\infty$ and if $x=0$ we also have that $f_n(0)=0$.
+    Hence $(f_n)$ converges pointwise to $0$.
+
+    Let us take the derivative of $f_n(x)$ to see where the maximum happens
+    \begin{align*}
+        f_n'(x) = \frac{(1 - nx)n}{e^{nx}}
+    \end{align*}
+    Then if $f_n'(x) = 0$ we get that $1 - nx = 0$ which implies that the
+    maximum happens at $x = 1/n$. So we have that
+    \begin{align*}
+        \sup_{x \in [0,\infty)} \left|f_n(x) - f(x)\right|
+        = \sup_{x \in [0,\infty)} \left|\frac{nx}{e^{nx}} - 0\right|
+        = \left|\frac{1}{e}\right|
+    \end{align*}
+    So we see that $\sup_{x \in [0,\infty)} \left|f_n(x) - f(x)\right|$ does
+    not tend to $0$ as $n \to \infty$ which implies that $(f_n)$ is not
+    uniformly convergent on $[0,\infty)$ but we see that $1/n \to 0$ as
+    $n\to \infty$ so the value of $x$ that gives us the maximum will move
+    towards $0$ thus if we take an interval $(a,b) \subset [0,\infty)$ where $a> 0$
+    then the maximum will happen at $x=a$ but as we saw $f_n(a) \to 0$ hence
+    $\sup_{x \in (a,b)} |f_n(x) - 0| = |f_n(a)|\to 0$ so for any interval
+    $(a,b)$ where $a > 0$ the sequence $(f_n)$ is uniformly convergent to $0$.
+
+    Let us check now if $f_n' \to f'$. We saw that
+    $$f_n'(x) = \frac{(1 - nx)n}{e^{nx}}$$
+    Let $x \in (0,\infty)$, by applying the L'Hôpital rule we get that
+    $f_n' \to 0$ as $n \to \infty$ and if $x = 0$ we get that $f_n' \to \infty$
+    as $n \to \infty$.
+
+    Let us check now if $\int f_n \to \int f$. We see that
+    $$\int_0^\infty \frac{nx}{e^{nx}}~dx
+    = \left[-\frac{nx + 1}{ne^{nx}}\right]_{0}^\infty = \frac{1}{n}$$
+    So we see that $\int f_n \to 0$ as $n \to \infty$ i.e. $\int f_n \to \int f$
+    as we wanted.
+
+\end{itemize}
+\end{proof}
+\cleardoublepage
+\begin{proof}{\textbf{13}}
+    Let $f_n:X \to Y$ be continuous for each $n$, let $(f_n)$ to be pointwise
+    convergent to $f$ on $X$ and let a sequence $(x_n) \subseteq X$ such that
+    $x_n \to x$ in $X$ but $f_n(x_n) \not\to f(x)$, we want to show that
+    $(f_n)$ does not converge uniformly to $f$ on $X$.
+
+    Let us suppose $(f_n)$ does converge uniformly to $f$ on $X$, we want to
+    arrive at a contradiction. Let $\epsilon > 0$ then there is $N\in\N$
+    such that when $n \geq N$ we have that $\sup_{x\in X}\rho(f_n(x), f(x))<\epsilon$
+    this also implies that $\rho(f_n(x), f(x))<\epsilon$ for all $x \in X$.
+
+    On the other hand, since each $f_n$ is continuous given $x_n, x \in X$
+    and $\epsilon > 0$ we know there is $\delta > 0$ such that whenever
+    $d(x_n, x) < \delta$ we have that $\rho(f_n(x_n), f_n(x)) < \epsilon$.
+    So adding these inequalities and using the triangle inequality we have that
+    \begin{align*}
+        \rho(f_n(x_n), f(x)) \leq
+        \rho(f_n(x), f(x)) + \rho(f_n(x_n), f_n(x)) < 2\epsilon
+    \end{align*}
+    Which implies that $f_n(x_n) \to f(x)$ but we said that
+    $f_n(x_n) \not\to f(x)$ hence we have a contradiction.
+    Therefore must be that $(f_n)$ is not uniformly continuous.
+\end{proof}
+\begin{proof}{\textbf{14}}
+    Let $f_n:\R \to \R$ be continuous for each $n$, and suppose $f_n$ converges
+    uniformly to $f$ on each closed, bounded interval $[a,b]$. We want to
+    show that $f$ is continuous on $\R$.
+
+    We know that $f$ is continuous on $[a,b]$ because of Theorem 10.4.
+    Let $x \in \R$ then we can build a closed, bounded interval $[x-1, x+1]$
+    where $f$ is continuous so $f$ is continuous in $x$. Therefore $f$
+    is continuous in $\R$.
+\end{proof}
+\begin{proof}{\textbf{15}}
+    Let $(X,d)$ and $(Y,\rho)$ be metric spaces and let $f,f_n:X \to Y$ with
+    $f_n\rightrightarrows f$ on $X$. If each $f_n$ is continuous at $x \in X$,
+    and if $x_n \to x$, we want to prove that
+    $\lim_{n\to\infty} f_n(x_n) = f(x)$.
+
+    Let $\epsilon/2 > 0$ then there is $N' \in \N$ such that when $n \geq N'$ we
+    have that $\rho(f_n(y), f(y)) < \epsilon/2$ for all $y \in X$ since 
+    $(f_n)$ converges uniformly to $f$ so if in particular
+    we choose $y = x_n$ we get that
+    \begin{align*}
+        \rho(f_n(x_n), f(x_n)) < \epsilon/2
+    \end{align*}
+
+    On the other hand, because of Theorem 10.4, we know that $f$ is continuous
+    so using the same $\epsilon/2 > 0$ there is $M \in \N$ such that when
+    $n \geq M$ we have that
+    \begin{align*}
+        \rho(f(x_n), f(x)) < \epsilon/2
+    \end{align*}
+    
+    Finally, let us take $N = \max(N', M)$ so both inequalities are true, then
+    adding both inequalities and using the triangle inequality
+    we get that
+    \begin{align*}
+        \rho(f_n(x_n), f(x))
+        \leq \rho(f_n(x_n), f(x_n)) + \rho(f(x_n), f(x)) < \epsilon
+    \end{align*}
+    Which implies that $\lim_{n \to \infty} f_n(x_n) \to f(x)$.
+
+\end{proof}
+\cleardoublepage
+\begin{proof}{\textbf{26}}
+    Let $\sum_{n=1}^\infty |a_n| < \infty$ we want to prove that
+    $\sum_{n=1}^\infty a_n \sin(nx)$ and $\sum_{n=1}^\infty a_n \cos(nx)$
+    are uniformly convergent on $\R$.
+
+    Let $f_n(x) = a_n \sin(nx)$ we know that $|\sin(nx)| \leq 1$ then
+    $|a_n \sin(nx)| \leq |a_n|$ also, we have that
+    $|a_n \sin(nx)| \leq \sup_{x\in\R}|a_n \sin(nx)| \leq |a_n|$
+    so summing over $n$ we get that
+    \begin{align*}
+        \sum_{n=1}^\infty \|f_n\|_\infty = \sum_{n=1}^\infty \sup_{x\in\R}|a_n\sin(nx)|
+        \leq \sum_{n=1}^\infty |a_n| < \infty
+    \end{align*}
+    Then because of the Weierstrass M-test, we have that 
+    $\sum_{n=1}^\infty a_n \sin(nx)$ is uniformly convergent on $\R$.
+
+    Finally, given that $|\cos(nx)| < 1$ all we said is still valid for a
+    sequence of functions $f_n(x) = a_n\cos(nx)$ therefore
+    $\sum_{n=1}^\infty a_n \cos(nx)$ is uniformly convergent on $\R$ too.
+\end{proof}
+\cleardoublepage
+\begin{proof}{\textbf{29}}
+\begin{itemize}
+    \item [(a)] Let us consider the sequence $f_n(x) = ne^{-nx}$ then we see
+    that if $x > 0$ we have that $\lim_{n\to\infty} ne^{-nx} = 0$ so the series
+    $\sum_{n=1}^\infty ne^{-nx}$ converges for $x > 0$.
+
+    Now we want to determine in which intervals $\sum_{n=1}^\infty ne^{-nx}$
+    converges uniformly if we consider the interval $(0, \infty)$ we see
+    that
+    $$\|ne^{-nx}\|_\infty = \sup_{x \in (0,\infty)}{|ne^{-nx}|} = n$$
+    so the series $\sum_{n=1}^\infty \|ne^{-nx}\|_\infty$ does not converge
+    hence $\sum_{n=1}^\infty ne^{-nx}$ does not converge uniformly.
+    So let us take an interval $[r, \infty)$ for some $r > 0$
+    then we have that 
+    $$\|ne^{-nx}\|_\infty = \sup_{x \in [r,\infty)}{|ne^{-nx}|} = ne^{-nr} \to 0$$
+    as $n \to \infty$. Hence the series $\sum_{n=1}^\infty \|ne^{-nx}\|_\infty$
+    converge and therefore because of the Weierstrass M-test the series 
+    $\sum_{n=1}^\infty ne^{-nx}$ converge uniformly
+    on $[r, \infty)$ for some $r > 0$.
+
+    \item [(b)] Let us consider now the series $\sum_{k=1}^n e^{-kx}$
+    then we have that
+    \begin{align*}
+        (1 - e^{-x})\sum_{k=1}^n (e^{-x})^k
+        &= (1 - e^{-x})(e^{-x} + (e^{-x})^2 + ... + (e^{-x})^n)\\
+        &= (e^{-x} + e^{-2x} + ... + e^{-nx} - \\
+        &\qquad- e^{-2x} - e^{-3x} -... -e^{-(n+1)x})\\
+        &= e^{-x} - e^{-(n+1)x}\\
+        &= e^{-x}(1 - e^{-nx})
+    \end{align*}
+    Then we have that $\sum_{k=1}^n e^{-kx} = e^{-x}(1 - e^{-nx})/(1 - e^{-x})$
+    but also we see that
+    \begin{align*}
+        \frac{d}{dx}\sum_{k=1}^n e^{-kx} = -\sum_{k=1}^n ke^{-kx}
+    \end{align*}
+    So the sequence we are interested in is $f_n(x) = \sum_{k=1}^n ke^{-kx}$
+    hence we have that
+    \begin{align*}
+        f_n(x) = \sum_{k=1}^n ke^{-kx} = 
+        \frac{e^{x} + ne^{-n x} - (n + 1)e^{-x(n +1)}}{(-1 + e^x)^2}
+    \end{align*}
+    So assuming $x > 0$ we saw that $f_n(x)$ is uniformly convergent to
+    $f(x)$ which is given by
+    \begin{align*}
+        f(x) &= \lim_{n\to\infty} f_n(x)\\
+        &= \lim_{n\to\infty} \frac{e^{x} + ne^{-n x} - (n + 1)e^{-x(n +1)}}{(-1 + e^x)^2}\\
+        &=\frac{e^{x}}{(e^x - 1)^2}
+    \end{align*}
+    Now, using Theorem 10.5 we can take the limit inside the integral
+    where we get that
+    \begin{align*}
+        \lim_{n \to \infty}\int_{1}^2 f_n(x) dx &=
+        \lim_{n \to \infty}\int_{1}^2 \sum_{k=1}^n ke^{-kx} dx\\
+        &= \int_{1}^2 \sum_{k=1}^\infty ke^{-kx} dx\\
+        &= \int_1^2 \frac{e^{x}}{(e^x - 1)^2} dx\\
+        &= \left[\frac{1}{1 - e^2} - \frac{1}{1 - e}\right]\\
+        &= \frac{e}{e^2 - 1}
+    \end{align*}
+\end{itemize}
+\end{proof}
+\end{document}
